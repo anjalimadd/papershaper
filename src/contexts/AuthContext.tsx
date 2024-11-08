@@ -1,50 +1,50 @@
+/* eslint-disable react-refresh/only-export-components */
 // src/contexts/AuthContext.tsx
-import React, { createContext, useState, useContext } from "react";
-import api from "@services/api"; // Ensure you import your API module
+import React, { createContext, useState, ReactNode } from 'react';
 
-// Define the User interface
 interface User {
-  id: string;
-  name: string;
+  name?: string;
   email: string;
 }
 
-interface AuthContextType {
+interface AuthContextProps {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => boolean;
+  signup: (name: string, email: string, password: string) => boolean;
   logout: () => void;
 }
 
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(
+    JSON.parse(sessionStorage.getItem('user') || 'null')
+  );
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  const login = async (email: string, password: string) => {
-    try {
-      const response = await api.post("/auth/login", { email, password });
-      setUser(response.data.user);
-    } catch (error) {
-      // Handle error (e.g., show notification)
-      console.error("Login error:", error);
+  const login = (email: string, password: string) => {
+    if (email === 'test@example.com' && password === 'password123') {
+      const userData = { email };
+      setUser(userData);
+      sessionStorage.setItem('user', JSON.stringify(userData));
+      return true;
     }
+    return false;
+  };
+
+  const signup = (name: string, email: string) => {
+    const userData = { name, email };
+    setUser(userData);
+    sessionStorage.setItem('user', JSON.stringify(userData));
+    return true;
   };
 
   const logout = () => {
-    // Implement logout logic
     setUser(null);
+    sessionStorage.removeItem('user');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
