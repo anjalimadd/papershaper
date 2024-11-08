@@ -41,9 +41,9 @@ const MultiStepForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-100 shadow-md">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 flex flex-col items-center py-8 px-4">
+      <main className="flex-1 flex flex-col items-center py-10 px-4 bg-gray-100">
         {/* Heading and Line */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-semibold text-green-800 mb-2">
