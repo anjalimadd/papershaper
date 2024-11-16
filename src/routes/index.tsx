@@ -10,6 +10,7 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
+import SignupPage from "@pages/SignupPage";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ const AppRoutes: React.FC = () => (
       />
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<SignupPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/try-demo" element={<TryDemoPage />} />
       <Route path="*" element={<NotFoundPage />} />

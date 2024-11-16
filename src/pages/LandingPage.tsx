@@ -14,16 +14,18 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="text-center py-20 bg-gray-50">
         <h1 className="text-4xl font-bold mb-4">
-          The Future of Education with{" "}
-          <span className="text-green-700">AI-Driven Mock Papers</span>
+          Transform Your Exam Preparation with
         </h1>
+        <h2 className="text-4xl mb-4 font-bold text-green-700 motion-preset-typewriter-[44] motion-duration-[8000ms] font-sans mx-auto">
+          GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
+        </h2>{" "}
         <p className="text-lg text-gray-600 mb-8">
-          Expert tools to elevate your exam preparation. Start creating
-          AI-powered mock papers with ease.
+          Elevate Your Study Game with Expert Tools: Create AI-Powered Mock
+          Papers with Ease
         </p>
         <div className="flex justify-center space-x-4">
           <Link
-            to="/get-started"
+            to="/try-demo"
             className="px-6 py-3 bg-green-700 text-white rounded-full hover:bg-green-800"
           >
             Get Started
@@ -47,32 +49,32 @@ const LandingPage = () => {
             {
               title: "AI-Powered Mock Papers",
               description:
-                "Generate custom papers for class 8th, 9th, and 10th with AI.",
+                "Effortlessly generate custom exam papers for Classes 8, 9, and 10 using advanced AI technology. Tailor your mock papers to align with specific syllabus requirements.",
             },
             {
               title: "Question Bank Integration",
               description:
-                "Access thousands of quality questions for accurate assessments.",
+                "Access a vast library of thousands of curated quality questions, ensuring precise and thorough assessments tailored to CBSE and ICSE standards.",
             },
             {
               title: "Exam Simulator",
               description:
-                "Simulate real exam environments for better preparation.",
+                "Immerse yourself in realistic exam environments to boost your readiness and confidence during actual exams.",
             },
             {
               title: "Customizable Content",
               description:
-                "Tailor content to focus on specific topics or difficulty levels.",
+                "Customize your mock papers to concentrate on specific chapters or topics, ensuring focused and effective studying.",
             },
             {
               title: "Instant Feedback",
               description:
-                "Receive instant feedback on mock exams for continuous improvement.",
+                "Gain immediate insights with instant feedback on your performance, helping you identify strengths and areas for improvement",
             },
             {
               title: "Performance Analytics",
               description:
-                "Track performance and progress over time with detailed analytics.",
+                "Monitor and track your academic progress effortlessly, using detailed performance analytics to guide your study strategy.",
             },
           ].map((feature, index) => (
             <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">

@@ -35,7 +35,7 @@ const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({
   );
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mb-5">
       {/* Selected Tags */}
       <div
         className="flex items-center flex-wrap gap-2 p-2 border border-gray-300 rounded-md bg-gray-50 cursor-pointer focus-within:border-green-500"

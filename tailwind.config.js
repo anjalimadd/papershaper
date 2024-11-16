@@ -1,11 +1,18 @@
 // tailwind.config.js
 module.exports = {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx,html,css}',
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,html,css}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        typewriter: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+      },
+      animation: {
+        typewriter: "typewriter 5s steps(5) infinite",
+      },
+    },
   },
-  plugins: [],
-}
+  plugins: [require("tailwindcss-motion")],
+};
