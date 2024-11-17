@@ -1,16 +1,18 @@
-import { FormDataType } from "@pages/TryDemoPage";
+import React from "react";
 import InputField from "@utils/common/InputField";
 import SelectField from "@utils/common/SelectField";
-import React from "react";
+import { FormDataType } from "@pages/TryDemoPage";
 
 interface Step1Props {
   formData: FormDataType;
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
+  onNext: () => void;
 }
 
 const Step1GeneralDetails: React.FC<Step1Props> = ({
   formData,
   setFormData,
+  onNext,
 }) => {
   const handleChange = (
     e: React.ChangeEvent<
@@ -75,6 +77,13 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
         onChange={handleChange}
         required
       />
+      <button
+        type="button"
+        onClick={onNext}
+        className="mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+      >
+        Next
+      </button>
     </div>
   );
 };

@@ -19,7 +19,8 @@
       "@services/*": ["services/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@data/*": ["data/*"]
     }
   },
   "include": ["src"],

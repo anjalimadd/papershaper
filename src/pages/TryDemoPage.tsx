@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "@components/Header";
+import { jsPDF } from "jspdf";
 import Footer from "@components/Footer";
 import { toast } from "react-toastify";
 import { getValue } from "@services/api/getValue";
@@ -16,7 +17,7 @@ export interface FormDataType {
   email: string;
   phone: string;
   board: string;
-  classLevel: string;
+  classLevel: "Class 9th" | "Class 10th" | "Class 11th" | "Class 12th";
   selectedSubjects: string[];
   chapter: string;
   paperType: string;
@@ -32,18 +33,12 @@ const MultiStepForm: React.FC = () => {
     email: "",
     phone: "",
     board: "",
-    classLevel: "",
+    classLevel: "Class 9th",
     selectedSubjects: [],
     chapter: "",
     paperType: "",
   });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const incrementHitCount = () => {
-    const hitCount = parseInt(sessionStorage.getItem("hit_count") || "0", 10);
-    sessionStorage.setItem("hit_count", (hitCount + 1).toString());
-    return hitCount + 1;
-  };
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
   const handleNext = () => {
     if (step === 1 && !formData.reason) {
@@ -56,11 +51,34 @@ const MultiStepForm: React.FC = () => {
   const handlePrevious = () => setStep(step - 1);
 
   const handleGenerate = async () => {
-    // hit_count: incrementHitCount(),
-
     try {
+      // Simulate API call
       const res = await getValue();
-      console.log("res", res);
+      console.log("API response:", res);
+
+      // Parse content from the response
+      const content = res.result ?? "";
+
+      // Initialize jsPDF document
+      const doc = new jsPDF();
+
+      // Header
+      doc.setFontSize(16);
+      doc.text("Sample Mock Paper", 10, 10);
+      doc.setFontSize(12);
+      doc.text(`Board: ${formData.board}`, 10, 20);
+      doc.text(`Class: ${formData.classLevel}`, 10, 30);
+      doc.text(`Subjects: ${formData.selectedSubjects.join(", ")}`, 10, 40);
+      doc.text(`Chapter: ${formData.chapter}`, 10, 50);
+
+      // Adding a line break before content
+      doc.setFontSize(12);
+      doc.text(content, 10, 60, { maxWidth: 180 }); // Adjust maxWidth for line wrapping
+
+      // Generate Blob URL for preview
+      const pdfBlob = doc.output("blob");
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      setPdfUrl(pdfUrl);
 
       toast.success("Mock paper generated successfully!");
       setStep(3);
@@ -80,41 +98,25 @@ const MultiStepForm: React.FC = () => {
             <Step1GeneralDetails
               formData={formData}
               setFormData={setFormData}
+              onNext={handleNext}
             />
           )}
           {step === 2 && (
-            <Step2Details formData={formData} setFormData={setFormData} />
+            <Step2Details
+              formData={formData}
+              setFormData={setFormData}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+            />
           )}
-          {step === 3 && <Step3Confirmation />}
-
-          <div className="flex justify-between mt-8">
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={handlePrevious}
-                className="py-2 px-6 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                Previous
-              </button>
-            )}
-            {step < 3 ? (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all"
-              >
-                Next
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={handleGenerate}
-                className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700 transition-all"
-              >
-                Generate Mock Paper
-              </button>
-            )}
-          </div>
+          {step === 3 && (
+            <Step3Confirmation
+              formData={formData}
+              onPrevious={handlePrevious}
+              onGenerate={handleGenerate}
+              pdfUrl={pdfUrl}
+            />
+          )}
         </div>
       </main>
       <Footer />

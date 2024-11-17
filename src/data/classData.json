@@ -1,0 +1,259 @@
+{
+  "Class 9th": {
+    "subjects": [
+      "Maths",
+      "Science",
+      "English-Moments",
+      "English-Beehive",
+      "English-Words and Expressions"
+    ],
+    "chapters": {
+      "Science": [
+        "MATTER IN OUR SURROUNDINGS",
+        "IS MATTER AROUND US PURE",
+        "ATOMS AND MOLECULES",
+        "STRUCTURE OF THE ATOM",
+        "THE FUNDAMENTAL UNIT OF LIFE",
+        "TISSUES",
+        "MOTION",
+        "FORCE AND LAWS OF MOTION",
+        "GRAVITATION",
+        "WORK AND ENERGY",
+        "SOUND",
+        "IMPROVEMENT IN FOOD RESOURCES"
+      ],
+      "Maths": [
+        "NUMBER SYSTEMS",
+        "POLYNOMIALS",
+        "COORDINATE GEOMETRY",
+        "LINEAR EQUATIONS IN TWO VARIABLES",
+        "INTRODUCTION TO EUCLID’S GEOMETRY",
+        "LINES AND ANGLES",
+        "TRIANGLES",
+        "QUADRILATERALS",
+        "CIRCLES",
+        "HERON’S FORMULA",
+        "SURFACE AREAS AND VOLUMES",
+        "STATISTICS"
+      ],
+      "English-Moments": [
+        "The Lost Child",
+        "The Adventures of Toto",
+        "Iswaran the Storyteller",
+        "In the Kingdom of Fools",
+        "The Happy Prince",
+        "Weathering the Storm in Ersama",
+        "The Last Leaf",
+        "A House Is Not a Home",
+        "The Beggar"
+      ],
+      "English-Beehive": [
+        "The Sound of Music",
+        "The Little Girl",
+        "A Truly Beautiful Mind",
+        "The Snake and the Mirror",
+        "My Childhood",
+        "Reach for the Top",
+        "Kathmandu",
+        "If I Were You",
+        "The Fun They Had"
+      ],
+      "English-Words and Expressions": [
+        "Unit1",
+        "Unit2",
+        "Unit3",
+        "Unit4",
+        "Unit5",
+        "Unit6",
+        "Unit7",
+        "Unit8",
+        "Unit9"
+      ]
+    }
+  },
+  "Class 10th": {
+    "subjects": ["Maths", "Science", "English-First Flight"],
+    "chapters": {
+      "Science": [
+        "Chemical Reactions and Equations",
+        "Acids, Bases and Salts",
+        "Metals and Non-metals",
+        "Carbon and its Compounds",
+        "Periodic Classification of Elements",
+        "Life Processes",
+        "Control and Coordination",
+        "How do Organisms Reproduce",
+        "Heredity and Evolution",
+        "Light – Reflection and Refraction",
+        "The Human Eye and the Colourful World",
+        "Electricity",
+        "Magnetic Effects of Electric Current",
+        "Sources of Energy",
+        "Our Environment",
+        "Sustainable Management of Natural Resources"
+      ],
+      "Maths": [
+        "Real Numbers",
+        "Polynomials",
+        "Pair of Linear Equations in Two Variables",
+        "Quadratic Equations",
+        "Arithmetic Progressions",
+        "Triangles",
+        "Coordinate Geometry",
+        "Introduction to Trigonometry",
+        "Some Applications of Trigonometry",
+        "Circles",
+        "Constructions",
+        "Areas Related to Circles",
+        "Surface Areas and Volumes",
+        "Statistics",
+        "Probability"
+      ],
+      "English-First Flight": [
+        "A Letter to God",
+        "Nelson Mandela: Long Walk to Freedom",
+        "Two Stories about Flying",
+        "From the Diary of Anne Frank",
+        "Glimpses of India",
+        "Mijbil the Otter",
+        "Madam Rides the Bus",
+        "The Sermon at Benares",
+        "The Proposal"
+      ]
+    }
+  },
+  "Class 11th": {
+    "subjects": ["Maths", "Physics", "Chemistry", "Biology"],
+    "chapters": {
+      "Physics": [
+        "Physical World",
+        "Units and Measurements",
+        "Motion in a Straight Line",
+        "Motion in a Plane",
+        "Laws of Motion",
+        "Work, Energy and Power",
+        "System of Particles and Rotational Motion",
+        "Gravitation",
+        "Mechanical Properties of Solids",
+        "Mechanical Properties of Fluids",
+        "Thermal Properties of Matter",
+        "Thermodynamics",
+        "Kinetic Theory",
+        "Oscillations",
+        "Waves"
+      ],
+      "Chemistry": [
+        "Some Basic Concepts of Chemistry",
+        "Structure of Atom",
+        "Classification of Elements and Periodicity in Properties",
+        "Chemical Bonding and Molecular Structure",
+        "Chemical Thermodynamics",
+        "Equilibrium",
+        "Redox Reactions",
+        "Organic Chemistry – Some Basic Principles and Techniques",
+        "Hydrocarbons"
+      ],
+      "Biology": [
+        "Diversity in the Living World",
+        "Biological Classification",
+        "Plant Kingdom",
+        "Animal Kingdom",
+        "Morphology of Flowering Plants",
+        "Anatomy of Flowering Plants",
+        "Structural Organisation in Animals",
+        "Cell: The Unit of Life",
+        "Biomolecules",
+        "Cell Cycle and Cell Division",
+        "Photosynthesis in Higher Plants",
+        "Respiration in Plants",
+        "Plant Growth and Development",
+        "Human Physiology",
+        "Body Fluids and Circulation",
+        "Excretory Products and Their Elimination",
+        "Locomotion and Movement",
+        "Neural Control and Coordination",
+        "Chemical Coordination and Integration"
+      ],
+      "Maths": [
+        "Sets",
+        "Relations and Functions",
+        "Trigonometric Functions",
+        "Principles of Mathematical Induction",
+        "Complex Numbers and Quadratic Equations",
+        "Linear Inequalities",
+        "Permutations and Combinations",
+        "Binomial Theorem",
+        "Sequences and Series",
+        "Straight Lines",
+        "Conic Sections",
+        "Introduction to Three-dimensional Geometry",
+        "Limits and Derivatives",
+        "Mathematical Reasoning",
+        "Statistics",
+        "Probability"
+      ]
+    }
+  },
+  "Class 12th": {
+    "subjects": ["Maths", "Physics", "Chemistry", "Biology"],
+    "chapters": {
+      "Physics": [
+        "Electric Charges and Fields",
+        "Electrostatic Potential and Capacitance",
+        "Current Electricity",
+        "Moving Charges and Magnetism",
+        "Magnetism and Matter",
+        "Electromagnetic Induction",
+        "Alternating Current",
+        "Electromagnetic Waves",
+        "Ray Optics and Optical Instruments",
+        "Wave Optics",
+        "Dual Nature of Radiation and Matter",
+        "Atoms",
+        "Nuclei",
+        "Semiconductor Electronics: Materials, Devices and Simple Circuits"
+      ],
+      "Chemistry": [
+        "Solutions",
+        "Electrochemistry",
+        "Chemical Kinetics",
+        "d- and f-Block Elements",
+        "Coordination Compounds",
+        "Haloalkanes and Haloarenes",
+        "Alcohols, Phenols and Ethers",
+        "Aldehydes, Ketones and Carboxylic Acids",
+        "Amines",
+        "Biomolecules"
+      ],
+      "Biology": [
+        "Sexual Reproduction in Flowering Plants",
+        "Human Reproduction",
+        "Reproductive Health",
+        "Principles of Inheritance and Variation",
+        "Molecular Basis of Inheritance",
+        "Evolution",
+        "Human Health and Diseases",
+        "Microbes in Human Welfare",
+        "Biotechnology – Principles and Processes",
+        "Biotechnology and its Applications",
+        "Organisms and Populations",
+        "Ecosystem",
+        "Biodiversity and Its Conservation"
+      ],
+      "Maths": [
+        "Relations and Functions",
+        "Inverse Trigonometric Functions",
+        "Matrices and Determinants",
+        "Continuity and Differentiability",
+        "Application of Derivatives",
+        "Integrals",
+        "Application of Integrals",
+        "Differential Equations",
+        "Vector Algebra",
+        "Three-dimensional Geometry",
+        "Linear Programming",
+        "Probability"
+      ]
+    }
+  }
+}

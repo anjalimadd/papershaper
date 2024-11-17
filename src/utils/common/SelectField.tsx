@@ -15,7 +15,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   options,
   value,
   onChange,
-  required,
+  // required,
 }) => (
   <div>
     <label className="block mb-2 text-gray-700">{label}</label>
@@ -23,8 +23,8 @@ const SelectField: React.FC<SelectFieldProps> = ({
       name={name}
       value={value}
       onChange={onChange}
-      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-green-500 bg-gray-50 mb-6"
-      required={required}
+      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-green-500 bg-gray-50"
+      // required={required}
     >
       <option value="">Select {label}</option>
       {options.map((option) => (
