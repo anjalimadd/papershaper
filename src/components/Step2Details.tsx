@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SelectField from "@utils/common/SelectField";
-import MultiSelectDropdown from "@components/MultiSelectDropdown";
 import { FormDataType } from "@pages/TryDemoPage";
 import classData from "@data/classData.json";
 interface Step2Props {
@@ -27,7 +26,7 @@ const Step2Details: React.FC<Step2Props> = ({
       setAvailableSubjects(subjects);
       setFormData((prevData) => ({
         ...prevData,
-        selectedSubjects: [], // Reset selected subjects when class changes
+        selectedSubjects: "", // Reset selected subjects when class changes
         chapter: "", // Reset chapter when class changes
       }));
 
@@ -82,7 +81,8 @@ const Step2Details: React.FC<Step2Props> = ({
     }
   };
 
-  const handleSubjectChange = (selected: string[]) => {
+  const handleSubjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.value; // Extract the value from the event
     setFormData((prevData) => ({
       ...prevData,
       selectedSubjects: selected,
@@ -96,7 +96,7 @@ const Step2Details: React.FC<Step2Props> = ({
 
     // Update chapters based on selected subjects
     if (selected.length > 0) {
-      const firstSelectedSubject = selected[0];
+      const firstSelectedSubject = selected;
       const classLevel = formData.classLevel as keyof typeof classData;
 
       // Using a type assertion here to specify the expected structure of chapters
@@ -141,11 +141,12 @@ const Step2Details: React.FC<Step2Props> = ({
         )}
       </div>
       <div className="mb-4">
-        <label className="block mb-2 text-gray-700">Select Subjects</label>
-        <MultiSelectDropdown
+        <SelectField
+          label="Select Subjects"
+          name="subjects"
           options={availableSubjects}
-          selectedOptions={formData.selectedSubjects}
-          onSelectionChange={handleSubjectChange}
+          value={formData.selectedSubjects}
+          onChange={handleSubjectChange}
         />
         {errors.selectedSubjects && (
           <p className="text-red-500 text-sm">{errors.selectedSubjects}</p>

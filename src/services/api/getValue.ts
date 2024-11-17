@@ -1,23 +1,32 @@
-export async function getValue() {
+export async function getValue(formData: {
+  board: string;
+  classLevel: string;
+  selectedSubjects: string;
+  chapter: string;
+  paperType: string;
+  hit_count: number;
+  is_logedIn: string;
+}) {
   try {
     const payload = {
-      id: "12345",
-      Board: "CBSE",
-      Class: "Class 12th",
-      Subject: "Maths",
-      Chapter: "Vector Algebra",
-      Prompt_Type: "Mock Paper",
-      hit_count: 2,
-      is_logedIn: "True",
+      id: "12345", // Can be dynamic if needed
+      Board: formData.board,
+      Class: formData.classLevel,
+      Subject: formData.selectedSubjects,
+      Chapter: formData.chapter,
+      Prompt_Type: formData.paperType,
+      hit_count: formData.hit_count,
+      is_logedIn: formData.is_logedIn,
     };
+
     console.log("Before fetch:", payload);
+
     const response = await fetch("http://localhost:8000/get-value", {
-      // <-- Check this URL
       method: "POST", // or GET, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json", // Adjust content type if needed
       },
-      body: JSON.stringify(payload), // If sending data
+      body: JSON.stringify(payload), // Sending dynamic formData as the body
     });
 
     console.log("After fetch:", response);

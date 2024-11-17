@@ -1,17 +1,18 @@
+import { Player } from "@lottiefiles/react-lottie-player";
 import { FormDataType } from "@pages/TryDemoPage";
 
 interface Step3Props {
   formData: FormDataType;
-  onPrevious: () => void;
   pdfUrl: string | null;
   onGenerate: () => void;
+  loading: boolean;
 }
 
 const Step3Confirmation: React.FC<Step3Props> = ({
   formData,
-  onPrevious,
   pdfUrl,
   onGenerate,
+  loading,
 }) => {
   const downloadPDF = () => {
     if (pdfUrl) {
@@ -23,60 +24,87 @@ const Step3Confirmation: React.FC<Step3Props> = ({
   };
 
   return (
-    <div className="text-center text-gray-700">
-      <h2 className="text-2xl font-semibold">Mock Paper Generated</h2>
-      <p className="mt-4">
-        You can now download or review your generated mock paper.
-      </p>
+    <div className="px-8 min-h-screen ">
+      <div className="max-w-3xl mx-auto text-center text-gray-700">
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
+          Mock Paper Generated
+        </h2>
+        <p className="mt-4 text-lg text-gray-500 mb-8">
+          You can now download or review your generated mock paper.
+        </p>
 
-      {/* Display selected options */}
-      <div className="text-center mt-6">
-        <h3 className="text-lg font-semibold">Selected Options</h3>
-        <p>Board: {formData.board}</p>
-        <p>Class: {formData.classLevel}</p>
-        <p>Subjects: {formData.selectedSubjects.join(", ")}</p>
-        <p>Chapter: {formData.chapter}</p>
-      </div>
-
-      {/* PDF Preview */}
-      {pdfUrl && (
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-2">PDF Preview</h3>
-          <iframe
-            src={pdfUrl}
-            width="100%"
-            height="500px"
-            className="border"
-            title="Mock Paper Preview"
-          />
-        </div>
-      )}
-
-      <div className="flex justify-between mt-8">
-        <button
-          type="button"
-          onClick={onPrevious}
-          className="py-2 px-6 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-        >
-          Previous
-        </button>
-        {!pdfUrl ? (
-          <button
-            type="button"
-            onClick={onGenerate}
-            className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700"
-          >
-            Generate Mock Paper
-          </button>
+        {/* Display selected options */}
+        {loading ? (
+          <>
+            <Player
+              src="/src/assets/lottie/loading.json" // Ensure this path is correct
+              className="w-36 h-36"
+              autoplay
+              loop
+            />
+            <div className="mt-4 text-lg text-gray-600">
+              <p>Please wait, generating your mock paper...</p>
+              <p>This may take a moment.</p>
+            </div>
+          </>
         ) : (
-          <button
-            type="button"
-            onClick={downloadPDF}
-            className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700"
-          >
-            Download PDF
-          </button>
+          <div className="bg-gray-200/10 p-8 mt-8 rounded-xl">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+              Selected Options
+            </h3>
+            <div className="space-y-2 text-left text-lg text-gray-700">
+              <p>
+                <strong>Board:</strong> {formData.board}
+              </p>
+              <p>
+                <strong>Class:</strong> {formData.classLevel}
+              </p>
+              <p>
+                <strong>Subjects:</strong> {formData.selectedSubjects}
+              </p>
+              <p>
+                <strong>Chapter:</strong> {formData.chapter}
+              </p>
+            </div>
+          </div>
         )}
+
+        {/* PDF Preview */}
+        {pdfUrl && (
+          <div className="mt-8">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+              PDF Preview
+            </h3>
+            <iframe
+              src={pdfUrl}
+              width="100%"
+              height="500px"
+              className="border border-gray-300 rounded-xl shadow-lg"
+              title="Mock Paper Preview"
+            />
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className="flex justify-between mt-10 space-x-6">
+          {!pdfUrl ? (
+            <button
+              type="button"
+              onClick={onGenerate}
+              className="py-3 px-6 bg-green-500 text-white rounded-lg shadow-md hover:from-teal-500 hover:to-cyan-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              Generate Mock Paper
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={downloadPDF}
+              className="py-3 px-6 bg-gradient-to-r from-teal-400 to-cyan-500 text-white rounded-lg shadow-md hover:from-teal-500 hover:to-cyan-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              Download PDF
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
