@@ -48,62 +48,67 @@ const Step3Confirmation: React.FC<Step3Props> = ({
             </div>
           </>
         ) : (
-          <div className="bg-gray-200/10 p-8 mt-8 rounded-xl">
+          <div className="bg-gray-200/10 mt-8 rounded-xl">
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">
               Selected Options
             </h3>
-            <div className="space-y-2 text-left text-lg text-gray-700">
-              <p>
-                <strong>Board:</strong> {formData.board}
-              </p>
-              <p>
-                <strong>Class:</strong> {formData.classLevel}
-              </p>
-              <p>
-                <strong>Subjects:</strong> {formData.selectedSubjects}
-              </p>
-              <p>
-                <strong>Chapter:</strong> {formData.chapter}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* PDF Preview */}
-        {pdfUrl && (
-          <div className="mt-8">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-              PDF Preview
-            </h3>
-            <iframe
-              src={pdfUrl}
-              width="100%"
-              height="500px"
-              className="border border-gray-300 rounded-xl shadow-lg"
-              title="Mock Paper Preview"
-            />
+            <>
+              <div className="space-y-2 mx-auto text-lg text-gray-700">
+                <p>
+                  <strong>Board:</strong> {formData.board}
+                </p>
+                <p>
+                  <strong>Class:</strong> {formData.classLevel}
+                </p>
+                <p>
+                  <strong>Subjects:</strong> {formData.selectedSubjects}
+                </p>
+                <p>
+                  <strong>Chapter:</strong> {formData.chapter}
+                </p>
+              </div>
+              {/* PDF Preview */}
+              {pdfUrl && (
+                <div className="mt-8">
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                    PDF Preview
+                  </h3>
+                  <iframe
+                    src={pdfUrl}
+                    width="100%"
+                    height="900vh" // Full viewport height
+                    className="border border-gray-300 rounded-xl shadow-lg"
+                    title="Mock Paper Preview"
+                  />
+                </div>
+              )}
+            </>
           </div>
         )}
 
         {/* Action buttons */}
         <div className="flex justify-between mt-10 space-x-6">
-          {!pdfUrl ? (
-            <button
-              type="button"
-              onClick={onGenerate}
-              className="py-3 px-6 bg-green-500 text-white rounded-lg shadow-md hover:from-teal-500 hover:to-cyan-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400"
-            >
-              Generate Mock Paper
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={downloadPDF}
-              className="py-3 px-6 bg-gradient-to-r from-teal-400 to-cyan-500 text-white rounded-lg shadow-md hover:from-teal-500 hover:to-cyan-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400"
-            >
-              Download PDF
-            </button>
-          )}
+          {/* Action buttons */}
+          <div className="flex justify-center mt-10 space-x-6">
+            {!pdfUrl ? (
+              <button
+                type="button"
+                onClick={onGenerate}
+                disabled={loading}
+                className="py-3 px-6 sm:ml-56 bg-green-500 text-white rounded-lg"
+              >
+                Generate Mock Paper
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={downloadPDF}
+                className="py-3 px-6 sm:ml-56 bg-green-500 text-white rounded-lg"
+              >
+                Download PDF
+              </button>
+            )}{" "}
+          </div>
         </div>
       </div>
     </div>

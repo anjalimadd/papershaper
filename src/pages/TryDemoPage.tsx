@@ -64,14 +64,11 @@ const MultiStepForm: React.FC = () => {
         is_logedIn: "True",
       };
 
-      // Simulate API call
       const res = await getValue(payload);
       setLoading(false);
 
-      // Parse content from the response
       const content = res.result ?? "";
 
-      // Initialize jsPDF document
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.width;
       const pageHeight = doc.internal.pageSize.height;
@@ -91,13 +88,12 @@ const MultiStepForm: React.FC = () => {
 
       // Function to process and apply bold to text enclosed by `**`
       const processTextWithBold = (text: string) => {
-        const regex = /\*\*(.*?)\*\*/g; // Matches text between **
+        const regex = /\*\*(.*?)\*\*/g;
         let lastIndex = 0;
         const textWithFormatting = [];
 
         let match;
         while ((match = regex.exec(text)) !== null) {
-          // Add the non-bold part
           if (match.index > lastIndex) {
             textWithFormatting.push({
               text: text.substring(lastIndex, match.index),
@@ -105,13 +101,11 @@ const MultiStepForm: React.FC = () => {
             });
           }
 
-          // Add the bold part
           textWithFormatting.push({ text: match[1], isBold: true });
 
           lastIndex = regex.lastIndex;
         }
 
-        // Add remaining text after the last match
         if (lastIndex < text.length) {
           textWithFormatting.push({
             text: text.substring(lastIndex),
@@ -122,22 +116,18 @@ const MultiStepForm: React.FC = () => {
         return textWithFormatting;
       };
 
-      // Split content to fit max width, adding line wrapping and pagination
       doc.setFontSize(12);
       const textLines = doc.splitTextToSize(content, maxWidth);
 
-      // Process and render the content
       textLines.forEach((line: string) => {
         const formattedText = processTextWithBold(line);
 
         formattedText.forEach((part) => {
-          // Check if the text goes beyond the page height, then add a new page
           if (cursorY + lineHeight > pageHeight - 20) {
             doc.addPage();
-            cursorY = marginTop; // Reset Y position for new page
+            cursorY = marginTop;
           }
 
-          // Set font style based on whether the part is bold
           doc.setFont(
             part.isBold ? "helvetica" : "helvetica",
             part.isBold ? "bold" : "normal"
@@ -148,12 +138,6 @@ const MultiStepForm: React.FC = () => {
         });
       });
 
-      // Add Footer with page numbers
-      const totalPages = doc.internal.pages.length;
-      doc.setFontSize(10);
-      doc.text(`Page 1 of ${totalPages}`, pageWidth - 40, pageHeight - 10);
-
-      // Generate Blob URL for preview
       const pdfBlob = doc.output("blob");
       const pdfUrl = URL.createObjectURL(pdfBlob);
       setPdfUrl(pdfUrl);
@@ -161,7 +145,6 @@ const MultiStepForm: React.FC = () => {
       toast.success("Mock paper generated successfully!");
       setStep(3);
     } catch (error) {
-      // Enhanced error handling
       setLoading(false);
       console.error("Error generating mock paper:", error);
       toast.error("Failed to generate mock paper. Please try again.");

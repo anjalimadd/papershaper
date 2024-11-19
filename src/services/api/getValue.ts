@@ -19,8 +19,6 @@ export async function getValue(formData: {
       is_logedIn: formData.is_logedIn,
     };
 
-    console.log("Before fetch:", payload);
-
     const response = await fetch("http://localhost:8000/get-value", {
       method: "POST", // or GET, PUT, DELETE, etc.
       headers: {
@@ -28,8 +26,6 @@ export async function getValue(formData: {
       },
       body: JSON.stringify(payload), // Sending dynamic formData as the body
     });
-
-    console.log("After fetch:", response);
 
     if (!response.ok) {
       const errorData = await response.json(); // Try to parse error details

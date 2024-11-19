@@ -26,6 +26,10 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
     );
   };
 
+  const handleNext = async () => {
+    onNext();
+  };
+
   return (
     <div>
       <InputField
@@ -79,7 +83,7 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
       />
       <button
         type="button"
-        onClick={onNext}
+        onClick={handleNext}
         className="mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
       >
         Next
