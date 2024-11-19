@@ -69,7 +69,7 @@ const MultiStepForm: React.FC = () => {
 
       const content = res.result ?? "";
 
-      const doc = new jsPDF();
+      let doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.width;
       const pageHeight = doc.internal.pageSize.height;
       const marginLeft = 20;
@@ -85,6 +85,22 @@ const MultiStepForm: React.FC = () => {
         align: "center",
       });
       cursorY += lineHeight * 2;
+
+      function addWaterMark(doc: any) {
+        const totalPages = doc.internal.getNumberOfPages();
+
+        for (let i = 1; i <= totalPages; i++) {
+          doc.setPage(i);
+          doc.setTextColor(150);
+          doc.text(
+            130,
+            doc.internal.pageSize.height - 20,
+            "© 2024 PaperShaper. All rights reserved."
+          );
+        }
+
+        return doc;
+      }
 
       // Function to process and apply bold to text enclosed by `**`
       const processTextWithBold = (text: string) => {
@@ -137,6 +153,7 @@ const MultiStepForm: React.FC = () => {
           cursorY += lineHeight;
         });
       });
+      doc = addWaterMark(doc);
 
       const pdfBlob = doc.output("blob");
       const pdfUrl = URL.createObjectURL(pdfBlob);
