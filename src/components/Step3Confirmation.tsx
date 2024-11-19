@@ -108,14 +108,6 @@ const Step3Confirmation: React.FC<Step3Props> = ({
                 >
                   Download PDF
                 </button>
-                <button
-                  type="button"
-                  onClick={onGenerate}
-                  disabled={loading}
-                  className="py-3 px-6 sm:ml-56 bg-green-500 text-white rounded-lg"
-                >
-                  Generate Mock Paper
-                </button>
               </>
             )}{" "}
           </div>
