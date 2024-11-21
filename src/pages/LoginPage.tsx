@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { AuthContext } from "@contexts/AuthContext";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 interface LoginFormInputs {
   email: string;
@@ -19,7 +20,7 @@ const LoginPage = () => {
   } = useForm<LoginFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext)!; // Use the login function from AuthContext
+  const { login, googleSignin } = useContext(AuthContext)!;
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -27,11 +28,21 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginFormInputs) => {
     const { email, password } = data;
-    const success = await login(email, password); // Call login from context
+    const success = await login(email, password);
     if (success) {
-      navigate("/dashboard"); // Navigate to the dashboard if login is successful
+      navigate("/dashboard");
     } else {
       toast.error("Login failed. Please check your credentials.");
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const success = await googleSignin();
+    if (success) {
+      toast.success("Login successful!");
+      navigate("/dashboard");
+    } else {
+      toast.error("Google Login failed. Please try again.");
     }
   };
 
@@ -52,7 +63,10 @@ const LoginPage = () => {
               Create AI-powered mock tests for classes 8, 9, and 10.
             </p>
           </div>
-          <div className="text-3xl font-bold">
+          <div
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             Paper Shaper{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
@@ -119,17 +133,38 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="text-right text-green-600 text-sm mt-2">
-            <a href="#" className="hover:underline">
+            <a
+              href="#"
+              className="hover:underline"
+              onClick={() => {
+                toast.info("Feature coming soon!");
+              }}
+            >
               Forgot Password?
             </a>
           </div>
+          {/* Login Without Google */}
           <button
             type="submit"
             className="w-full py-3 bg-green-700 text-white rounded-md font-semibold text-lg hover:bg-green-800 transition duration-300 mt-24"
           >
             Login
           </button>
+          {/* Login With Google Button */}
+          <div className="w-full mt-6">
+            <button
+              type="button"
+              className="flex items-center justify-center w-full py-3 border border-gray-300 rounded-md bg-white hover:bg-gray-100 transition duration-300"
+              onClick={handleGoogleLogin}
+            >
+              <FcGoogle className="h-6 w-6 mr-2" />
+              <span className="text-gray-700 font-semibold text-md">
+                Continue with Google
+              </span>
+            </button>
+          </div>
         </form>
+
         <div className="text-center text-gray-600 mt-8">
           <span>Don't have an account?</span>
           <Link

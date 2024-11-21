@@ -4,6 +4,7 @@ import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 interface SignupFormInputs {
   name: string;
@@ -24,7 +25,7 @@ const SignupPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const googleSignupClicked = useRef(false); // Ref to track Google signup click
+  const googleSignupClicked = useRef(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleConfirmPasswordVisibility = () =>
@@ -73,7 +74,10 @@ const SignupPage = () => {
               with ease. Enhance your preparation and stay ahead.
             </p>
           </div>
-          <div className="text-3xl font-bold">
+          <div
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             Paper Shaper{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
@@ -169,9 +173,9 @@ const SignupPage = () => {
           <button
             type="button"
             onClick={onGoogleSignup}
-            className="w-full py-3 bg-green-700 text-white rounded-md font-semibold text-lg hover:bg-green-800 transition duration-300 mt-6"
+            className="flex items-center justify-center w-full py-3 bg-white border border-gray-300 text-gray-700 rounded-md font-semibold text-lg hover:bg-gray-100 transition duration-300 mt-6"
           >
-            Sign Up with Google
+            <FcGoogle className="h-6 w-6 mr-2" /> Sign up with Google
           </button>
         </form>
         <div className="text-center text-gray-600 mt-8">

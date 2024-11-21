@@ -1,8 +1,42 @@
-import React, { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
+
+interface User {
+  name?: string;
+  email: string;
+  photoURL?: string;
+}
 
 export default function Header() {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const authContext = useContext(AuthContext);
+
+  // Ensure authContext is not undefined and has logout function
+  const { logout } = authContext || {};
+
+  const handleProfileClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const handleLogout = () => {
+    if (logout) {
+      logout();
+      window.location.replace("/");
+    }
+    setIsPopoverOpen(false);
+  };
+  useEffect(() => {
+    // Fetch user data from sessionStorage on component mount
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, []);
 
   return (
     <header className="bg-white shadow-md w-full">
@@ -61,12 +95,39 @@ export default function Header() {
         </nav>
 
         {/* Login Button (Desktop) */}
-        <Link
-          to="/login"
-          className="hidden md:inline-block px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800"
-        >
-          Login
-        </Link>
+        {!user ? (
+          <Link
+            to="/login"
+            className="hidden md:inline-block px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800"
+          >
+            Login
+          </Link>
+        ) : (
+          <div className="flex items-center space-x-2">
+            <img
+              src={user.photoURL}
+              alt="User Avatar"
+              className="w-8 h-8 rounded-full cursor-pointer"
+              onClick={handleProfileClick}
+            />
+            <span className="text-green-700 font-semibold">
+              Hello, {user.name || "User"}!
+            </span>
+            {/* Profile Popover */}
+            {isPopoverOpen && (
+              <div className="absolute top-12 right-18 w-32">
+                <div className=" text-center">
+                  <button
+                    onClick={handleLogout}
+                    className="mt-2 w-full bg-red-500 text-white py-2 rounded-lg text-sm hover:bg-red-700 transition duration-300"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu */}
@@ -101,13 +162,26 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link
-              to="/login"
-              className="px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Login
-            </Link>
+            {/* Conditional Rendering for Login Button or User's Photo URL */}
+            {user !== null ? (
+              <div className="flex items-center space-x-4">
+                <img
+                  src={user?.photoURL || "/default-avatar.png"}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full"
+                />
+                <span className="text-green-700 font-semibold">
+                  {user?.email}
+                </span>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden md:inline-block px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800"
+              >
+                Login
+              </Link>
+            )}
           </nav>
         </div>
       )}
