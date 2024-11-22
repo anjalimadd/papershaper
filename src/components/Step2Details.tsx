@@ -26,15 +26,13 @@ const Step2Details: React.FC<Step2Props> = ({
       setAvailableSubjects(subjects);
       setFormData((prevData) => ({
         ...prevData,
-        selectedSubjects: "", // Reset selected subjects when class changes
-        chapter: "", // Reset chapter when class changes
+        selectedSubjects: "",
+        chapter: "",
       }));
 
-      // Automatically update available chapters for the first subject
       if (subjects.length > 0) {
         const firstSubject = subjects[0];
 
-        // Assert that `chapters` is an object that may have `firstSubject` as a key
         const chapters =
           (
             classData[formData.classLevel]?.chapters as Record<string, string[]>
@@ -75,14 +73,14 @@ const Step2Details: React.FC<Step2Props> = ({
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     if (validateFields()) {
-      onNext(); // Only navigate to the next step if validation passes
+      onNext();
     }
   };
 
   const handleSubjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = e.target.value; // Extract the value from the event
+    const selected = e.target.value;
     setFormData((prevData) => ({
       ...prevData,
       selectedSubjects: selected,
@@ -114,7 +112,7 @@ const Step2Details: React.FC<Step2Props> = ({
         <SelectField
           label="Select Board"
           name="board"
-          options={["CBSE", "ICSE", "State Board"]}
+          options={["CBSE", "ICSE"]}
           value={formData.board}
           onChange={handleChange}
         />
@@ -126,13 +124,7 @@ const Step2Details: React.FC<Step2Props> = ({
         <SelectField
           label="Select Class"
           name="classLevel"
-          options={[
-            "Class 8th",
-            "Class 9th",
-            "Class 10th",
-            "Class 11th",
-            "Class 12th",
-          ]}
+          options={["Class 9th", "Class 10th", "Class 11th", "Class 12th"]}
           value={formData.classLevel}
           onChange={handleChange}
         />
@@ -168,7 +160,7 @@ const Step2Details: React.FC<Step2Props> = ({
         <SelectField
           label="Type of Paper"
           name="paperType"
-          options={["Mock Paper", "Test Questions", "Practice Paper"]}
+          options={["Mock Paper", "Test Questions"]}
           value={formData.paperType}
           onChange={handleChange}
         />

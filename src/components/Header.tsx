@@ -103,16 +103,14 @@ export default function Header() {
             Login
           </Link>
         ) : (
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col items-center space-x-2 mr-10">
             <img
               src={user.photoURL}
               alt="User Avatar"
               className="w-8 h-8 rounded-full cursor-pointer"
               onClick={handleProfileClick}
             />
-            <span className="text-green-700 font-semibold">
-              Hello, {user.name || "User"}!
-            </span>
+            {/* <span className="text-green-700 font-semibold">Hello User!</span> */}
             {/* Profile Popover */}
             {isPopoverOpen && (
               <div className="absolute top-12 right-18 w-32">

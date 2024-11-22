@@ -86,6 +86,7 @@ const MultiStepForm: React.FC = () => {
       });
       cursorY += lineHeight * 2;
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       function addWaterMark(doc: any) {
         const totalPages = doc.internal.getNumberOfPages();
 

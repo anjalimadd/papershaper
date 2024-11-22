@@ -19,29 +19,31 @@ export async function getValue(formData: {
       is_logedIn: formData.is_logedIn,
     };
 
-    const response = await fetch("http://localhost:8000/get-value", {
-      method: "POST", // or GET, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json", // Adjust content type if needed
-      },
-      body: JSON.stringify(payload), // Sending dynamic formData as the body
-    });
-
+    const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/get-value`,
+      {
+        method: "POST", // or GET, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json", // Adjust content type if needed
+        },
+        body: JSON.stringify(payload), // Sending dynamic formData as the body
+      }
+    );
     if (!response.ok) {
-      const errorData = await response.json(); // Try to parse error details
+      const errorData = await response.json(); // Try to parse error response
+      const errorMessage = errorData?.message || response.statusText;
       console.error(
-        "Network response was not ok:",
-        response.status,
-        response.statusText,
-        errorData
+        `HTTP error! status: ${response.status}, message: ${errorMessage}`
       );
-      throw new Error(`HTTP error! status: ${response.status}`); // Re-throw for better handling
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorMessage}`
+      ); // Throw a more informative error
     }
 
-    const data = await response.json(); // Parse the response
+    const data = await response.json(); // Parse the response as JSON
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error); // Log the error with more context
+    console.error("Error fetching data:", error);
     throw error; // Re-throw to let calling functions handle it
   }
 }

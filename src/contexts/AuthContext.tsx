@@ -20,7 +20,7 @@ interface User {
   photoURL?: string;
 }
 
-interface AuthContextProps {
+export interface AuthContextProps {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
   signup: (name: string, email: string, password: string) => Promise<boolean>;
@@ -32,9 +32,7 @@ interface AuthContextProps {
 const DEFAULT_PHOTO_URL = "https://randomuser.me/api/portraits/men/1.jpg";
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const AuthContext = createContext<AuthContextProps | undefined>(
-  undefined
-);
+export const AuthContext = createContext<AuthContextProps | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -49,7 +47,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const updateUserInState = (userData: any) => {
     const updatedUser: User = {
-      name: userData.displayName || "Unknown",
+      name: userData.name || "Unknown",
       email: userData.email || "",
       photoURL: userData.photoURL || DEFAULT_PHOTO_URL,
     };
@@ -67,8 +65,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userData = userCredential.user;
       updateUserInState(userData);
       return true;
-    } catch (error) {
-      console.error("Error logging in:", error);
+    } catch (error: any) {
+      const errorMessage = error.message || "Login failed. Please try again.";
+      console.error(errorMessage);
       return false;
     }
   };

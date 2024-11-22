@@ -30,7 +30,9 @@ const Step3Confirmation: React.FC<Step3Props> = ({
           Mock Paper Generated
         </h2>
         <p className="mt-4 text-lg text-gray-500 mb-8">
-          You can now download or review your generated mock paper.
+          {pdfUrl
+            ? "You can now download or review your generated mock paper."
+            : "Click the button below to generate your mock paper."}
         </p>
 
         {/* Display selected options */}
@@ -52,7 +54,7 @@ const Step3Confirmation: React.FC<Step3Props> = ({
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">
               Selected Options
             </h3>
-            <>
+            <div className="">
               <div className="space-y-2 mx-auto text-lg text-gray-700">
                 <p>
                   <strong>Board:</strong> {formData.board}
@@ -69,20 +71,22 @@ const Step3Confirmation: React.FC<Step3Props> = ({
               </div>
               {/* PDF Preview */}
               {pdfUrl && (
-                <div className="mt-8">
+                <div className="mt-8 px-6 py-4 ">
                   <h3 className="text-2xl font-semibold text-gray-800 mb-4">
                     PDF Preview
                   </h3>
-                  <iframe
-                    src={pdfUrl}
-                    width="100%"
-                    height="900vh" // Full viewport height
-                    className="border border-gray-300 rounded-xl shadow-lg"
-                    title="Mock Paper Preview"
-                  />
+                  <div className="overflow-hidden rounded-xl">
+                    <iframe
+                      src={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
+                      width="100%"
+                      height="800px"
+                      className="border-none"
+                      title="PDF Preview"
+                    />
+                  </div>
                 </div>
               )}
-            </>
+            </div>
           </div>
         )}
 

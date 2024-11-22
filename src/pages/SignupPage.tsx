@@ -4,7 +4,7 @@ import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 
 interface SignupFormInputs {
   name: string;
@@ -15,7 +15,7 @@ interface SignupFormInputs {
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const { signup, googleSignup } = useContext(AuthContext)!;
+  const { signup } = useContext(AuthContext)!;
   const {
     register,
     handleSubmit,
@@ -40,32 +40,41 @@ const SignupPage = () => {
       toast.success("User created successfully");
       navigate("/login");
     } else {
-      toast.error("Error during signup");
+      console.error("Error during signup");
     }
   };
 
-  const onGoogleSignup = async () => {
-    googleSignupClicked.current = true;
-    const success = await googleSignup();
-    if (success) {
-      toast.success("User signed up with Google successfully");
-      navigate("/dashboard");
-    } else {
-      toast.error("Error during Google signup");
-    }
-  };
+  // const onGoogleSignup = async () => {
+  //   googleSignupClicked.current = true;
+  //   const success = await googleSignup();
+  //   if (success) {
+  //     toast.success("User signed up with Google successfully");
+  //     navigate("/dashboard");
+  //   } else {
+  //     toast.error("Error during Google signup");
+  //   }
+  // };
 
   return (
     <div className="flex h-screen">
       {/* Left Side - Image and Text */}
       <div
         className="w-2/3 bg-cover bg-center relative"
-        style={{ backgroundImage: `url('https://source.unsplash.com/random')` }}
+        style={{
+          backgroundImage: `url('https://images.pexels.com/photos/5710614/pexels-photo-5710614.jpeg?auto=compress&cs=tinysrgb&w=800')`,
+        }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>{" "}
         {/* Dark overlay */}
         <div className="relative flex flex-col justify-center h-full px-10 text-white z-10">
-          <div className="mb-8">
+          <div
+            className="text-3xl font-bold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Paper Shaper{" "}
+            <span className="inline-block transform rotate-45">📝</span>
+          </div>
+          <div className="my-8">
             <h1 className="text-5xl font-bold mb-4 leading-snug">
               Join Paper Shaper
             </h1>
@@ -73,13 +82,6 @@ const SignupPage = () => {
               Start generating AI-powered mock papers for classes 8, 9, and 10
               with ease. Enhance your preparation and stay ahead.
             </p>
-          </div>
-          <div
-            className="text-3xl font-bold cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            Paper Shaper{" "}
-            <span className="inline-block transform rotate-45">📝</span>
           </div>
         </div>
       </div>
@@ -170,13 +172,13 @@ const SignupPage = () => {
           >
             Sign Up
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={onGoogleSignup}
             className="flex items-center justify-center w-full py-3 bg-white border border-gray-300 text-gray-700 rounded-md font-semibold text-lg hover:bg-gray-100 transition duration-300 mt-6"
           >
             <FcGoogle className="h-6 w-6 mr-2" /> Sign up with Google
-          </button>
+          </button> */}
         </form>
         <div className="text-center text-gray-600 mt-8">
           Already have an account?{" "}

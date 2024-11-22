@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { AuthContext } from "@contexts/AuthContext";
 import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 
 interface LoginFormInputs {
   email: string;
@@ -20,7 +20,7 @@ const LoginPage = () => {
   } = useForm<LoginFormInputs>();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login, googleSignin } = useContext(AuthContext)!;
+  const { login } = useContext(AuthContext)!;
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,39 +30,35 @@ const LoginPage = () => {
     const { email, password } = data;
     const success = await login(email, password);
     if (success) {
+      toast.success("Login successful!");
       navigate("/dashboard");
     } else {
       toast.error("Login failed. Please check your credentials.");
     }
   };
 
-  const handleGoogleLogin = async () => {
-    const success = await googleSignin();
-    if (success) {
-      toast.success("Login successful!");
-      navigate("/dashboard");
-    } else {
-      toast.error("Google Login failed. Please try again.");
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   const success = await googleSignin();
+  //   if (success) {
+  //     toast.success("Login successful!");
+  //     navigate("/dashboard");
+  //   } else {
+  //     toast.error("Google Login failed. Please try again.");
+  //   }
+  // };
 
   return (
     <div className="flex h-screen">
       {/* Left Side - Image and Text */}
       <div
         className="w-2/3 bg-cover bg-center relative"
-        style={{ backgroundImage: `url('https://source.unsplash.com/random')` }}
+        style={{
+          backgroundImage: `url('https://images.pexels.com/photos/5710614/pexels-photo-5710614.jpeg?auto=compress&cs=tinysrgb&w=800')`,
+        }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
+
         <div className="relative flex flex-col justify-center h-full px-10 text-white z-10">
-          <div className="mb-8">
-            <h1 className="text-5xl font-bold mb-4 leading-snug">
-              Generate Mock Papers Effortlessly
-            </h1>
-            <p className="text-lg mb-6">
-              Create AI-powered mock tests for classes 8, 9, and 10.
-            </p>
-          </div>
           <div
             className="text-3xl font-bold cursor-pointer"
             onClick={() => navigate("/")}
@@ -70,7 +66,16 @@ const LoginPage = () => {
             Paper Shaper{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
-          <div className="flex space-x-4 mt-8">
+          <div className="my-8">
+            <h1 className="text-5xl font-bold mb-4 leading-snug">
+              Generate Mock Papers Effortlessly
+            </h1>
+            <p className="text-lg mb-6">
+              Create AI-powered mock tests for classes 8, 9, and 10.
+            </p>
+          </div>
+
+          {/* <div className="flex space-x-4 mt-8">
             <a href="#" className="text-green-200 hover:text-white">
               🌐
             </a>
@@ -83,13 +88,13 @@ const LoginPage = () => {
             <a href="#" className="text-green-200 hover:text-white">
               🔗
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-1/3 max-w-lg flex flex-col justify-start items-center p-10 md:p-12 bg-white">
-        <h2 className="text-3xl font-semibold mb-8 text-green-800 my-28">
+      <div className="w-1/3 max-w-lg flex flex-col justify-start items-center p-10 md:p-12 bg-white my-44">
+        <h2 className="text-3xl font-semibold mb-8 text-green-800">
           Login to your account
         </h2>
         <form
@@ -151,7 +156,7 @@ const LoginPage = () => {
             Login
           </button>
           {/* Login With Google Button */}
-          <div className="w-full mt-6">
+          {/* <div className="w-full mt-6">
             <button
               type="button"
               className="flex items-center justify-center w-full py-3 border border-gray-300 rounded-md bg-white hover:bg-gray-100 transition duration-300"
@@ -162,7 +167,7 @@ const LoginPage = () => {
                 Continue with Google
               </span>
             </button>
-          </div>
+          </div> */}
         </form>
 
         <div className="text-center text-gray-600 mt-8">

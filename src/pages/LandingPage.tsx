@@ -174,27 +174,65 @@ const LandingPage = () => {
       {/* Integration Section */}
       <section className="py-16 bg-gray-50 text-center">
         <h2 className="text-3xl font-semibold mb-8">
-          Seamless Integrations with Top Educational Tools
+          Transform Your Preparation with Seamless Integrations
         </h2>
-        <p className="text-lg text-gray-600 mb-8">
-          Connect with leading tools to enhance your preparation experience.
+        <p className="text-lg text-gray-600 mb-8 mx-24">
+          Enhance your learning experience with our AI-powered integrations
+          designed to simplify CBSE and ICSE exam preparation. Connect with
+          trusted educational platforms to create comprehensive and customized
+          mock papers effortlessly.
         </p>
-        <div className="flex justify-center space-x-4">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Tool 1"
-            className="w-20 h-20 rounded-full"
-          />
-          <img
-            src="https://source.unsplash.com/random/80x80?2"
-            alt="Tool 2"
-            className="w-20 h-20 rounded-full"
-          />
-          <img
-            src="https://source.unsplash.com/random/80x80?3"
-            alt="Tool 3"
-            className="w-20 h-20 rounded-full"
-          />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+          {[
+            {
+              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              alt: "Tool A - AI Mock Paper Generator",
+              name: "AI Mock Paper Generator",
+              description:
+                "Generate personalized AI-driven mock papers for Classes 9-12.",
+            },
+            {
+              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              alt: "Tool B - Advanced Question Bank",
+              name: "Advanced Question Bank",
+              description:
+                "Access a vast library of quality-assured exam questions.",
+            },
+            {
+              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              alt: "Tool C - Performance Analytics Dashboard",
+              name: "Performance Analytics",
+              description:
+                "Track and analyze your progress with detailed insights.",
+            },
+            {
+              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              alt: "Tool D - Exam Simulator",
+              name: "Exam Simulator",
+              description:
+                "Prepare with realistic simulations of actual exam conditions.",
+            },
+          ].map((tool, index) => (
+            <div
+              key={index}
+              className="bg-gray-200 shadow-md border border-gray-200 rounded-lg p-6"
+            >
+              <img
+                src={tool.src}
+                alt={tool.alt}
+                className="w-16 h-16 mx-auto mb-4 rounded-full object-cover border border-gray-300"
+              />
+              <h3 className="text-lg font-medium text-gray-800 text-center">
+                {tool.name}
+              </h3>
+              <p className="text-sm text-gray-600 text-center mt-2">
+                {tool.description}
+              </p>
+              <button className="mt-4 w-36 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300">
+                Learn More
+              </button>
+            </div>
+          ))}
         </div>
       </section>
 
