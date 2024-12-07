@@ -1,5 +1,3 @@
-## Updated Readme for Website
-
 ### **Paper Shaper Dashboard**
 
 Welcome to the **Paper Shaper Dashboard** — a streamlined and interactive platform that helps you design, customize, and manage paper templates with ease. Built with React, TypeScript, and Vite, the dashboard delivers a blazing-fast and responsive user experience.
