@@ -31,7 +31,7 @@ Want to see how it works? Click the **Start Demo** button within the dashboard t
 
    ```bash
    git clone git@github.com:harshkushwaha7x/papershaper.git
-   cd your-repo-folder
+   cd papershaper
    ```
 
 2. Install dependencies:
@@ -47,56 +47,6 @@ Want to see how it works? Click the **Start Demo** button within the dashboard t
    ```
 
 4. Visit the app at `http://localhost:5173`.
-
----
-
-### **Code Highlights**
-
-#### Dashboard Header
-
-The header dynamically displays the user's profile picture and a logout button, fetched from the `AuthContext`:
-
-```tsx
-const authContext = useContext(AuthContext);
-const { logout } = authContext || {};
-
-const handleLogout = () => {
-  if (logout) {
-    logout();
-    window.location.replace("/login");
-  }
-};
-```
-
-#### Feature Grid
-
-A responsive grid showcases the primary features of the app using `Tailwind CSS`:
-
-```tsx
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-  {features.map((feature) => (
-    <div key={feature.title} className="bg-white p-8 rounded-xl shadow-xl">
-      <h3 className="text-2xl font-semibold text-green-700 mb-4">
-        {feature.title}
-      </h3>
-      <p className="text-gray-600">{feature.description}</p>
-    </div>
-  ))}
-</div>
-```
-
-#### Demo Section
-
-Encourages user engagement with a call-to-action button:
-
-```tsx
-<button
-  className="bg-green-600 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-700 transition duration-300"
-  onClick={() => navigate("/try-demo")}
->
-  Start Demo
-</button>
-```
 
 ---
 
