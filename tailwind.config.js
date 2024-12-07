@@ -1,5 +1,6 @@
-// tailwind.config.js
-module.exports = {
+import motionPlugin from "tailwindcss-motion";
+
+export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,html,css}"],
   theme: {
     extend: {
@@ -14,5 +15,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-motion")],
+  plugins: [motionPlugin],
 };
