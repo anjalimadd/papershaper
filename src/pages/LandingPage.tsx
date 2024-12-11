@@ -2,7 +2,6 @@
 
 import Footer from "@components/Footer";
 import Header from "@components/Header";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -12,27 +11,27 @@ const LandingPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="text-center py-20 bg-gray-50">
-        <h1 className="text-4xl font-bold mb-4">
+      <section className="text-center py-24 bg-gray-50">
+        <h1 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900">
           Transform Your Exam Preparation with
         </h1>
-        <h2 className="text-4xl mb-4 font-bold text-green-700 motion-preset-typewriter-[44] motion-duration-[8000ms] font-sans mx-auto">
+        <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[44] motion-duration-[8000ms] text-2xl md:text-3xl font-bold text-green-700 whitespace-nowrap mx-auto">
           GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
-        </h2>{" "}
-        <p className="text-lg text-gray-600 mb-8">
+        </h2>
+        <p className="text-xl md:text-2xl text-gray-600 mt-8 mb-12 max-w-2xl mx-auto">
           Elevate Your Study Game with Expert Tools: Create AI-Powered Mock
           Papers with Ease
         </p>
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-6">
           <Link
             to="/try-demo"
-            className="px-6 py-3 bg-green-700 text-white rounded-full hover:bg-green-800"
+            className="px-8 py-4 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-lg"
           >
             Get Started
           </Link>
           <Link
             to="/try-demo"
-            className="px-6 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300"
+            className="px-8 py-4 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors duration-300 shadow-lg"
           >
             Try Demo
           </Link>
@@ -41,10 +40,10 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <section className="py-16 bg-white">
-        <h2 className="text-3xl font-semibold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
           Efficient and Integrated Mock Paper Creation Services
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           {[
             {
               title: "AI-Powered Mock Papers",
@@ -69,7 +68,7 @@ const LandingPage = () => {
             {
               title: "Instant Feedback",
               description:
-                "Gain immediate insights with instant feedback on your performance, helping you identify strengths and areas for improvement",
+                "Gain immediate insights with instant feedback on your performance, helping you identify strengths and areas for improvement.",
             },
             {
               title: "Performance Analytics",
@@ -77,8 +76,13 @@ const LandingPage = () => {
                 "Monitor and track your academic progress effortlessly, using detailed performance analytics to guide your study strategy.",
             },
           ].map((feature, index) => (
-            <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+            <div
+              key={index}
+              className="bg-gray-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <h3 className="text-xl font-bold mb-4 text-gray-800">
+                {feature.title}
+              </h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
@@ -87,26 +91,41 @@ const LandingPage = () => {
 
       {/* Benefits Section */}
       <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-6">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">
             Key Benefits of Using Paper Shaper
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg md:text-xl text-gray-600 mb-8">
             Our system boosts exam readiness, enhances learning efficiency, and
             streamlines preparation.
           </p>
-          <ul className="space-y-4">
-            <li>
-              <strong>Boost Preparation with AI:</strong> Let AI curate the best
-              mock papers tailored to your needs.
+          <ul className="space-y-6 text-left">
+            <li className="flex items-start">
+              <span className="flex-shrink-0 mr-3 text-green-700 font-bold">
+                •
+              </span>
+              <span>
+                <strong>Boost Preparation with AI:</strong> Let AI curate the
+                best mock papers tailored to your needs.
+              </span>
             </li>
-            <li>
-              <strong>Real-Time Feedback:</strong> Identify strengths and
-              weaknesses instantly to focus on improvement.
+            <li className="flex items-start">
+              <span className="flex-shrink-0 mr-3 text-green-700 font-bold">
+                •
+              </span>
+              <span>
+                <strong>Real-Time Feedback:</strong> Identify strengths and
+                weaknesses instantly to focus on improvement.
+              </span>
             </li>
-            <li>
-              <strong>Enhanced Exam Readiness:</strong> Train with realistic
-              exams to boost confidence and reduce exam anxiety.
+            <li className="flex items-start">
+              <span className="flex-shrink-0 mr-3 text-green-700 font-bold">
+                •
+              </span>
+              <span>
+                <strong>Enhanced Exam Readiness:</strong> Train with realistic
+                exams to boost confidence and reduce exam anxiety.
+              </span>
             </li>
           </ul>
         </div>
@@ -114,10 +133,10 @@ const LandingPage = () => {
 
       {/* Pricing Section */}
       <section className="py-16 bg-white">
-        <h2 className="text-3xl font-semibold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
           Tailored Plans for Your Preparation Needs
         </h2>
-        <div className="flex flex-wrap justify-center space-x-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           {[
             {
               plan: "Basic",
@@ -149,20 +168,35 @@ const LandingPage = () => {
           ].map((packageItem, index) => (
             <div
               key={index}
-              className="w-64 bg-gray-100 p-6 rounded-lg shadow-md text-center"
+              className="w-full md:w-80 bg-gray-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
             >
-              <h3 className="text-xl font-bold mb-4">{packageItem.plan}</h3>
-              <p className="text-2xl font-semibold mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                {packageItem.plan}
+              </h3>
+              <p className="text-3xl font-semibold mb-6 text-green-700">
                 {packageItem.price}/month
               </p>
-              <ul className="text-gray-600 space-y-2 mb-6">
+              <ul className="text-gray-600 space-y-3 mb-6 text-left">
                 {packageItem.features.map((feature, i) => (
-                  <li key={i}>{feature}</li>
+                  <li key={i} className="flex items-center">
+                    <svg
+                      className="w-5 h-5 text-green-500 mr-2 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {feature}
+                  </li>
                 ))}
               </ul>
               <Link
                 to="/get-started"
-                className="px-6 py-2 bg-green-700 text-white rounded-full hover:bg-green-800"
+                className="inline-block px-6 py-3 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-md"
               >
                 Get Started
               </Link>
@@ -173,41 +207,41 @@ const LandingPage = () => {
 
       {/* Integration Section */}
       <section className="py-16 bg-gray-50 text-center">
-        <h2 className="text-3xl font-semibold mb-8">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-8">
           Transform Your Preparation with Seamless Integrations
         </h2>
-        <p className="text-lg text-gray-600 mb-8 mx-24">
+        <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto px-4">
           Enhance your learning experience with our AI-powered integrations
           designed to simplify CBSE and ICSE exam preparation. Connect with
           trusted educational platforms to create comprehensive and customized
           mock papers effortlessly.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           {[
             {
               src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-              alt: "Tool A - AI Mock Paper Generator",
+              alt: "AI Mock Paper Generator",
               name: "AI Mock Paper Generator",
               description:
                 "Generate personalized AI-driven mock papers for Classes 9-12.",
             },
             {
               src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-              alt: "Tool B - Advanced Question Bank",
+              alt: "Advanced Question Bank",
               name: "Advanced Question Bank",
               description:
                 "Access a vast library of quality-assured exam questions.",
             },
             {
               src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-              alt: "Tool C - Performance Analytics Dashboard",
+              alt: "Performance Analytics Dashboard",
               name: "Performance Analytics",
               description:
                 "Track and analyze your progress with detailed insights.",
             },
             {
               src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-              alt: "Tool D - Exam Simulator",
+              alt: "Exam Simulator",
               name: "Exam Simulator",
               description:
                 "Prepare with realistic simulations of actual exam conditions.",
@@ -215,22 +249,23 @@ const LandingPage = () => {
           ].map((tool, index) => (
             <div
               key={index}
-              className="bg-gray-200 shadow-md border border-gray-200 rounded-lg p-6"
+              className="bg-gray-200 shadow-md border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
             >
               <img
                 src={tool.src}
                 alt={tool.alt}
-                className="w-16 h-16 mx-auto mb-4 rounded-full object-cover border border-gray-300"
+                className="w-20 h-20 mx-auto mb-4 rounded-full object-cover border border-gray-300 bg-white p-2"
               />
-              <h3 className="text-lg font-medium text-gray-800 text-center">
+              <h3 className="text-lg font-medium text-gray-800 mb-2">
                 {tool.name}
               </h3>
-              <p className="text-sm text-gray-600 text-center mt-2">
-                {tool.description}
-              </p>
-              <button className="mt-4 w-36 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300">
+              <p className="text-sm text-gray-600 mb-4">{tool.description}</p>
+              <Link
+                to="#"
+                className="inline-block px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
           ))}
         </div>
