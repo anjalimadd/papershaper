@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function getValue(formData: {
   board: string;
   classLevel: string;
@@ -8,8 +10,11 @@ export async function getValue(formData: {
   is_logedIn: string;
 }) {
   try {
+    // Generate a random ID using Math.random and convert it to a base-36 string
+    const randomId = Math.random().toString(36).substr(2, 9);
+
     const payload = {
-      id: "12345", // Can be dynamic if needed
+      id: randomId,
       Board: formData.board,
       Class: formData.classLevel,
       Subject: formData.selectedSubjects,
@@ -19,31 +24,31 @@ export async function getValue(formData: {
       is_logedIn: formData.is_logedIn,
     };
 
-    const response = await fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/get-value`,
+    const response = await axios.post(
+      `https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com/test1`,
+      payload,
       {
-        method: "POST", // or GET, PUT, DELETE, etc.
         headers: {
-          "Content-Type": "application/json", // Adjust content type if needed
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload), // Sending dynamic formData as the body
       }
     );
-    if (!response.ok) {
-      const errorData = await response.json(); // Try to parse error response
-      const errorMessage = errorData?.message || response.statusText;
+
+    return response.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (error.response) {
+      const errorMessage =
+        error.response.data?.message || error.response.statusText;
       console.error(
-        `HTTP error! status: ${response.status}, message: ${errorMessage}`
+        `HTTP error! status: ${error.response.status}, message: ${errorMessage}`
       );
       throw new Error(
-        `HTTP error! status: ${response.status}, message: ${errorMessage}`
-      ); // Throw a more informative error
+        `HTTP error! status: ${error.response.status}, message: ${errorMessage}`
+      );
+    } else {
+      console.error("Error fetching data:", error.message);
+      throw new Error("Error fetching data");
     }
-
-    const data = await response.json(); // Parse the response as JSON
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error; // Re-throw to let calling functions handle it
   }
 }

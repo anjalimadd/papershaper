@@ -1,0 +1,51 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Cache node modules
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 3: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Specify your Node.js version
+
+      # Step 4: Install Dependencies
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Step 5: Lint Code
+      - name: Lint Code
+        run: yarn lint
+
+      # Step 6: Build the Application
+      - name: Build
+        run: yarn build
+
+      # Step 7: Deploy to Vercel
+      - name: Deploy to AWS
+        run: yarn run deploy

@@ -32,6 +32,19 @@ const SignupPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
 
   const onSubmit = async (data: SignupFormInputs) => {
+    const { password } = data;
+
+    // Define the password validation regex
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,}$/;
+
+    // Validate the password
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 6 characters long, include at least one lowercase letter, one uppercase letter, and one special character."
+      );
+      return;
+    }
+
     const success = await signup(data.name, data.email, data.password);
     if (googleSignupClicked.current) {
       return;
@@ -43,17 +56,6 @@ const SignupPage = () => {
       console.error("Error during signup");
     }
   };
-
-  // const onGoogleSignup = async () => {
-  //   googleSignupClicked.current = true;
-  //   const success = await googleSignup();
-  //   if (success) {
-  //     toast.success("User signed up with Google successfully");
-  //     navigate("/dashboard");
-  //   } else {
-  //     toast.error("Error during Google signup");
-  //   }
-  // };
 
   return (
     <div className="flex h-screen">
@@ -172,13 +174,6 @@ const SignupPage = () => {
           >
             Sign Up
           </button>
-          {/* <button
-            type="button"
-            onClick={onGoogleSignup}
-            className="flex items-center justify-center w-full py-3 bg-white border border-gray-300 text-gray-700 rounded-md font-semibold text-lg hover:bg-gray-100 transition duration-300 mt-6"
-          >
-            <FcGoogle className="h-6 w-6 mr-2" /> Sign up with Google
-          </button> */}
         </form>
         <div className="text-center text-gray-600 mt-8">
           Already have an account?{" "}

@@ -21,6 +21,7 @@ export interface FormDataType {
   selectedSubjects: string;
   chapter: string;
   paperType: string;
+  phoneNumber?: string;
 }
 
 const MultiStepForm: React.FC = () => {
