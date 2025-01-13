@@ -17,7 +17,6 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
   setFormData,
   onNext,
 }) => {
-  // **Added Loading State**
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
@@ -33,19 +32,30 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
   };
 
   const handleNext = async () => {
-    // Validate required fields on the client-side
-    const { firstName, email, gender, phoneNumber, reason } = formData;
+    const { email, phoneNumber } = formData;
 
-    if (!firstName || !email || !gender || !phoneNumber || !reason) {
+    if (!email || !phoneNumber) {
       toast.error("Please fill out all required fields.");
       return;
     }
 
-    // **Set Loading to True Before API Call**
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    // Phone number validation regex (10-digit number without country code)
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      toast.error("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Prepare the data to send
       const payload = {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -55,17 +65,13 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
         reason: formData.reason,
       };
 
-      // Make the POST request to Google Apps Script
       const response = await axios.post("/api/append-data", payload, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      // Check the response status
       if (response.data.status === "success") {
-        // Optionally show a success toast
-        // toast.success("Your details have been submitted successfully!");
         onNext();
       } else {
         toast.error(
@@ -79,7 +85,6 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
           "An unexpected error occurred. Please try again later."
       );
     } finally {
-      // **Set Loading to False After API Call**
       setIsLoading(false);
       console.log("Inside finally");
     }
@@ -91,22 +96,20 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
         label="Reason for Creating Mock Paper"
         name="reason"
         type="textarea"
-        value={formData.reason || ""} // **Ensure value is not undefined**
+        value={formData.reason || ""}
         onChange={handleChange}
-        required
       />
       <div className="grid grid-cols-2 gap-6">
         <InputField
           label="First Name"
           name="firstName"
-          value={formData.firstName || ""} // **Ensure value is not undefined**
+          value={formData.firstName || ""}
           onChange={handleChange}
-          required
         />
         <InputField
           label="Last Name"
           name="lastName"
-          value={formData.lastName || ""} // **Ensure value is not undefined**
+          value={formData.lastName || ""}
           onChange={handleChange}
         />
       </div>
@@ -115,24 +118,23 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
           label="Gender"
           name="gender"
           options={["Male", "Female", "Other"]}
-          value={formData.gender || ""} // **Ensure value is not undefined**
+          value={formData.gender || ""}
           onChange={handleChange}
-          required
         />
         <InputField
-          label="Email"
+          label="Email*"
           name="email"
           type="email"
-          value={formData.email || ""} // **Ensure value is not undefined**
+          value={formData.email || ""}
           onChange={handleChange}
           required
         />
       </div>
       <InputField
-        label="Phone Number"
-        name="phoneNumber" // Changed from 'phone' to 'phoneNumber'
-        type="tel"
-        value={formData.phoneNumber || ""} // **Fix: Ensure phoneNumber is not undefined**
+        label="Phone Number*"
+        name="phoneNumber"
+        type="number"
+        value={formData.phoneNumber || ""}
         onChange={handleChange}
         required
       />
@@ -142,10 +144,9 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
         className={`mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-opacity duration-300 ${
           isLoading ? "opacity-50 cursor-not-allowed" : ""
         }`}
-        disabled={isLoading} // **Disable button when loading**
+        disabled={isLoading}
       >
         {isLoading ? (
-          // **Loading Indicator Inside Button**
           <span className="flex items-center">
             <svg
               className="animate-spin h-5 w-5 mr-3 text-white"

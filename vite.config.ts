@@ -35,10 +35,12 @@ export default defineConfig({
         followRedirects: true, // Ensure redirects are followed
       },
       "/api/test1": {
-        target: "https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com/test1",
+        target: "https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com",
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api\/test1/, "/test1"),
+        rewrite: (path) => {
+          return path.replace(/^\/api\/test1/, "/test1");
+        },
         followRedirects: true,
       },
     },

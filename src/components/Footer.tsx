@@ -25,7 +25,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="text-center text-gray-500 mt-8">© 2024 Paper Shaper. All rights reserved.</div>
+        <div className="text-center text-gray-500 mt-8">© 2025 Paper Shaper. All rights reserved.</div>
       </footer>
   )
 }

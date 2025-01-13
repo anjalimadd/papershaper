@@ -15,7 +15,7 @@ const LandingPage = () => {
         <h1 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900">
           Transform Your Exam Preparation with
         </h1>
-        <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[44] motion-duration-[8000ms] text-2xl md:text-3xl font-bold text-green-700 whitespace-nowrap mx-auto">
+        <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[56] motion-duration-[8000ms] text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto">
           GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
         </h2>
         <p className="text-xl md:text-2xl text-gray-600 mt-8 mb-12 max-w-2xl mx-auto">
@@ -208,43 +208,42 @@ const LandingPage = () => {
       {/* Integration Section */}
       <section className="py-16 bg-gray-50 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold mb-8">
-          Transform Your Preparation with Seamless Integrations
+          Revolutionize Your Learning with Cutting-Edge Tools
         </h2>
         <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto px-4">
-          Enhance your learning experience with our AI-powered integrations
-          designed to simplify CBSE and ICSE exam preparation. Connect with
-          trusted educational platforms to create comprehensive and customized
-          mock papers effortlessly.
+          Elevate your exam preparation with innovative, AI-powered tools
+          tailored for CBSE and ICSE students. Seamlessly integrate with top
+          educational platforms to create dynamic and personalized mock papers.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           {[
             {
-              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              src: "https://cdn-icons-png.flaticon.com/512/1040/1040902.png",
               alt: "AI Mock Paper Generator",
               name: "AI Mock Paper Generator",
               description:
-                "Generate personalized AI-driven mock papers for Classes 9-12.",
+                "Effortlessly generate personalized AI-driven mock papers designed for Classes 9-12 students.",
             },
             {
-              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              src: "https://cdn-icons-png.flaticon.com/512/888/888879.png",
               alt: "Advanced Question Bank",
               name: "Advanced Question Bank",
               description:
-                "Access a vast library of quality-assured exam questions.",
+                "Unlock a comprehensive library of quality-assured exam questions, enhancing your revision process.",
             },
             {
-              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-              alt: "Performance Analytics Dashboard",
+              src: "https://cdn-icons-png.flaticon.com/512/3404/3404754.png",
+              alt: "Performance Analytics",
               name: "Performance Analytics",
               description:
-                "Track and analyze your progress with detailed insights.",
+                "Gain valuable insights into your learning with our interactive performance analytics dashboard.",
             },
             {
-              src: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              src: "https://cdn-icons-png.flaticon.com/512/1173/1173412.png",
               alt: "Exam Simulator",
               name: "Exam Simulator",
               description:
-                "Prepare with realistic simulations of actual exam conditions.",
+                "Practice with simulated exams to master time management and enhance your readiness for the real test.",
             },
           ].map((tool, index) => (
             <div
@@ -254,7 +253,7 @@ const LandingPage = () => {
               <img
                 src={tool.src}
                 alt={tool.alt}
-                className="w-20 h-20 mx-auto mb-4 rounded-full object-cover border border-gray-300 bg-white p-2"
+                className="w-20 h-20 mx-auto mb-4 rounded-full object-cover text-black border border-gray-300 bg-white p-2"
               />
               <h3 className="text-lg font-medium text-gray-800 mb-2">
                 {tool.name}

@@ -25,7 +25,8 @@ export async function getValue(formData: {
     };
 
     const response = await axios.post(
-      `https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com/test1`,
+      // `https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com/test1`,
+      "/api/test1",
       payload,
       {
         headers: {
@@ -33,7 +34,6 @@ export async function getValue(formData: {
         },
       }
     );
-
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

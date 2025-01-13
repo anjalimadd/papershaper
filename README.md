@@ -43,10 +43,10 @@ Want to see how it works? Click the **Start Demo** button within the dashboard t
 3. Start the development server:
 
    ```bash
-   npm run dev
+   npm run dev:host
    ```
 
-4. Visit the app at `http://localhost:5173`.
+4. Visit the app at `http://localhost:1234`.
 
 ---
 

@@ -61,7 +61,7 @@ const MultiStepForm: React.FC = () => {
         selectedSubjects: formData.selectedSubjects,
         chapter: formData.chapter,
         paperType: formData.paperType,
-        hit_count: 2,
+        hit_count: 0,
         is_logedIn: "True",
       };
 
@@ -97,7 +97,7 @@ const MultiStepForm: React.FC = () => {
           doc.text(
             130,
             doc.internal.pageSize.height - 20,
-            "© 2024 PaperShaper. All rights reserved."
+            "© 2025 PaperShaper. All rights reserved."
           );
         }
 

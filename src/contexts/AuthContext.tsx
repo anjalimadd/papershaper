@@ -23,7 +23,11 @@ interface User {
 export interface AuthContextProps {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
-  signup: (name: string, email: string, password: string) => Promise<boolean>;
+  signup: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<{ success: boolean; message?: string; error?: unknown }>;
   googleSignin: () => Promise<boolean>;
   googleSignup: () => Promise<boolean>;
   logout: () => void;
@@ -76,13 +80,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
-      console.info("User credentials:", userCredential);
       const userData = userCredential.user;
       updateUserInState(userData);
-      return true;
+      return { success: true, message: "User created successfully." };
     } catch (error) {
       console.error("Error signing up:", error);
-      return false;
+      return { success: false, error: error }; // Return the full error object
     }
   };
 

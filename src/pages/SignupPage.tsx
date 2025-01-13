@@ -32,28 +32,61 @@ const SignupPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
 
   const onSubmit = async (data: SignupFormInputs) => {
-    const { password } = data;
+    const { email, password } = data;
+    if (!data.name || !data.email || !data.password || !data.confirmPassword) {
+      toast.error("Please fill out all required fields.");
+      return;
+    }
 
-    // Define the password validation regex
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+    
+    // Email and password validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,}$/;
 
-    // Validate the password
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
     if (!passwordRegex.test(password)) {
       toast.error(
-        "Password must be at least 6 characters long, include at least one lowercase letter, one uppercase letter, and one special character."
+        "Password must be at least 6 characters long, include one lowercase, one uppercase letter, and one special character."
       );
       return;
     }
 
-    const success = await signup(data.name, data.email, data.password);
-    if (googleSignupClicked.current) {
-      return;
-    }
-    if (success) {
-      toast.success("User created successfully");
-      navigate("/login");
-    } else {
-      console.error("Error during signup");
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result: any = await signup(data.name, data.email, data.password);
+
+      // Check if the result contains an error message
+      if (result.success) {
+        if (!googleSignupClicked.current) {
+          toast.success("User created successfully");
+          navigate("/login");
+        }
+      } else {
+        // If there was an error, display the error message
+        const errorMessage =
+          result.error?.message ||
+          "An unexpected error occurred. Please try again later.";
+        toast.error(errorMessage);
+      }
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : error && typeof error === "object" && "response" in error
+            ? (error as { response: { data: { message: string } } }).response
+                ?.data?.message
+            : "An unexpected error occurred. Please try again later.";
+
+      toast.error(errorMessage);
+      console.error("Error during signup:", error);
     }
   };
 
