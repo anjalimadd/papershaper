@@ -2,7 +2,7 @@ import { AuthContext } from "@contexts/AuthContext";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router"; 
 import { toast } from "react-toastify";
 // import { FcGoogle } from "react-icons/fc";
 

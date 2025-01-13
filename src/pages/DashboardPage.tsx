@@ -1,6 +1,6 @@
 import { AuthContext } from "@contexts/AuthContext";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 interface User {
   email: string;

@@ -9,7 +9,7 @@ import {
   Route,
   BrowserRouter as Router,
   Routes,
-} from "react-router-dom";
+} from "react-router";
 import SignupPage from "@pages/SignupPage";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
