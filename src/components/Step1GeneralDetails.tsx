@@ -86,7 +86,6 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
       );
     } finally {
       setIsLoading(false);
-      console.log("Inside finally");
     }
   };
 
