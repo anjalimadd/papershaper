@@ -41,6 +41,8 @@ export default defineConfig({
     include: ["esm-dep > cjs-dep", "tailwindcss-motion"],
   },
   server: {
+    host: true,
+    port: 80,
     proxy: {
       "/api/append-data": {
         target:
@@ -62,6 +64,6 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: false, 
+    sourcemap: false,
   },
 });
