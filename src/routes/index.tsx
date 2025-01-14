@@ -1,16 +1,16 @@
 // import { useAuth } from "@hooks/useAuth";
-import DashboardPage from "@pages/DashboardPage";
-import LandingPage from "@pages/LandingPage";
-import LoginPage from "@pages/LoginPage";
-import TryDemoPage from "@pages/TryDemoPage";
-import NotFoundPage from "@pages/NotFoundPage";
+import DashboardPage from "../pages/DashboardPage";
+import LandingPage from "../pages/LandingPage";
+import LoginPage from "../pages/LoginPage";
+import TryDemoPage from "../pages/TryDemoPage";
+import NotFoundPage from "../pages/NotFoundPage";
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
 } from "react-router";
-import SignupPage from "@pages/SignupPage";
+import SignupPage from "../pages/SignupPage";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = sessionStorage.getItem("user");

@@ -1,9 +1,8 @@
 // vite.config.ts
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
-import path from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
@@ -22,22 +21,7 @@ export default defineConfig({
       },
     }),
   ],
-  resolve: {
-    alias: {
-      "@pages": path.resolve(__dirname, "./src/pages"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@contexts": path.resolve(__dirname, "./src/contexts"),
-      "@data": path.resolve(__dirname, "./src/data"),
-      "@hooks": path.resolve(__dirname, "./src/hooks"),
-      "@routes": path.resolve(__dirname, "./src/routes"),
-      "@types": path.resolve(__dirname, "./src/types"),
-      "@utils": path.resolve(__dirname, "./src/utils"),
-      "@services": path.resolve(__dirname, "./src/services"),
-      "@layouts": path.resolve(__dirname, "./src/layouts"),
-      "@assets": path.resolve(__dirname, "./src/assets")
-    }
-  },
- optimizeDeps: {
+  optimizeDeps: {
     include: [
       "react-router",
       "react-router-dom",

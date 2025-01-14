@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Header from "@components/Header";
+import Header from "../components/Header";
 import { jsPDF } from "jspdf";
-import Footer from "@components/Footer";
+import Footer from "../components/Footer";
 import { toast } from "react-toastify";
-import { getValue } from "@services/api/getValue";
-import StepIndicator from "@components/StepIndicator";
-import Step1GeneralDetails from "@components/Step1GeneralDetails";
-import Step2Details from "@components/Step2Details";
-import Step3Confirmation from "@components/Step3Confirmation";
+import { getValue } from "../services/api/getValue";
+import StepIndicator from "../components/StepIndicator";
+import Step1GeneralDetails from "../components/Step1GeneralDetails";
+import Step2Details from "../components/Step2Details";
+import Step3Confirmation from "../components/Step3Confirmation";
 
 export interface FormDataType {
   reason?: string | undefined;

@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import { FormDataType } from "@pages/TryDemoPage";
+import { FormDataType } from "../pages/TryDemoPage";
 
 interface Step3Props {
   formData: FormDataType;

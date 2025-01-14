@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useState, useContext } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { AuthContext } from "@contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 // import { FcGoogle } from "react-icons/fc";
 

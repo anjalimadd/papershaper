@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SelectField from "@utils/common/SelectField";
-import { FormDataType } from "@pages/TryDemoPage";
-import classData from "@data/classData.json";
+import SelectField from "../utils/common/SelectField";
+import { FormDataType } from "../pages/TryDemoPage";
+import classData from "../data/classData.json";
 interface Step2Props {
   formData: FormDataType;
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;

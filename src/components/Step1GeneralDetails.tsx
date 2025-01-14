@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import InputField from "@utils/common/InputField";
-import SelectField from "@utils/common/SelectField";
-import { FormDataType } from "@pages/TryDemoPage";
+import InputField from "../utils/common/InputField";
+import SelectField from "../utils/common/SelectField";
+import { FormDataType } from "../pages/TryDemoPage";
 import { toast } from "react-toastify";
 import axios from "axios";
 

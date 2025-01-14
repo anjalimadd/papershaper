@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import  { createContext, useState, ReactNode, useEffect } from "react";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -11,7 +11,7 @@ import { auth } from "../../firebase";
 import {
   fetchUserFromDatabase,
   saveUserInDatabase,
-} from "@utils/firebaseHelpers";
+} from "../utils/firebaseHelpers";
 
 // Updated User interface with 'photoURL' as optional but 'name' required
 interface User {

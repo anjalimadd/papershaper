@@ -1,4 +1,4 @@
-import { AuthContext } from "@contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
