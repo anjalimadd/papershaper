@@ -61,7 +61,7 @@ const SignupPage = () => {
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const result: any = await signup(data.name, data.email, data.password);
+      const result: any = await signup(data.email, data.password);
 
       // Check if the result contains an error message
       if (result.success) {

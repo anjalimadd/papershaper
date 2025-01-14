@@ -24,7 +24,6 @@ export interface AuthContextProps {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
   signup: (
-    name: string,
     email: string,
     password: string
   ) => Promise<{ success: boolean; message?: string; error?: unknown }>;
@@ -76,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const signup = async (name: string, email: string, password: string) => {
+  const signup = async ( email: string, password: string) => {
     try {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
