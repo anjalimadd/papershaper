@@ -34,11 +34,15 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "./src/utils"),
       "@services": path.resolve(__dirname, "./src/services"),
       "@layouts": path.resolve(__dirname, "./src/layouts"),
-      "@assets": path.resolve(__dirname, "./src/assets"),
-    },
+      "@assets": path.resolve(__dirname, "./src/assets")
+    }
   },
-  optimizeDeps: {
-    include: ["esm-dep > cjs-dep", "tailwindcss-motion"],
+ optimizeDeps: {
+    include: [
+      "react-router",
+      "react-router-dom",
+      "tailwindcss-motion"
+    ],
   },
   server: {
     host: true,
@@ -50,7 +54,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api\/append-data/, ""),
-        followRedirects: true, // Ensure redirects are followed
+        followRedirects: true,
       },
       "/api/test1": {
         target: "https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com",

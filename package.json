@@ -8,12 +8,22 @@
     "preview": "vite preview",
     "dev:host": "vite --host --port 1234",
     "build": "tsc -b && vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install",
+    "analyze": "vite build --mode analyze",
+    "start": "vite preview --port 8080"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "@lottiefiles/react-lottie-player": "^3.5.4",
     "@react-pdf-viewer/core": "^3.12.0",
+    "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.9",
     "firebase": "^11.0.2",
     "jspdf": "^2.5.2",
@@ -21,6 +31,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.1",
+    "react-router": "^7.1.1",
+    "react-router-dom": "^7.1.1",
     "react-toastify": "^10.0.6"
   },
   "devDependencies": {
