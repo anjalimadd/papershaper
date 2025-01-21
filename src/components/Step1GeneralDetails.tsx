@@ -4,7 +4,7 @@ import InputField from "../utils/common/InputField";
 import SelectField from "../utils/common/SelectField";
 import { FormDataType } from "../pages/TryDemoPage";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
 
 interface Step1Props {
   formData: FormDataType;
