@@ -34,7 +34,7 @@ export default defineConfig({
     proxy: {
       "/api/append-data": {
         target:
-          "https://script.google.com/macros/s/AKfycbxOPydNsc6UVuFdbhgD7ldZ0D4V2uu0cBvR7UZDFaZnJfPnKiNyy-kMC5a2sfjij8VUzw/exec",
+          "http://43.204.116.41/macros/s/AKfycbxOPydNsc6UVuFdbhgD7ldZ0D4V2uu0cBvR7UZDFaZnJfPnKiNyy-kMC5a2sfjij8VUzw/exec",
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api\/append-data/, ""),
