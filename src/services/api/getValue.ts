@@ -24,9 +24,9 @@ export async function getValue(formData: {
       is_logedIn: formData.is_logedIn,
     };
 
+    const apiURL = import.meta.env.VITE_API_BASE_URL;
     const response = await axios.post(
-      // `https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com/test1`,
-      "/api/test1",
+      apiURL,
       payload,
       {
         headers: {
@@ -34,6 +34,7 @@ export async function getValue(formData: {
         },
       }
     );
+    console.log(response, "response^^^^^^^")
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
