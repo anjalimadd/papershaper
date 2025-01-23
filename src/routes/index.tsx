@@ -11,6 +11,8 @@ import {
   Routes,
 } from "react-router";
 import SignupPage from "../pages/SignupPage";
+import ContactPage from "pages/ContactPage";
+import AboutPage from "pages/AboutPage";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = sessionStorage.getItem("user");
@@ -30,6 +32,8 @@ const AppRoutes: React.FC = () => (
       />
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<AboutPage />} />
       <Route path="/register" element={<SignupPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route

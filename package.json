@@ -15,7 +15,6 @@
     "test:watch": "jest --watch",
     "clean": "rimraf dist",
     "type-check": "tsc --noEmit",
-    "prepare": "husky install",
     "analyze": "vite build --mode analyze",
     "start": "vite preview --port 8080"
   },
