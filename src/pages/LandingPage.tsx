@@ -11,30 +11,36 @@ const LandingPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="text-center py-24 bg-gray-50">
-        <h1 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900">
-          Transform Your Exam Preparation with
-        </h1>
-        <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[56] motion-duration-[8000ms] text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto">
-          GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
-        </h2>
-        <p className="text-xl md:text-2xl text-gray-600 mt-8 mb-12 max-w-2xl mx-auto">
-          Elevate Your Study Game with Expert Tools: Create AI-Powered Mock
-          Papers with Ease
-        </p>
-        <div className="flex justify-center space-x-6">
-          <Link
-            to="/try-demo"
-            className="px-8 py-4 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-lg"
-          >
-            Get Started
-          </Link>
-          <Link
-            to="/try-demo"
-            className="px-8 py-4 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors duration-300 shadow-lg"
-          >
-            Try Demo
-          </Link>
+      <section className="text-center py-12 md:py-24 bg-gray-50 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-900">
+            Transform Your Exam Preparation with
+          </h1>
+
+          {/* Animated Heading */}
+          <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[56] motion-duration-[8000ms] text-xl sm:text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl">
+            GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
+          </h2>
+
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mt-6 sm:mt-8 md:mt-8 mb-8 md:mb-12">
+            Elevate Your Study Game with Expert Tools: Create AI-Powered Mock Papers with Ease
+          </p>
+
+          {/* Buttons Container */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+            <Link
+              to="/try-demo"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-lg text-sm sm:text-base"
+            >
+              Get Started
+            </Link>
+            <Link
+              to="/try-demo"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors duration-300 shadow-lg text-sm sm:text-base"
+            >
+              Try Demo
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -206,67 +212,71 @@ const LandingPage = () => {
       </section>
 
       {/* Integration Section */}
-      <section className="py-16 bg-gray-50 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-8">
-          Revolutionize Your Learning with Cutting-Edge Tools
-        </h2>
-        <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto px-4">
-          Elevate your exam preparation with innovative, AI-powered tools
-          tailored for CBSE and ICSE students. Seamlessly integrate with top
-          educational platforms to create dynamic and personalized mock papers.
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          {[
-            {
-              src: "https://cdn-icons-png.flaticon.com/512/1040/1040902.png",
-              alt: "AI Mock Paper Generator",
-              name: "AI Mock Paper Generator",
-              description:
-                "Effortlessly generate personalized AI-driven mock papers designed for Classes 9-12 students.",
-            },
-            {
-              src: "https://cdn-icons-png.flaticon.com/512/888/888879.png",
-              alt: "Advanced Question Bank",
-              name: "Advanced Question Bank",
-              description:
-                "Unlock a comprehensive library of quality-assured exam questions, enhancing your revision process.",
-            },
-            {
-              src: "https://cdn-icons-png.flaticon.com/512/3404/3404754.png",
-              alt: "Performance Analytics",
-              name: "Performance Analytics",
-              description:
-                "Gain valuable insights into your learning with our interactive performance analytics dashboard.",
-            },
-            {
-              src: "https://cdn-icons-png.flaticon.com/512/1173/1173412.png",
-              alt: "Exam Simulator",
-              name: "Exam Simulator",
-              description:
-                "Practice with simulated exams to master time management and enhance your readiness for the real test.",
-            },
-          ].map((tool, index) => (
-            <div
-              key={index}
-              className="bg-gray-200 shadow-md border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
-            >
-              <img
-                src={tool.src}
-                alt={tool.alt}
-                className="w-20 h-20 mx-auto mb-4 rounded-full object-cover text-black border border-gray-300 bg-white p-2"
-              />
-              <h3 className="text-lg font-medium text-gray-800 mb-2">
-                {tool.name}
-              </h3>
-              <p className="text-sm text-gray-600 mb-4">{tool.description}</p>
-              <Link
-                to="#"
-                className="inline-block px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300"
+      <section className="py-12 md:py-16 bg-gray-50 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-8">
+            Revolutionize Your Learning with Cutting-Edge Tools
+          </h2>
+          <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto">
+            Elevate your exam preparation with innovative, AI-powered tools
+            tailored for CBSE and ICSE students. Seamlessly integrate with top
+            educational platforms to create dynamic and personalized mock papers.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            {[
+              {
+                src: "https://cdn-icons-png.flaticon.com/512/1040/1040902.png",
+                alt: "AI Mock Paper Generator",
+                name: "AI Mock Paper Generator",
+                description:
+                  "Effortlessly generate personalized AI-driven mock papers designed for Classes 9-12 students.",
+              },
+              {
+                src: "https://cdn-icons-png.flaticon.com/512/888/888879.png",
+                alt: "Advanced Question Bank",
+                name: "Advanced Question Bank",
+                description:
+                  "Unlock a comprehensive library of quality-assured exam questions, enhancing your revision process.",
+              },
+              {
+                src: "https://cdn-icons-png.flaticon.com/512/3404/3404754.png",
+                alt: "Performance Analytics",
+                name: "Performance Analytics",
+                description:
+                  "Gain valuable insights into your learning with our interactive performance analytics dashboard.",
+              },
+              {
+                src: "https://cdn-icons-png.flaticon.com/512/1173/1173412.png",
+                alt: "Exam Simulator",
+                name: "Exam Simulator",
+                description:
+                  "Practice with simulated exams to master time management and enhance your readiness for the real test.",
+              },
+            ].map((tool, index) => (
+              <div
+                key={index}
+                className="bg-white sm:bg-gray-50 md:bg-white shadow-sm sm:shadow-md border border-gray-200 rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300"
               >
-                Learn More
-              </Link>
-            </div>
-          ))}
+                <img
+                  src={tool.src}
+                  alt={tool.alt}
+                  className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 rounded-full object-cover border-2 border-gray-300 bg-white p-1.5 sm:p-2"
+                />
+                <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-1 sm:mb-2">
+                  {tool.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
+                  {tool.description}
+                </p>
+                <Link
+                  to="#"
+                  className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300"
+                >
+                  Learn More
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

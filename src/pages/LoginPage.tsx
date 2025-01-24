@@ -1,11 +1,9 @@
-// src/pages/LoginPage.tsx
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom"; // Updated import
 import { useState, useContext } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-// import { FcGoogle } from "react-icons/fc";
 
 interface LoginFormInputs {
   email: string;
@@ -37,69 +35,43 @@ const LoginPage = () => {
     }
   };
 
-  // const handleGoogleLogin = async () => {
-  //   const success = await googleSignin();
-  //   if (success) {
-  //     toast.success("Login successful!");
-  //     navigate("/dashboard");
-  //   } else {
-  //     toast.error("Google Login failed. Please try again.");
-  //   }
-  // };
-
   return (
-    <div className="flex h-screen">
+    <div className="flex flex-col lg:flex-row h-screen">
       {/* Left Side - Image and Text */}
       <div
-        className="w-2/3 bg-cover bg-center relative"
+        className="lg:w-2/3 w-full h-64 lg:h-auto bg-cover bg-center relative"
         style={{
           backgroundImage: `url('https://images.pexels.com/photos/5710614/pexels-photo-5710614.jpeg?auto=compress&cs=tinysrgb&w=800')`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
-
-        <div className="relative flex flex-col justify-center h-full px-10 text-white z-10">
+        <div className="relative flex flex-col justify-center h-full px-6 lg:px-10 text-white z-10">
           <div
-            className="text-3xl font-bold cursor-pointer"
+            className="text-2xl lg:text-3xl font-bold cursor-pointer"
             onClick={() => navigate("/")}
           >
             Paper Shaper{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
-          <div className="my-8">
-            <h1 className="text-5xl font-bold mb-4 leading-snug">
+          <div className="my-4 lg:my-8">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-4 leading-snug">
               Generate Mock Papers Effortlessly
             </h1>
-            <p className="text-lg mb-6">
-              Create AI-powered mock tests for classes 8, 9, and 10.
+            <p className="text-base lg:text-lg mb-6">
+              Create AI-powered mock tests for classes 9, 10, and 12.
             </p>
           </div>
-
-          {/* <div className="flex space-x-4 mt-8">
-            <a href="#" className="text-green-200 hover:text-white">
-              🌐
-            </a>
-            <a href="#" className="text-green-200 hover:text-white">
-              📷
-            </a>
-            <a href="#" className="text-green-200 hover:text-white">
-              🐦
-            </a>
-            <a href="#" className="text-green-200 hover:text-white">
-              🔗
-            </a>
-          </div> */}
         </div>
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-1/3 max-w-lg flex flex-col justify-start items-center p-10 md:p-12 bg-white my-44">
-        <h2 className="text-3xl font-semibold mb-8 text-green-800">
+      <div className="lg:w-1/3 w-full max-w-lg flex flex-col justify-start items-center p-6 lg:p-10 bg-white lg:my-44">
+        <h2 className="text-2xl lg:text-3xl font-semibold mb-6 lg:mb-8 text-green-800">
           Login to your account
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full space-y-6 mt-6"
+          className="w-full space-y-4 lg:space-y-6 mt-4 lg:mt-6"
         >
           <div>
             <input
@@ -139,38 +111,21 @@ const LoginPage = () => {
           </div>
           <div className="text-right text-green-600 text-sm mt-2">
             <a
-              href="#"
+              href="/forgot-password"
               className="hover:underline"
-              onClick={() => {
-                toast.info("Feature coming soon!");
-              }}
             >
               Forgot Password?
             </a>
           </div>
-          {/* Login Without Google */}
           <button
             type="submit"
-            className="w-full py-3 bg-green-700 text-white rounded-md font-semibold text-lg hover:bg-green-800 transition duration-300 mt-24"
+            className="w-full py-3 bg-green-700 text-white rounded-md font-semibold text-lg hover:bg-green-800 transition duration-300 mt-6 lg:mt-24"
           >
             Login
           </button>
-          {/* Login With Google Button */}
-          {/* <div className="w-full mt-6">
-            <button
-              type="button"
-              className="flex items-center justify-center w-full py-3 border border-gray-300 rounded-md bg-white hover:bg-gray-100 transition duration-300"
-              onClick={handleGoogleLogin}
-            >
-              <FcGoogle className="h-6 w-6 mr-2" />
-              <span className="text-gray-700 font-semibold text-md">
-                Continue with Google
-              </span>
-            </button>
-          </div> */}
         </form>
 
-        <div className="text-center text-gray-600 mt-8">
+        <div className="text-center text-gray-600 mt-6 lg:mt-8">
           <span>Don't have an account?</span>
           <Link
             to="/register"

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import  { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signInWithPopup,
   UserCredential,
   GoogleAuthProvider,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import {
@@ -30,6 +31,7 @@ export interface AuthContextProps {
   googleSignin: () => Promise<boolean>;
   googleSignup: () => Promise<boolean>;
   logout: () => void;
+  resetPassword: (email: string) => Promise<boolean>;
 }
 
 const DEFAULT_PHOTO_URL = "https://randomuser.me/api/portraits/men/1.jpg";
@@ -75,7 +77,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const signup = async ( email: string, password: string) => {
+  const signup = async (email: string, password: string) => {
     try {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
@@ -137,6 +139,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const resetPassword = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return true;
+    } catch (error) {
+      console.error("Error sending password reset email:", error);
+      return false;
+    }
+  };
+
   const logout = () => {
     setUser(null);
     sessionStorage.removeItem("user");
@@ -151,6 +163,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         googleSignin,
         googleSignup,
         logout,
+        resetPassword
       }}
     >
       {children}

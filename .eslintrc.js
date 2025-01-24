@@ -5,10 +5,11 @@ module.exports = {
     'react-app',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended', // Make sure this is always the last configuration in the extends array.
+    'plugin:prettier/recommended', 
   ],
   plugins: ['react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
+    "no-console": "error"
   },
 };

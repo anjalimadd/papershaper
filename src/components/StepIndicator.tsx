@@ -17,20 +17,18 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
         <React.Fragment key={step.number}>
           <div className="flex items-center space-x-2">
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold ${
-                currentStep === step.number
+              className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold ${currentStep === step.number
                   ? "text-white bg-green-600"
                   : "text-gray-500 bg-gray-200"
-              }`}
+                }`}
             >
               {step.number}
             </div>
             <span
-              className={`${
-                currentStep === step.number
+              className={`${currentStep === step.number
                   ? "text-green-600 font-semibold"
                   : "text-gray-500"
-              }`}
+                }`}
             >
               {step.label}
             </span>

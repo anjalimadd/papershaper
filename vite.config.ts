@@ -32,13 +32,11 @@ export default defineConfig({
     host: true,
     port: 80,
     proxy: {
-      "/api/append-data": {
-        target:
-          "http://43.204.116.41/macros/s/AKfycbxOPydNsc6UVuFdbhgD7ldZ0D4V2uu0cBvR7UZDFaZnJfPnKiNyy-kMC5a2sfjij8VUzw/exec",
+      "/api/google-sheets": {
+        target: "https://script.google.com",
         changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/api\/append-data/, ""),
-        followRedirects: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api\/google-sheets/, "/macros/s/AKfycbxOPydNsc6UVuFdbhgD7ldZ0D4V2uu0cBvR7UZDFaZnJfPnKiNyy-kMC5a2sfjij8VUzw/exec")
       },
       "/api/test1": {
         target: "https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com",
