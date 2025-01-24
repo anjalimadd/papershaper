@@ -29,7 +29,7 @@ Welcome to the **Paper Shaper Dashboard** — a powerful and intuitive platform 
 ## **Live Demo**
 
 Experience the **Paper Shaper Dashboard** in action:  
-👉 [Live Demo](https://papershaper-demo.com) *(Replace with your actual demo link)*
+👉 [Live Demo](https://papershapers.in)
 
 ---
 
