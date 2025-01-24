@@ -1,20 +1,19 @@
-### **Paper Shaper Dashboard**
+# **Paper Shaper Dashboard**
 
-Welcome to the **Paper Shaper Dashboard** — a streamlined and interactive platform that helps you design, customize, and manage paper templates with ease. Built with React, TypeScript, and Vite, the dashboard delivers a blazing-fast and responsive user experience.
-
-### **Features**
-
-- **Shape Your Paper**: Use our intuitive tools to design and modify your paper-based products seamlessly.
-- **Paper Templates**: Choose from a wide range of customizable templates tailored to your needs.
-- **Advanced Features**: Unlock professional tools for intricate paper design and advanced features.
-
-### **Try the Demo**
-
-Want to see how it works? Click the **Start Demo** button within the dashboard to explore the powerful capabilities of Paper Shaper.
+Welcome to the **Paper Shaper Dashboard** — a powerful and intuitive platform designed to help you create, customize, and manage paper templates with ease. Built with modern web technologies, the dashboard offers a seamless and responsive user experience, enabling you to focus on your creativity.
 
 ---
 
-### **Technologies Used**
+## **Features**
+
+- **Shape Your Paper**: Use our intuitive tools to design and modify paper-based products effortlessly.
+- **Customizable Templates**: Choose from a wide range of pre-designed templates tailored to your needs.
+- **Advanced Design Tools**: Unlock professional-grade tools for intricate paper design and advanced customization.
+- **Interactive Demo**: Explore the platform's capabilities with an interactive demo.
+
+---
+
+## **Technologies Used**
 
 - **Frontend**: React + TypeScript
 - **Build Tool**: Vite
@@ -22,40 +21,114 @@ Want to see how it works? Click the **Start Demo** button within the dashboard t
 - **Routing**: React Router
 - **Styling**: Tailwind CSS
 - **Authentication**: Context-based user authentication with session storage
+- **Icons**: Heroicons
+- **Toast Notifications**: React Toastify
 
 ---
 
-### **Development Setup**
+## **Live Demo**
 
-1. Clone the repository:
+Experience the **Paper Shaper Dashboard** in action:  
+👉 [Live Demo](https://papershaper-demo.com) *(Replace with your actual demo link)*
+
+---
+
+## **Development Setup**
+
+Follow these steps to set up the project locally:
+
+1. **Clone the repository**:
 
    ```bash
    git clone git@github.com:harshkushwaha7x/papershaper.git
    cd papershaper
    ```
 
-2. Install dependencies:
+2. **Install dependencies**:
 
    ```bash
    npm install
    ```
 
-3. Start the development server:
+3. **Start the development server**:
 
    ```bash
    npm run dev:host
    ```
 
-4. Visit the app at `http://localhost:1234`.
+4. **Open the app**:
+
+   Visit `http://localhost:1234` in your browser.
 
 ---
 
-### **Get Involved**
+## **Folder Structure**
 
-Want to contribute? Fork the repo and submit a pull request. We welcome all contributions to make **Paper Shaper** even better!
+Here’s an overview of the project structure:
+
+```
+papershaper/
+├── public/               # Static assets
+├── src/
+│   ├── assets/           # Images, icons, and other assets
+│   ├── components/       # Reusable UI components
+│   ├── contexts/         # React Context for state management
+│   ├── pages/            # Application pages
+│   ├── styles/           # Global styles and Tailwind configuration
+│   ├── App.tsx           # Main application component
+│   └── main.tsx          # Entry point
+├── .eslintrc.js          # ESLint configuration
+├── .gitignore            # Files and directories to ignore
+├── package.json          # Project dependencies and scripts
+├── README.md             # Project documentation
+└── vite.config.ts        # Vite configuration
+```
 
 ---
 
-### **License**
+## **Contributing**
 
-MIT License — Feel free to use and adapt this project for your needs.
+We welcome contributions from the community! Here’s how you can get involved:
+
+1. **Fork the repository**.
+2. Create a new branch for your feature or bugfix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your feature"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a **Pull Request** and describe your changes.
+
+---
+
+## **License**
+
+This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it as per the license terms.
+
+---
+
+## **Acknowledgments**
+
+- **React** and **Vite** for providing a fast and modern development environment.
+- **Tailwind CSS** for making styling a breeze.
+- **Heroicons** for the beautiful icons.
+- **React Toastify** for elegant toast notifications.
+
+---
+
+## **Contact**
+
+Have questions or feedback? Reach out to us:
+
+- **Email**: [harshkushwaha7x@gmail.com](mailto:harshkushwaha7x@gmail.com)
+- **GitHub**: [harshkushwaha7x](https://github.com/harshkushwaha7x)
+
+---
+
+Thank you for using **Paper Shaper Dashboard**! We hope it helps you create amazing paper designs with ease. 🚀
