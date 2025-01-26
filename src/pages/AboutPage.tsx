@@ -6,6 +6,7 @@ import ankitImage from '../assets/images/photo_ankit.png';
 // import anjaliImage from '../assets/images/photo_anjali.jpeg';
 import chetnaImage from '../assets/images/chetna_kumar.jpeg';
 import yashImage from '../assets/images/photo_yash.jpeg';
+import harshImage from '../assets/images/photo_harsh.jpeg';
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
@@ -41,7 +42,7 @@ const AboutPage = () => {
                         {/* Harsh Kushwaha - CEO */}
                         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs">
                             <img
-                                src="https://via.placeholder.com/150"
+                                src={harshImage}
                                 alt="Harsh Kushwaha"
                                 className="w-24 h-24 mx-auto mb-4 rounded-full object-cover border-4 border-green-100"
                             />
@@ -57,7 +58,7 @@ const AboutPage = () => {
                             </p>
                             <div className="mt-4 flex justify-center">
                                 <a
-                                    href="https://www.linkedin.com/in/harsh-kushwaha"
+                                    href="http://www.linkedin.com/in/harsh-kushwaha-890709283"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-gray-600 hover:text-green-600 transition-colors"
