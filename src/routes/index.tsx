@@ -18,6 +18,7 @@ import ForgotPasswordPage from "pages/ForgotPasswordPage";
 import { useEffect } from "react";
 import PricingPage from "pages/PricingPage";
 import DocumentHelperPage from "pages/DocumentHelperPage";
+import { Helmet } from "react-helmet-async";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = sessionStorage.getItem("user");
@@ -38,6 +39,10 @@ const ScrollToTop = () => {
 
 const AppRoutes: React.FC = () => (
   <Router>
+    <Helmet>
+      {/* AdSense meta tag */}
+      <meta name="google-adsense-account" content="ca-pub-8294578673663801" />
+    </Helmet>
     <ScrollToTop />
     <Routes>
       <Route
