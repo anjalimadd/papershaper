@@ -3,7 +3,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ankitImage from '../assets/images/photo_ankit.png';
-import anjaliImage from '../assets/images/photo_anjali.jpeg';
+// import anjaliImage from '../assets/images/photo_anjali.jpeg';
 import chetnaImage from '../assets/images/chetna_kumar.jpeg';
 import yashImage from '../assets/images/photo_yash.jpeg';
 
