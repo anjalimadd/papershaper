@@ -155,7 +155,7 @@ const AboutPage = () => {
                         </div>
 
                         {/* Anjali Maddheshiya - Frontend */}
-                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs">
+                        {/* <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs">
                             <img
                                 src={anjaliImage}
                                 alt="Anjali Maddheshiya"
@@ -181,7 +181,7 @@ const AboutPage = () => {
                                     <LinkedinIcon className="w-5 h-5" />
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
