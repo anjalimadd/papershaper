@@ -25,7 +25,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
               {step.number}
             </div>
             <span
-              className={`${currentStep === step.number
+              className={`hidden sm:inline ${currentStep === step.number
                   ? "text-green-600 font-semibold"
                   : "text-gray-500"
                 }`}

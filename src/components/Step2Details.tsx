@@ -100,7 +100,7 @@ const Step2Details: React.FC<Step2Props> = ({
       // Using a type assertion here to specify the expected structure of chapters
       const chapters =
         (classData[classLevel]?.chapters as Record<string, string[]>)[
-          firstSelectedSubject
+        firstSelectedSubject
         ] || [];
       setAvailableChapters(chapters);
     }
@@ -112,7 +112,7 @@ const Step2Details: React.FC<Step2Props> = ({
         <SelectField
           label="Select Board"
           name="board"
-          options={["CBSE", "ICSE"]}
+          options={["CBSE"]}
           value={formData.board}
           onChange={handleChange}
         />

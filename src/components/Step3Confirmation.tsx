@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import { FormDataType } from "../pages/TryDemoPage";
+import { FormDataType } from "pages/TryDemoPage";
 
 interface Step3Props {
   formData: FormDataType;
@@ -36,8 +36,8 @@ const Step3Confirmation: React.FC<Step3Props> = ({
 
   return (
     <div className="px-4 md:px-8 min-h-screen flex flex-col items-center justify-center">
-      <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600 py-4">
-        {pdfUrl ? "Your Mock Paper is Ready!" : "Generate Mock Paper"}
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600 py-4">
+        {pdfUrl && "Your Mock Paper is Ready!"}
       </h2>
 
       {loading ? (
@@ -54,9 +54,9 @@ const Step3Confirmation: React.FC<Step3Props> = ({
           </div>
         </div>
       ) : (
-        <div className="w-full lg:w-[90vw] flex flex-col lg:flex-row gap-8">
+        <div className="w-full flex flex-col gap-8">
           {/* Left side: Summary */}
-          <div className="w-full lg:w-2/5 p-6 md:p-8 bg-white rounded-xl shadow-xl">
+          {!pdfUrl && <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
             <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3 mb-6">
               Your Selection Summary
             </h3>
@@ -91,15 +91,15 @@ const Step3Confirmation: React.FC<Step3Props> = ({
                 </button>
               </div>
             )}
-          </div>
+          </div>}
 
           {/* Right side: PDF Preview */}
           {pdfUrl && (
-            <div className="w-full lg:w-3/5 p-6 md:p-8 bg-white rounded-xl shadow-xl">
+            <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
               <h3 className="text-xl font-semibold text-gray-800 mb-6">
                 Preview Your Paper
               </h3>
-              <div className="relative h-[60vh] lg:h-[70vh] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
+              <div className="relative h-[60vh] lg:h-[90vh] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
                 <iframe
                   src={`${pdfUrl}#toolbar=0&navpanes=0&view=FitH`}
                   className="w-full h-full border-0"

@@ -1,24 +1,21 @@
+// src/contexts/AuthContext.tsx
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useState, ReactNode, useEffect } from "react";
 import {
-  signInWithEmailAndPassword,
+  applyActionCode,
   createUserWithEmailAndPassword,
-  signInWithPopup,
-  UserCredential,
-  GoogleAuthProvider,
-  sendPasswordResetEmail
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  UserCredential
 } from "firebase/auth";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { auth } from "../../firebase";
-import {
-  fetchUserFromDatabase,
-  saveUserInDatabase,
-} from "../utils/firebaseHelpers";
 
-// Updated User interface with 'photoURL' as optional but 'name' required
 interface User {
   name: string;
   email: string;
   photoURL?: string;
+  emailVerified: boolean;
 }
 
 export interface AuthContextProps {
@@ -28,10 +25,10 @@ export interface AuthContextProps {
     email: string,
     password: string
   ) => Promise<{ success: boolean; message?: string; error?: unknown }>;
-  googleSignin: () => Promise<boolean>;
-  googleSignup: () => Promise<boolean>;
   logout: () => void;
   resetPassword: (email: string) => Promise<boolean>;
+  sendVerificationEmail: () => Promise<void>;
+  verifyEmail: (code: string) => Promise<boolean>;
 }
 
 const DEFAULT_PHOTO_URL = "https://randomuser.me/api/portraits/men/1.jpg";
@@ -43,7 +40,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Load user from sessionStorage when the app initializes
     const storedUser = sessionStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -55,6 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       name: userData.name || "Unknown",
       email: userData.email || "",
       photoURL: userData.photoURL || DEFAULT_PHOTO_URL,
+      emailVerified: userData.emailVerified || false,
     };
     setUser(updatedUser);
     sessionStorage.setItem("user", JSON.stringify(updatedUser));
@@ -68,12 +65,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password
       );
       const userData = userCredential.user;
+      
+      if (!userData.emailVerified) {
+        throw new Error("Please verify your email before logging in");
+      }
+
       updateUserInState(userData);
       return true;
     } catch (error: any) {
-      const errorMessage = error.message || "Login failed. Please try again.";
-      console.error(errorMessage);
-      return false;
+      throw new Error(error.message || "Login failed. Please try again.");
     }
   };
 
@@ -82,59 +82,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
       const userData = userCredential.user;
+      
+      await sendEmailVerification(userData);
       updateUserInState(userData);
-      return { success: true, message: "User created successfully." };
+      
+      return { 
+        success: true, 
+        message: "Verification email sent. Please check your inbox." 
+      };
     } catch (error) {
       console.error("Error signing up:", error);
-      return { success: false, error: error }; // Return the full error object
+      return { success: false, error: error };
     }
   };
 
-  const googleSignin = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-      const userData = userCredential.user;
-
-      // Fetch user data from the database
-      const existingUser = await fetchUserFromDatabase(userData.email || "");
-      if (!existingUser) {
-        console.error("User not found in the system.");
-        return false;
-      }
-
-      updateUserInState(userData);
-      return true;
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
-      return false;
+  const sendVerificationEmail = async () => {
+    if (auth.currentUser) {
+      await sendEmailVerification(auth.currentUser);
     }
   };
 
-  const googleSignup = async () => {
+  const verifyEmail = async (code: string) => {
     try {
-      const provider = new GoogleAuthProvider();
-      const userCredential: UserCredential & { additionalUserInfo?: any } =
-        await signInWithPopup(auth, provider);
-      const userData = userCredential.user;
-
-      const isNewUser = userCredential.additionalUserInfo?.isNewUser;
-      if (isNewUser) {
-        console.info("New user signed up with Google.");
-        // Save user data to Firestore with the correct structure
-        const userToSave: User = {
-          name: userData.displayName || "Unknown", // Ensure 'name' is included
-          email: userData.email ?? "Unknown",
-          photoURL: userData.photoURL ?? DEFAULT_PHOTO_URL,
-        };
-
-        await saveUserInDatabase(userToSave);
-      }
-
-      updateUserInState(userData);
+      await applyActionCode(auth, code);
+      const user = auth.currentUser;
+      if (user) await user.reload();
       return true;
     } catch (error) {
-      console.error("Error signing up with Google:", error);
+      console.error("Email verification failed:", error);
       return false;
     }
   };
@@ -160,8 +135,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         login,
         signup,
-        googleSignin,
-        googleSignup,
+        verifyEmail,
+        sendVerificationEmail,
         logout,
         resetPassword
       }}

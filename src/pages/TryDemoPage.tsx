@@ -8,6 +8,7 @@ import StepIndicator from "../components/StepIndicator";
 import Step1GeneralDetails from "../components/Step1GeneralDetails";
 import Step2Details from "../components/Step2Details";
 import Step3Confirmation from "../components/Step3Confirmation";
+import { SparklesIcon } from "@heroicons/react/24/solid";
 
 export interface FormDataType {
   reason?: string | undefined;
@@ -173,9 +174,22 @@ const MultiStepForm: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 flex flex-col items-center py-10 px-4 bg-gray-100">
+      <main className="flex-1 flex flex-col items-center py-10 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+        {/* Added heading section */}
+        <div className="max-w-3xl w-full text-center mb-12">
+          <div className="inline-flex items-center justify-center p-4 bg-green-100 rounded-full mb-6">
+            <SparklesIcon className="w-12 h-12 text-emerald-600" />
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-700">
+            AI-Powered Mock Paper Generator
+          </h1>
+          <p className="text-lg text-green-800 font-medium">
+            Create customized exam papers tailored to your specific needs. Select your class, subject, and chapter to generate practice materials instantly.
+          </p>
+        </div>
+
         <StepIndicator currentStep={step} />
-        <div className="max-w-3xl w-full p-8">
+        <div className="max-w-3xl w-full p-8 bg-white rounded-2xl shadow-lg">
           {step === 1 && (
             <Step1GeneralDetails
               formData={formData}
@@ -203,6 +217,7 @@ const MultiStepForm: React.FC = () => {
       </main>
       <Footer />
     </div>
+
   );
 };
 
