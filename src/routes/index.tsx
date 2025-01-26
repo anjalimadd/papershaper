@@ -17,6 +17,7 @@ import ServicesPage from "pages/ServicesPage";
 import ForgotPasswordPage from "pages/ForgotPasswordPage";
 import { useEffect } from "react";
 import PricingPage from "pages/PricingPage";
+import DocumentHelperPage from "pages/DocumentHelperPage";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = sessionStorage.getItem("user");
@@ -61,6 +62,14 @@ const AppRoutes: React.FC = () => (
         element={
           <ProtectedRoute>
             <TryDemoPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/document-helper"
+        element={
+          <ProtectedRoute>
+            <DocumentHelperPage />
           </ProtectedRoute>
         }
       />

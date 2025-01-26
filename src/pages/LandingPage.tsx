@@ -18,7 +18,7 @@ const LandingPage = () => {
           </h1>
 
           {/* Animated Heading */}
-          <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[56] motion-duration-[8000ms] text-xl sm:text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl">
+          <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[92] motion-duration-[10s] text-xl sm:text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl">
             GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
           </h2>
 
@@ -45,53 +45,62 @@ const LandingPage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
-          Efficient and Integrated Mock Paper Creation Services
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {[
-            {
-              title: "AI-Powered Mock Papers",
-              description:
-                "Effortlessly generate custom exam papers for Classes 8, 9, and 10 using advanced AI technology. Tailor your mock papers to align with specific syllabus requirements.",
-            },
-            {
-              title: "Question Bank Integration",
-              description:
-                "Access a vast library of thousands of curated quality questions, ensuring precise and thorough assessments tailored to CBSE and ICSE standards.",
-            },
-            {
-              title: "Exam Simulator",
-              description:
-                "Immerse yourself in realistic exam environments to boost your readiness and confidence during actual exams.",
-            },
-            {
-              title: "Customizable Content",
-              description:
-                "Customize your mock papers to concentrate on specific chapters or topics, ensuring focused and effective studying.",
-            },
-            {
-              title: "Instant Feedback",
-              description:
-                "Gain immediate insights with instant feedback on your performance, helping you identify strengths and areas for improvement.",
-            },
-            {
-              title: "Performance Analytics",
-              description:
-                "Monitor and track your academic progress effortlessly, using detailed performance analytics to guide your study strategy.",
-            },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="bg-gray-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <h3 className="text-xl font-bold mb-4 text-gray-800">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
+      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-700">
+            Smart Exam Preparation Solutions
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {[
+              {
+                title: "AI-Powered Exam Generator",
+                description:
+                  "Create customized mock papers and test questions for Classes 9-12 (CBSE). Select your class, subject, and chapter to generate tailored practice materials or assessment questions instantly.",
+                link: "/try-demo",
+                linkText: "Try Exam Generator",
+                icon: (
+                  <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                )
+              },
+              {
+                title: "Document-Based Question Generator",
+                description:
+                  "Upload documents (resumes, study materials, etc.) to receive personalized PDFs with interview questions or chapter tests generated using content analysis and web research integration.",
+                link: "/document-helper",
+                linkText: "Try Document Helper",
+                icon: (
+                  <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                )
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl shadow-lg flex flex-col"
+              >
+                <div className="flex-grow">
+                  <div className="mb-6 p-4 bg-emerald-50 rounded-full w-16 h-16 flex items-center justify-center">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+                <a
+                  href={feature.link}
+                  className="mt-4 inline-block px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 text-center font-semibold shadow-md hover:shadow-lg"
+                >
+                  {feature.linkText}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
