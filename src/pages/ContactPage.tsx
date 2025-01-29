@@ -14,7 +14,7 @@ const ContactPage = () => {
             {/* Hero Section */}
             <section className="text-center py-10 bg-gray-50">
                 <h1 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900">
-                    Get in Touch with Paper Shaper
+                    Get in Touch with Paper Shapers
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 mt-8 mb-12 max-w-2xl mx-auto">
                     Have questions or need help? Our team is here to assist you.
@@ -116,14 +116,14 @@ const ContactPage = () => {
                                 </a>
                             </div>
                         </li>
-                        <li className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <li className="hidden items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                             <span className="flex-shrink-0 w-8 h-8 bg-green-50 rounded-full flex items-center justify-center mr-4">
                                 <PhoneIcon className="w-5 h-5 text-green-700" />
                             </span>
-                            <div>
+                            {/* <div>
                                 <span className="font-semibold text-gray-700">Phone:</span>
                                 <span className="text-gray-600 ml-2">+91 8528815252</span>
-                            </div>
+                            </div> */}
                         </li>
                         <li className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                             <span className="flex-shrink-0 w-8 h-8 bg-green-50 rounded-full flex items-center justify-center mr-4">
@@ -131,7 +131,7 @@ const ContactPage = () => {
                             </span>
                             <div>
                                 <span className="font-semibold text-gray-700">Address:</span>
-                                <span className="text-gray-600 ml-2">Paper Shaper, New Delhi, India</span>
+                                <span className="text-gray-600 ml-2">Paper Shapers, New Delhi, India</span>
                             </div>
                         </li>
                     </ul>

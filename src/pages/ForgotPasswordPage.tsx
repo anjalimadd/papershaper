@@ -46,7 +46,7 @@ const ForgotPasswordPage = () => {
             className="text-2xl lg:text-3xl font-bold cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Paper Shaper{" "}
+            Paper Shapers{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
           <div className="my-4 lg:my-8">

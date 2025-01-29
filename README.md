@@ -1,6 +1,6 @@
-# **Paper Shaper Dashboard**
+# **Paper Shapers Dashboard**
 
-Welcome to the **Paper Shaper Dashboard** — a powerful and intuitive platform designed to help you create, customize, and manage paper templates with ease. Built with modern web technologies, the dashboard offers a seamless and responsive user experience, enabling you to focus on your creativity.
+Welcome to the **Paper Shapers Dashboard** — a powerful and intuitive platform designed to help you create, customize, and manage paper templates with ease. Built with modern web technologies, the dashboard offers a seamless and responsive user experience, enabling you to focus on your creativity.
 
 ---
 
@@ -28,7 +28,7 @@ Welcome to the **Paper Shaper Dashboard** — a powerful and intuitive platform 
 
 ## **Live Demo**
 
-Experience the **Paper Shaper Dashboard** in action:  
+Experience the **Paper Shapers Dashboard** in action:  
 👉 [Live Demo](https://papershapers.in)
 
 ---
@@ -131,4 +131,4 @@ Have questions or feedback? Reach out to us:
 
 ---
 
-Thank you for using **Paper Shaper Dashboard**! We hope it helps you create amazing paper designs with ease. 🚀
+Thank you for using **Paper Shapers Dashboard**! We hope it helps you create amazing paper designs with ease. 🚀

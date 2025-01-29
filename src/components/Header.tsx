@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 interface User {
@@ -8,17 +8,26 @@ interface User {
   photoURL?: string;
 }
 
-// const DEFAULT_AVATAR = "https://randomuser.me/api/portraits/men/1.jpg";
-
 export default function Header() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { logout } = authContext || {};
 
   const handleProfileClick = () => setIsPopoverOpen(!isPopoverOpen);
+
+  const handleGoogleSignIn = async () => {
+    // try {
+    //   await signInWithGoogle?.();
+    //   setIsMobileMenuOpen(false);
+    // } catch (error) {
+    //   console.error("Google sign in failed:", error);
+    // }
+    navigate("/login");
+  };
 
   const handleLogout = () => {
     if (logout) {
@@ -34,8 +43,7 @@ export default function Header() {
       const userData = JSON.parse(storedUser);
       setUser({
         ...userData,
-        // Ensure photoURL has proper fallback
-        photoURL: userData.photoURL
+        photoURL: userData.photoURL,
       });
     }
   }, []);
@@ -45,7 +53,7 @@ export default function Header() {
       <div className="flex justify-between items-center px-4 py-3 md:px-6 md:py-4">
         {/* Logo */}
         <Link to="/" className="text-xl md:text-2xl font-bold text-green-700">
-          Paper Shaper
+          Paper Shapers
         </Link>
 
         {/* Mobile Menu Button */}
@@ -115,12 +123,12 @@ export default function Header() {
               )}
             </div>
           ) : (
-            <Link
-              to="/login"
-              className="px-4 py-2 bg-green-700 text-white rounded-full hover:bg-green-800 text-sm"
+            <button
+              onClick={handleGoogleSignIn}
+              className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 text-sm flex items-center gap-2"
             >
               Login
-            </Link>
+            </button>
           )}
         </nav>
       </div>
@@ -129,16 +137,32 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t">
           <nav className="flex flex-col items-center space-y-4 py-4">
-            <Link to="/" className="text-gray-700 hover:text-green-700" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-green-700"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Home
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-green-700" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-green-700"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               About
             </Link>
-            <Link to="/services" className="text-gray-700 hover:text-green-700" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to="/services"
+              className="text-gray-700 hover:text-green-700"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Services
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-green-700" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link
+              to="/contact"
+              className="text-gray-700 hover:text-green-700"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Contact
             </Link>
 
@@ -152,13 +176,12 @@ export default function Header() {
                 <span className="text-sm text-gray-700">{user.email}</span>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="px-4 py-2 bg-green-700 text-white rounded-full hover:bg-green-800 text-sm"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                onClick={handleGoogleSignIn}
+                className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 text-sm flex items-center gap-2"
               >
                 Login
-              </Link>
+              </button>
             )}
           </nav>
         </div>

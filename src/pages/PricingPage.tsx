@@ -16,7 +16,7 @@ const PricingPage = () => {
               Simple, Transparent Pricing
             </h2>
             <p className="text-xl text-gray-600">
-              Choose the plan that works best for your needs
+              All plans are now free to help you get started with ease
             </p>
           </div>
 
@@ -24,49 +24,47 @@ const PricingPage = () => {
             {[
               {
                 plan: "Basic",
-                price: "19",
                 features: [
                   "AI-Powered Mock Papers",
                   "Basic Question Bank Access",
                   "Performance Analytics",
                   "Email Support",
-                  "5 Papers/Month"
+                  "5 Papers/Month",
                 ],
-                recommended: false
+                recommended: false,
               },
               {
                 plan: "Pro",
-                price: "39",
                 features: [
                   "All Basic Features",
                   "Advanced Question Bank",
                   "Detailed Analytics",
                   "Priority Support",
                   "Unlimited Papers",
-                  "Exam Simulator"
+                  "Exam Simulator",
                 ],
-                recommended: true
+                recommended: true,
               },
               {
                 plan: "Institution",
-                price: "Custom",
                 features: [
                   "All Pro Features",
                   "Bulk License Management",
                   "Dedicated Support",
                   "Custom Integration",
                   "SLA Agreement",
-                  "Training & Onboarding"
+                  "Training & Onboarding",
                 ],
-                recommended: false
-              }
+                recommended: false,
+              },
             ].map((plan, index) => (
               <div
                 key={index}
-                className={`relative p-8 rounded-2xl shadow-lg transition-all duration-300 ${plan.recommended
+                className={`relative p-8 rounded-2xl shadow-lg transition-all duration-300 ${
+                  plan.recommended
                     ? "bg-green-50 border-2 border-green-200 transform scale-105"
                     : "bg-white border border-gray-200"
-                  }`}
+                }`}
               >
                 {plan.recommended && (
                   <div className="absolute top-0 right-0 bg-green-600 text-white px-4 py-1 rounded-bl-lg text-sm font-medium">
@@ -79,11 +77,8 @@ const PricingPage = () => {
                   </h3>
                   <div className="flex items-baseline">
                     <span className="text-4xl font-bold text-green-600">
-                      ${plan.price}
+                      Free
                     </span>
-                    {plan.price !== "Custom" && (
-                      <span className="ml-2 text-gray-500">/month</span>
-                    )}
                   </div>
                 </div>
                 <ul className="space-y-4 mb-8">
@@ -107,13 +102,14 @@ const PricingPage = () => {
                   ))}
                 </ul>
                 <Link
-                  to={plan.price === "Custom" ? "/contact" : "/signup"}
-                  className={`w-full block text-center py-3 px-6 rounded-lg font-medium transition-colors ${plan.recommended
+                  to="/register"
+                  className={`w-full block text-center py-3 px-6 rounded-lg font-medium transition-colors ${
+                    plan.recommended
                       ? "bg-green-600 text-white hover:bg-green-700"
                       : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                    }`}
+                  }`}
                 >
-                  {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+                  Get Started
                 </Link>
               </div>
             ))}
@@ -128,20 +124,22 @@ const PricingPage = () => {
               {[
                 {
                   question: "Can I change plans later?",
-                  answer: "Yes, you can upgrade or downgrade your plan at any time."
+                  answer:
+                    "Yes, you can switch between plans anytime since all are free.",
                 },
                 {
                   question: "Do you offer discounts for students?",
-                  answer: "We offer special educational pricing for verified students."
+                  answer: "All plans are free, so no discounts are needed.",
                 },
                 {
                   question: "What payment methods do you accept?",
-                  answer: "We accept all major credit cards and PayPal."
+                  answer: "No payment is required as all plans are free.",
                 },
                 {
                   question: "Is there a free trial available?",
-                  answer: "Yes, we offer a 14-day free trial for all plans."
-                }
+                  answer:
+                    "All plans are free forever, so a trial is not needed.",
+                },
               ].map((faq, index) => (
                 <div key={index} className="p-6 bg-gray-50 rounded-lg">
                   <h4 className="font-medium text-lg mb-2">{faq.question}</h4>
@@ -160,13 +158,13 @@ const PricingPage = () => {
             Ready to Transform Your Learning?
           </h2>
           <p className="text-xl mb-8">
-            Start creating better mock papers today with Paper Shaper
+            Start creating better mock papers today with Paper Shapers
           </p>
           <Link
-            to="/signup"
+            to="/register"
             className="inline-block px-8 py-3 bg-white text-green-600 rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg font-medium"
           >
-            Start Free Trial
+            Get Started for Free
           </Link>
         </div>
       </section>

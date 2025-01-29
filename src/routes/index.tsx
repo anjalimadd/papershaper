@@ -1,7 +1,7 @@
 import DashboardPage from "../pages/DashboardPage";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
-import TryDemoPage from "../pages/TryDemoPage";
+import TryDemoPage from "../pages/MockPaperCreatorPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import {
   Navigate,
@@ -36,15 +36,19 @@ const ScrollToTop = () => {
   return null;
 };
 
+const LoggedOutRoute = ({ children }: { children: JSX.Element }) => {
+  const user = sessionStorage.getItem("user");
+  return user ? <Navigate to="/" /> : children;
+};
 
 const AppRoutes: React.FC = () => (
   <Router>
     <Helmet>
-      {/* AdSense meta tag */}
       <meta name="google-adsense-account" content="ca-pub-8294578673663801" />
     </Helmet>
     <ScrollToTop />
     <Routes>
+      {/* Protected routes */}
       <Route
         path="/dashboard"
         element={
@@ -53,17 +57,8 @@ const AppRoutes: React.FC = () => (
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/register" element={<SignupPage />} />
-      <Route path="/pricing" element={<PricingPage />} />
-      <Route path="/services" element={<ServicesPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route
-        path="/try-demo"
+        path="/mock-paper-creator"
         element={
           <ProtectedRoute>
             <TryDemoPage />
@@ -78,6 +73,39 @@ const AppRoutes: React.FC = () => (
           </ProtectedRoute>
         }
       />
+
+      {/* Auth routes accessible only to logged out users */}
+      <Route
+        path="/login"
+        element={
+          <LoggedOutRoute>
+            <LoginPage />
+          </LoggedOutRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <LoggedOutRoute>
+            <SignupPage />
+          </LoggedOutRoute>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <LoggedOutRoute>
+            <ForgotPasswordPage />
+          </LoggedOutRoute>
+        }
+      />
+
+      {/* Public routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/services" element={<ServicesPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Router>

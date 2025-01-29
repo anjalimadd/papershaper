@@ -1,7 +1,7 @@
 {
   "name": "papershaper",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,10 @@
     "clean": "rimraf dist",
     "type-check": "tsc --noEmit",
     "analyze": "vite build --mode analyze",
-    "start": "vite preview --port 8080"
+    "start": "vite preview --port 8080",
+    "push": "npm version patch && git push",
+    "push-minor": "npm version minor && git push",
+    "push-major": "npm version major && git push"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
