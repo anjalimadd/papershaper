@@ -8,14 +8,16 @@ const ServicesPage = () => {
     {
       icon: <SparklesIcon className="w-10 h-10 text-green-600" />,
       title: "AI-Powered Exam Preparation",
-      description: "Generate customized mock papers and test questions based on your class (9th-12th), subject, and specific chapters. Select your board (CBSE), input your requirements, and get tailored practice materials instantly.",
-      link: "/try-demo",
+      description:
+        "Generate customized mock papers and test questions based on your class (9th-12th), subject, and specific chapters. Select your board (CBSE), input your requirements, and get tailored practice materials instantly.",
+      link: "/mock-paper-creator",
       linkText: "Try Exam Generator",
     },
     {
       icon: <CloudArrowUpIcon className="w-10 h-10 text-green-600" />,
       title: "Document-Based Question Generation",
-      description: "Upload any document (resumes, study materials, etc.) and receive a comprehensive PDF with relevant interview questions or practice tests generated using content analysis and web research integration.",
+      description:
+        "Upload any document (resumes, study materials, etc.) and receive a comprehensive PDF with relevant interview questions or practice tests generated using content analysis and web research integration.",
       link: "/document-helper",
       linkText: "Try Document Helper",
     },
@@ -30,7 +32,8 @@ const ServicesPage = () => {
             Our Services
           </h2>
           <p className="text-lg text-green-800 text-center mb-12 max-w-2xl mx-auto font-medium">
-            Empowering your academic and professional success with tailored solutions
+            Empowering your academic and professional success with tailored
+            solutions
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (

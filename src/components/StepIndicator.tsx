@@ -6,9 +6,9 @@ interface StepIndicatorProps {
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
   const steps = [
-    { label: "User Information", number: 1 },
-    { label: "Mock Paper Details", number: 2 },
-    { label: "Review and Generate", number: 3 },
+    // { label: "User Information", number: 1 },
+    { label: "Mock Paper Details", number: 1 },
+    { label: "Review and Generate", number: 2 },
   ];
 
   return (

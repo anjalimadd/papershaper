@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import { getValue } from "../services/api/getValue";
 import StepIndicator from "../components/StepIndicator";
-import Step1GeneralDetails from "../components/Step1GeneralDetails";
 import Step2Details from "../components/Step2Details";
 import Step3Confirmation from "../components/Step3Confirmation";
 import { SparklesIcon } from "@heroicons/react/24/solid";
@@ -34,7 +33,7 @@ const MultiStepForm: React.FC = () => {
     gender: "",
     email: "",
     phone: "",
-    board: "",
+    board: "CBSE",
     classLevel: "",
     selectedSubjects: "",
     chapter: "",
@@ -44,14 +43,14 @@ const MultiStepForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleNext = () => {
-    if (step === 1 && !formData.reason) {
-      toast.error("Please provide a reason for creating the mock paper.");
-      return;
-    }
+    // if (step === 1) {
+    //   toast.error("Please provide a reason for creating the mock paper.");
+    //   return;
+    // }
     setStep(step + 1);
   };
 
-  const handlePrevious = () => setStep(step - 1);
+  // const handlePrevious = () => setStep(step - 1);
 
   const handleGenerate = async () => {
     try {
@@ -98,7 +97,7 @@ const MultiStepForm: React.FC = () => {
           doc.text(
             130,
             doc.internal.pageSize.height - 20,
-            "© 2025 PaperShaper. All rights reserved."
+            "© 2025 Papershapers. All rights reserved."
           );
         }
 
@@ -163,7 +162,7 @@ const MultiStepForm: React.FC = () => {
       setPdfUrl(pdfUrl);
 
       toast.success("Mock paper generated successfully!");
-      setStep(3);
+      setStep(2);
     } catch (error) {
       setLoading(false);
       console.error("Error generating mock paper:", error);
@@ -184,28 +183,29 @@ const MultiStepForm: React.FC = () => {
             AI-Powered Mock Paper Generator
           </h1>
           <p className="text-lg text-green-800 font-medium">
-            Create customized exam papers tailored to your specific needs. Select your class, subject, and chapter to generate practice materials instantly.
+            Create customized exam papers tailored to your specific needs.
+            Select your class, subject, and chapter to generate practice
+            materials instantly.
           </p>
         </div>
 
         <StepIndicator currentStep={step} />
         <div className="max-w-3xl w-full p-8 bg-white rounded-2xl shadow-lg">
-          {step === 1 && (
+          {/* {step === 1 && (
             <Step1GeneralDetails
+              formData={formData}
+              setFormData={setFormData}
+              onNext={handleNext}
+            />
+          )} */}
+          {step === 1 && (
+            <Step2Details
               formData={formData}
               setFormData={setFormData}
               onNext={handleNext}
             />
           )}
           {step === 2 && (
-            <Step2Details
-              formData={formData}
-              setFormData={setFormData}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-            />
-          )}
-          {step === 3 && (
             <Step3Confirmation
               formData={formData}
               onGenerate={handleGenerate}
@@ -217,7 +217,6 @@ const MultiStepForm: React.FC = () => {
       </main>
       <Footer />
     </div>
-
   );
 };
 

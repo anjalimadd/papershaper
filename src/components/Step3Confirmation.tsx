@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import { FormDataType } from "pages/TryDemoPage";
+import { FormDataType } from "pages/MockPaperCreatorPage";
 
 interface Step3Props {
   formData: FormDataType;
@@ -56,42 +56,46 @@ const Step3Confirmation: React.FC<Step3Props> = ({
       ) : (
         <div className="w-full flex flex-col gap-8">
           {/* Left side: Summary */}
-          {!pdfUrl && <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
-            <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3 mb-6">
-              Your Selection Summary
-            </h3>
-            <div className="space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-700">Education Board:</p>
-                <p className="text-gray-600 mt-1">{formData.board}</p>
+          {!pdfUrl && (
+            <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
+              <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3 mb-6">
+                Your Selection Summary
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <p className="font-medium text-gray-700">Education Board:</p>
+                  <p className="text-gray-600 mt-1">{formData.board}</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <p className="font-medium text-gray-700">Class Level:</p>
+                  <p className="text-gray-600 mt-1">{formData.classLevel}</p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <p className="font-medium text-gray-700">Subjects:</p>
+                  <p className="text-gray-600 mt-1">
+                    {formData.selectedSubjects}
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <p className="font-medium text-gray-700">Chapter:</p>
+                  <p className="text-gray-600 mt-1">{formData.chapter}</p>
+                </div>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-700">Class Level:</p>
-                <p className="text-gray-600 mt-1">{formData.classLevel}</p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-700">Subjects:</p>
-                <p className="text-gray-600 mt-1">{formData.selectedSubjects}</p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <p className="font-medium text-gray-700">Chapter:</p>
-                <p className="text-gray-600 mt-1">{formData.chapter}</p>
-              </div>
-            </div>
 
-            {/* Generate Paper Button (Right side when no PDF) */}
-            {!pdfUrl && (
-              <div className="mt-8 flex justify-end">
-                <button
-                  onClick={onGenerate}
-                  disabled={loading}
-                  className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-green-700 hover:to-blue-700 transition-all"
-                >
-                  {loading ? "Generating..." : "Generate Paper"}
-                </button>
-              </div>
-            )}
-          </div>}
+              {/* Generate Paper Button (Right side when no PDF) */}
+              {!pdfUrl && (
+                <div className="mt-8 flex justify-end">
+                  <button
+                    onClick={onGenerate}
+                    disabled={loading}
+                    className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-green-700 hover:to-blue-700 transition-all"
+                  >
+                    {loading ? "Generating..." : "Generate Paper"}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Right side: PDF Preview */}
           {pdfUrl && (
@@ -100,8 +104,8 @@ const Step3Confirmation: React.FC<Step3Props> = ({
                 Preview Your Paper
               </h3>
               <div className="relative h-[60vh] lg:h-[90vh] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
-                <iframe
-                  src={`${pdfUrl}#toolbar=0&navpanes=0&view=FitH`}
+                <embed
+                  src={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
                   className="w-full h-full border-0"
                   title="PDF Preview"
                 />
@@ -135,7 +139,7 @@ const Step3Confirmation: React.FC<Step3Props> = ({
             Download PDF
           </button>
           <button
-            onClick={() => window.location.replace("/try-demo")}
+            onClick={() => window.location.replace("/mock-paper-creator")}
             className="px-8 py-3 bg-gray-100 text-gray-700 rounded-lg shadow-lg hover:bg-gray-200 transition-colors"
           >
             Generate Another Paper

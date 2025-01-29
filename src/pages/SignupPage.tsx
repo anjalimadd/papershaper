@@ -39,6 +39,7 @@ const SignupPage = () => {
       } else {
         throw new Error(result.error as string);
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message || "Failed to create account");
     }
@@ -48,7 +49,8 @@ const SignupPage = () => {
     try {
       await sendVerificationEmail();
       toast.success("Verification email resent!");
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       toast.error("Failed to resend verification email");
     }
   };
@@ -68,12 +70,12 @@ const SignupPage = () => {
             className="text-2xl lg:text-3xl font-bold cursor-pointer mb-4"
             onClick={() => navigate("/")}
           >
-            Paper Shaper{" "}
+            Paper Shapers{" "}
             <span className="inline-block transform rotate-45">📝</span>
           </div>
           <div className="my-4 lg:my-8">
             <h1 className="text-3xl lg:text-5xl font-bold mb-4 leading-tight lg:leading-snug">
-              Join Paper Shaper
+              Join Paper Shapers
             </h1>
             <p className="text-base lg:text-lg mb-4 lg:mb-6">
               Start generating AI-powered mock papers for classes 9, 10, and 12
