@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AppRoutes from "./routes";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
-
+import SeoStructuredData from "components/SeoStructureData";
 
 const App = () => (
   <>
@@ -14,6 +14,7 @@ const App = () => (
         autoClose={3000}
         hideProgressBar={false}
       />
+      <SeoStructuredData />
       <AppRoutes />
     </HelmetProvider>
   </>

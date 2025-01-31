@@ -1,5 +1,6 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
+import SeoStructure from "components/SeoStructureData";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -20,8 +21,26 @@ const DashboardPage = () => {
     }
   }, []);
 
+  // SEO Props
+  const pageTitle = user
+    ? `${user.email}'s Dashboard | AI CBSE Mock Paper Generator`
+    : "Dashboard | AI CBSE Mock Paper Generator - Papershapers";
+
+  const pageDescription = user
+    ? `Welcome back, ${user.email}! Create customized CBSE mock papers for classes 9-12 with AI-powered tools. Generate practice papers, question banks, and more.`
+    : "Create customized CBSE mock papers for classes 9-12 with AI-powered tools. Generate practice papers, question banks, and more.";
+
   return (
     <>
+      {/* SEO Structure */}
+      <SeoStructure
+        title={pageTitle}
+        description={pageDescription}
+        path="/dashboard"
+        pageType="website"
+        keywords="CBSE dashboard, AI paper generator, mock test creator, CBSE practice papers, AI education tools, Paper Shapers dashboard"
+      />
+
       {/* Header */}
       <Header />
 
@@ -29,7 +48,7 @@ const DashboardPage = () => {
       <div className="bg-gradient-to-b from-green-50 to-green-100 p-6">
         {user && (
           <section className="text-center mt-8">
-            <h2 className="text-3xl font-semibold text-green-800">
+            <h2 className="text-lg sm:text-xl md:text-3xl font-semibold text-green-800">
               Welcome, {user.email}!
             </h2>
             <p className="text-gray-600 mt-2">
@@ -80,6 +99,7 @@ const DashboardPage = () => {
                       strokeWidth={2}
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
                     />
+                    2
                   </svg>
                 ),
               },

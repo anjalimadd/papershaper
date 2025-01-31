@@ -253,43 +253,43 @@ const LandingPage = () => {
       <section className="py-12 md:py-16 bg-gray-50 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-8">
-            Revolutionize Your Learning with Cutting-Edge Tools
+            Transform Your Workflow with Advanced Project Management Solutions
           </h2>
           <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto">
-            Elevate your exam preparation with innovative, AI-powered tools
-            tailored for CBSE and ICSE students. Seamlessly integrate with top
-            educational platforms to create dynamic and personalized mock
-            papers.
+            Streamline your team's productivity with intelligent tools designed
+            for modern project management. Integrate seamlessly with popular
+            workplace platforms to enhance collaboration and deliver projects
+            faster.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               {
-                src: "https://cdn-icons-png.flaticon.com/512/1040/1040902.png",
-                alt: "AI Mock Paper Generator",
-                name: "AI Mock Paper Generator",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534959.png",
+                alt: "Task Automation",
+                name: "Smart Automation",
                 description:
-                  "Effortlessly generate personalized AI-driven mock papers designed for Classes 9-12 students.",
+                  "Automate repetitive tasks and workflows to save time and reduce human error in your processes.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/888/888879.png",
-                alt: "Advanced Question Bank",
-                name: "Advanced Question Bank",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534930.png",
+                alt: "Team Collaboration",
+                name: "Real-Time Collaboration",
                 description:
-                  "Unlock a comprehensive library of quality-assured exam questions, enhancing your revision process.",
+                  "Centralized workspace with simultaneous editing, comments, and version control for teams.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/3404/3404754.png",
-                alt: "Performance Analytics",
-                name: "Performance Analytics",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534969.png",
+                alt: "Analytics Dashboard",
+                name: "Advanced Analytics",
                 description:
-                  "Gain valuable insights into your learning with our interactive performance analytics dashboard.",
+                  "Track project health with real-time KPIs, resource allocation maps, and progress metrics.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/1173/1173412.png",
-                alt: "Exam Simulator",
-                name: "Exam Simulator",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534975.png",
+                alt: "Resource Management",
+                name: "Resource Optimizer",
                 description:
-                  "Practice with simulated exams to master time management and enhance your readiness for the real test.",
+                  "AI-powered resource allocation and workload balancing across multiple projects.",
               },
             ].map((tool, index) => (
               <div
@@ -311,7 +311,7 @@ const LandingPage = () => {
                   to="#"
                   className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300"
                 >
-                  Learn More
+                  Explore Feature
                 </Link>
               </div>
             ))}

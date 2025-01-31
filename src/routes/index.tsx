@@ -45,6 +45,17 @@ const AppRoutes: React.FC = () => (
   <Router>
     <Helmet>
       <meta name="google-adsense-account" content="ca-pub-8294578673663801" />
+      <title>Papershapers - AI Paper Generator</title>
+      <meta
+        name="description"
+        content="Generate CBSE 9th-12th mock papers instantly with AI! Papershapers helps teachers & students create customized practice papers with smart question selection."
+      />
+      <meta
+        name="keywords"
+        content="CBSE mock papers, AI question generator, Class 9-12 question papers, CBSE practice papers, AI education tools, Paper generator India"
+      />
+      <link rel="canonical" href="https://papershapers.in/" />
+      <meta name="robots" content="index, follow" />
     </Helmet>
     <ScrollToTop />
     <Routes>
