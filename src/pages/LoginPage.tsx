@@ -40,9 +40,13 @@ const LoginPage = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithGoogle();
-      toast.success("Google login successful!");
-      navigate("/dashboard");
+      const result = await signInWithGoogle();
+      if (result) {
+        toast.success("Google login successful!");
+        navigate("/dashboard");
+      } else {
+        toast.error("Google login failed. Please try again.");
+      }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error("Google login failed. Please try again.", error);
