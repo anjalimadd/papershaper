@@ -6,9 +6,9 @@ interface StepIndicatorProps {
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
   const steps = [
-    // { label: "User Information", number: 1 },
     { label: "Mock Paper Details", number: 1 },
     { label: "Review and Generate", number: 2 },
+    { label: "Answer Key", number: 3 },
   ];
 
   return (
@@ -18,16 +18,16 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => {
           <div className="flex items-center space-x-2">
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold ${currentStep === step.number
-                  ? "text-white bg-green-600"
-                  : "text-gray-500 bg-gray-200"
+                ? "text-white bg-green-600"
+                : "text-gray-500 bg-gray-200"
                 }`}
             >
               {step.number}
             </div>
             <span
               className={`hidden sm:inline ${currentStep === step.number
-                  ? "text-green-600 font-semibold"
-                  : "text-gray-500"
+                ? "text-green-600 font-semibold"
+                : "text-gray-500"
                 }`}
             >
               {step.label}

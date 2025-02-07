@@ -1,11 +1,12 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { FormDataType } from "pages/MockPaperCreatorPage";
-
+import { useEffect, useState } from "react";
 interface Step3Props {
   formData: FormDataType;
   pdfUrl: string | null;
   onGenerate: () => void;
   loading: boolean;
+  onNext: () => void;
 }
 
 const Step3Confirmation: React.FC<Step3Props> = ({
@@ -13,11 +14,31 @@ const Step3Confirmation: React.FC<Step3Props> = ({
   pdfUrl,
   onGenerate,
   loading,
+  onNext,
 }) => {
+  const [messageIndex, setMessageIndex] = useState(0);
+  const loadingMessages = [
+    "Crafting your perfect mock paper...",
+    "Almost done...",
+    "Just a moment...",
+    "We're getting things ready..."
+  ];
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (loading) {
+      timer = setInterval(() => {
+        setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+      }, 3000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [loading, loadingMessages.length]);
+
   const generateFileName = () => {
     const cleanString = (str: string) =>
       str.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
-
     return `MockPaper_${cleanString(formData.board)}_${cleanString(
       formData.classLevel
     )}_${cleanString(formData.selectedSubjects)}_${cleanString(
@@ -49,13 +70,12 @@ const Step3Confirmation: React.FC<Step3Props> = ({
             loop
           />
           <div className="mt-6 text-lg text-gray-600">
-            <p className="animate-pulse">Crafting your perfect mock paper...</p>
+            <p className="animate-pulse">{loadingMessages[messageIndex]}</p>
             <p className="text-sm mt-2">This usually takes 15-20 seconds</p>
           </div>
         </div>
       ) : (
         <div className="w-full flex flex-col gap-8">
-          {/* Left side: Summary */}
           {!pdfUrl && (
             <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
               <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3 mb-6">
@@ -72,17 +92,13 @@ const Step3Confirmation: React.FC<Step3Props> = ({
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <p className="font-medium text-gray-700">Subjects:</p>
-                  <p className="text-gray-600 mt-1">
-                    {formData.selectedSubjects}
-                  </p>
+                  <p className="text-gray-600 mt-1">{formData.selectedSubjects}</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <p className="font-medium text-gray-700">Chapter:</p>
                   <p className="text-gray-600 mt-1">{formData.chapter}</p>
                 </div>
               </div>
-
-              {/* Generate Paper Button (Right side when no PDF) */}
               {!pdfUrl && (
                 <div className="mt-8 flex justify-end">
                   <button
@@ -96,8 +112,6 @@ const Step3Confirmation: React.FC<Step3Props> = ({
               )}
             </div>
           )}
-
-          {/* Right side: PDF Preview */}
           {pdfUrl && (
             <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
               <h3 className="text-xl font-semibold text-gray-800 mb-6">
@@ -116,12 +130,11 @@ const Step3Confirmation: React.FC<Step3Props> = ({
         </div>
       )}
 
-      {/* Buttons (Bottom when PDF is previewed) */}
       {pdfUrl && (
         <div className="flex flex-col md:flex-row justify-center gap-6 mt-12">
           <button
             onClick={downloadPDF}
-            className="px-8 py-3 text-white rounded-lg bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            className="w-full md:w-auto px-8 py-3 text-white rounded-lg bg-green-600 hover:bg-green-700 transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
           >
             <svg
               className="w-5 h-5"
@@ -140,11 +153,18 @@ const Step3Confirmation: React.FC<Step3Props> = ({
           </button>
           <button
             onClick={() => window.location.replace("/mock-paper-creator")}
-            className="px-8 py-3 bg-gray-100 text-gray-700 rounded-lg shadow-lg hover:bg-gray-200 transition-colors"
+            className="w-full md:w-auto px-8 py-3 bg-white text-green-600 border border-green-600 rounded-lg shadow-md hover:bg-green-50 transition-colors"
           >
             Generate Another Paper
           </button>
+          <button
+            onClick={onNext}
+            className="w-full md:w-auto px-8 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all"
+          >
+            Next
+          </button>
         </div>
+
       )}
     </div>
   );

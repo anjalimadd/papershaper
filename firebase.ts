@@ -10,12 +10,12 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAyDLGBvNv1YjIq0HKuOiGrw-dGXcsl3eo",
-  authDomain: "papershapers-64595.firebaseapp.com",
-  projectId: "papershapers-64595",
-  storageBucket: "papershapers-64595.firebasestorage.app",
-  messagingSenderId: "164202290994",
-  appId: "1:164202290994:web:8c573a00aa28cc47e0412b"
+  apiKey: "AIzaSyDrEWBkg3tbh1J25EDkA8XhXHCN-DF9aYI",
+  authDomain: "papershapers-72950.firebaseapp.com",
+  projectId: "papershapers-72950",
+  storageBucket: "papershapers-72950.firebasestorage.app",
+  messagingSenderId: "409486195769",
+  appId: "1:409486195769:web:2a7abdb827ef1da2b2a1e8"
 };
 
 // Initialize Firebase
