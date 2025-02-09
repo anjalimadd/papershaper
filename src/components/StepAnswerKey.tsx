@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { jsPDF } from "jspdf";
 import { getAnswerKey } from "../services/api/getAnswerKey";
@@ -7,16 +7,18 @@ import { FormDataType } from "pages/MockPaperCreatorPage";
 interface StepAnswerKeyProps {
   formData: FormDataType;
   onBack: () => void;
+  content: string;
 }
 
-const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
+const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack, content }) => {
   const [answerKey, setAnswerKey] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchAnswerKey = async () => {
     try {
       setLoading(true);
-      const response = await getAnswerKey({
+      // Call the API to get the answer key. The service returns a string.
+      const answerKeyContent = await getAnswerKey({
         board: formData.board,
         classLevel: formData.classLevel,
         selectedSubjects: formData.selectedSubjects,
@@ -24,9 +26,9 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
         paperType: formData.paperType,
         hit_count: 0,
         is_logedIn: true,
+        question_paper: content,
       });
-      // Assuming the API returns an object with the property "answerKey"
-      setAnswerKey(response.answerKey);
+      setAnswerKey(answerKeyContent);
       toast.success("Answer key loaded successfully!");
     } catch (error) {
       toast.error("Failed to load answer key");
@@ -35,7 +37,7 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
     }
   };
 
-  const downloadAnswerKeyPDF = () => {
+  const generateAnswerKeyPDF = () => {
     if (!answerKey) {
       toast.error("No answer key available");
       return;
@@ -52,10 +54,11 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
     doc.text("Answer Key", pageWidth / 2, cursorY, { align: "center" });
     cursorY += 20;
 
-    // Content
+    // Content setup
     doc.setFontSize(12);
     doc.setFont("helvetica", "normal");
 
+    // Function to process markdown-style bold text (wrapped in **)
     const processTextWithBold = (text: string) => {
       const regex = /\*\*(.*?)\*\*/g;
       let lastIndex = 0;
@@ -63,13 +66,22 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
       let match;
       while ((match = regex.exec(text)) !== null) {
         if (match.index > lastIndex) {
-          parts.push({ text: text.substring(lastIndex, match.index), isBold: false });
+          parts.push({
+            text: text.substring(lastIndex, match.index),
+            isBold: false,
+          });
         }
-        parts.push({ text: match[1], isBold: true });
+        parts.push({
+          text: match[1],
+          isBold: true,
+        });
         lastIndex = regex.lastIndex;
       }
       if (lastIndex < text.length) {
-        parts.push({ text: text.substring(lastIndex), isBold: false });
+        parts.push({
+          text: text.substring(lastIndex),
+          isBold: false,
+        });
       }
       return parts;
     };
@@ -79,6 +91,7 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
     lines.forEach((line: string) => {
       const parts = processTextWithBold(line);
       parts.forEach((part) => {
+        // If the current y position is too close to the bottom, add a new page.
         if (cursorY + 10 > pageHeight - margin) {
           doc.addPage();
           cursorY = margin;
@@ -89,7 +102,7 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
       });
     });
 
-    // Footer
+    // Footer added to every page.
     const totalPages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
@@ -103,6 +116,7 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
       );
     }
 
+    // Generate and download the PDF.
     const pdfBlob = doc.output("blob");
     const url = URL.createObjectURL(pdfBlob);
     const link = document.createElement("a");
@@ -111,10 +125,16 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
     link.click();
   };
 
+  useEffect(() => {
+    fetchAnswerKey();
+  }, []);
+
   return (
     <div className="px-4 md:px-8 min-h-screen flex flex-col items-center justify-center bg-green-50">
-      <h2 className="text-4xl md:text-5xl font-bold text-green-800 mb-8">Answer Key</h2>
-      <div className="w-full max-w-3xl p-6">
+      <h2 className="text-4xl md:text-5xl font-bold text-green-800 mb-8">
+        Answer Key
+      </h2>
+      <div className="w-full max-w-3xl p-6 bg-white rounded-xl shadow-lg">
         {loading ? (
           <p className="text-green-700">Loading answer key...</p>
         ) : answerKey ? (
@@ -136,10 +156,10 @@ const StepAnswerKey: React.FC<StepAnswerKeyProps> = ({ formData, onBack }) => {
         )}
         {answerKey && (
           <button
-            onClick={downloadAnswerKeyPDF}
+            onClick={generateAnswerKeyPDF}
             className="w-full md:w-auto px-8 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-colors"
           >
-            Download Answer Key PDF
+            Generate Answer Key PDF
           </button>
         )}
         <button

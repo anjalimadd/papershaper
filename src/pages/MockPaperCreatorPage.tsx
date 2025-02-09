@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 import { getValue } from "../services/api/getValue";
 import StepIndicator from "../components/StepIndicator";
-import Step2Details from "../components/Step2Details";
-import Step3Confirmation from "../components/Step3Confirmation";
-import StepAnswerKey from "../components/StepAnswerKey";
 import { SparklesIcon } from "@heroicons/react/24/solid";
+import Step2Confirmation from "../components/Step2Confirmation";
+import Step1Details from "components/Step1Details";
+import StepAnswerKey from "components/StepAnswerKey";
 
 export interface FormDataType {
   reason?: string | undefined;
@@ -42,6 +42,7 @@ const MultiStepForm: React.FC = () => {
   });
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [questions, setQuestions] = useState<string>("");
 
   const handleNext = () => {
     setStep(step + 1);
@@ -81,6 +82,7 @@ const MultiStepForm: React.FC = () => {
       setLoading(false);
 
       const content = res.result ?? "";
+      setQuestions(content);
 
       let doc: any = new jsPDF();
       const pageWidth = doc.internal.pageSize.width;
@@ -148,7 +150,6 @@ const MultiStepForm: React.FC = () => {
       setPdfUrl(pdfUrl);
 
       toast.success("Mock paper generated successfully!");
-      setStep(3); // Proceed to the Answer Key step
     } catch (error) {
       setLoading(false);
       console.error("Error generating mock paper:", error);
@@ -176,14 +177,14 @@ const MultiStepForm: React.FC = () => {
         <StepIndicator currentStep={step} />
         <div className="max-w-3xl w-full p-8 bg-white rounded-2xl shadow-lg">
           {step === 1 && (
-            <Step2Details
+            <Step1Details
               formData={formData}
               setFormData={setFormData}
               onNext={handleNext}
             />
           )}
           {step === 2 && (
-            <Step3Confirmation
+            <Step2Confirmation
               formData={formData}
               onGenerate={handleGenerate}
               pdfUrl={pdfUrl}
@@ -191,7 +192,8 @@ const MultiStepForm: React.FC = () => {
               onNext={handleNext}
             />
           )}
-          {step === 3 && <StepAnswerKey formData={formData} onBack={handleBack} />}
+
+          {step ===3 && <StepAnswerKey formData={formData} content={questions} onBack={handleBack} />}
         </div>
       </main>
       <Footer />

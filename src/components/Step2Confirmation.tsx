@@ -9,7 +9,7 @@ interface Step3Props {
   onNext: () => void;
 }
 
-const Step3Confirmation: React.FC<Step3Props> = ({
+const Step2Confirmation: React.FC<Step3Props> = ({
   formData,
   pdfUrl,
   onGenerate,
@@ -69,7 +69,7 @@ const Step3Confirmation: React.FC<Step3Props> = ({
             autoplay
             loop
           />
-          <div className="mt-6 text-lg text-gray-600">
+          <div className="mt-6 text-lg text-gray-600 text-center">
             <p className="animate-pulse">{loadingMessages[messageIndex]}</p>
             <p className="text-sm mt-2">This usually takes 15-20 seconds</p>
           </div>
@@ -119,7 +119,7 @@ const Step3Confirmation: React.FC<Step3Props> = ({
               </h3>
               <div className="relative h-[60vh] lg:h-[90vh] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
                 <embed
-                  src={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
+                  src={`${pdfUrl}#toolbar=0&navpanes=0&view=FitH`}
                   className="w-full h-full border-0"
                   title="PDF Preview"
                 />
@@ -170,4 +170,4 @@ const Step3Confirmation: React.FC<Step3Props> = ({
   );
 };
 
-export default Step3Confirmation;
+export default Step2Confirmation;
