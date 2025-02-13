@@ -83,13 +83,13 @@ const LoginPage = () => {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="lg:w-1/3 w-full max-w-lg flex flex-col justify-start items-center p-6 lg:p-10 bg-white lg:my-44">
-        <h2 className="text-2xl lg:text-3xl font-semibold mb-6 lg:mb-8 text-green-800">
+      <div className="lg:w-1/3 w-full flex flex-col justify-center items-center p-6 lg:p-10 bg-white lg:min-h-screen">
+        <h2 className="text-2xl lg:text-3xl font-semibold mb-6 lg:mb-8 text-green-800 text-center">
           Login to your account
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full space-y-4 lg:space-y-6 mt-4 lg:mt-6"
+          className="w-full max-w-md space-y-4 lg:space-y-5 text-center"
         >
           <div>
             <input

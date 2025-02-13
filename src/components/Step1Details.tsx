@@ -9,7 +9,7 @@ interface Step2Props {
   onNext: () => void;
 }
 
-const Step2Details: React.FC<Step2Props> = ({
+const Step1Details: React.FC<Step2Props> = ({
   formData,
   setFormData,
   // onPrevious,
@@ -188,4 +188,4 @@ const Step2Details: React.FC<Step2Props> = ({
   );
 };
 
-export default Step2Details;
+export default Step1Details;

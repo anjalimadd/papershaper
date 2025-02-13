@@ -52,4 +52,5 @@ export default defineConfig({
   build: {
     sourcemap: false,
   },
+  mode: "development",
 });
