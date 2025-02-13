@@ -1,5 +1,5 @@
 // vite.config.ts
-import { defineConfig, loadEnv } from "vite"; // Add loadEnv import
+import { defineConfig } from "vite"; 
 import react from "@vitejs/plugin-react";
 import viteImagemin from "vite-plugin-imagemin";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -11,9 +11,9 @@ const packageJson = JSON.parse(
   readFileSync(path.resolve(__dirname, "package.json"), "utf-8")
 );
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   // Load environment variables based on mode
-  const env = loadEnv(mode, process.cwd(), "");
+  // const env = loadEnv(mode, process.cwd(), "");
 
   return {
     plugins: [
