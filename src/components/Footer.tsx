@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="flex space-x-4 mt-4">
             {/* LinkedIn Icon */}
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/company/papershapersai"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -38,7 +38,7 @@ export default function Footer() {
 
             {/* Instagram Icon */}
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/papershapers_works/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -57,7 +57,7 @@ export default function Footer() {
 
             {/* Facebook Icon */}
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/profile.php?id=61572831503971"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
