@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
 export async function getAnswerKey(formData: {
+  id: string;
   board: string;
   classLevel: string;
   selectedSubjects: string;
@@ -11,9 +13,8 @@ export async function getAnswerKey(formData: {
   question_paper: string;
 }) {
   try {
-    const randomId = Math.random().toString(36).substr(2, 9);
     const payload = {
-      id: randomId,
+      id: formData.id,
       Board: formData.board,
       Class: formData.classLevel,
       Subject: formData.selectedSubjects,
@@ -25,48 +26,48 @@ export async function getAnswerKey(formData: {
       question_paper: formData.question_paper,
     };
 
-    const mode = import.meta.env.MODE;
-    console.log("Mode:", mode);
-    const apiURL = mode === "development" ? "/api/answer-key" : import.meta.env.VITE_ANSWER_API_BASE_URL;
-    console.log("API URL:", apiURL);
+    // const mode = import.meta.env.MODE;
+    // mode === "development"
+    //   ? "/api/answer-key"
+    //   :
+    const apiURL = import.meta.env.VITE_ANSWER_API_BASE_URL;
+
     const response = await axios.post(apiURL, payload, {
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers: { "Content-Type": "application/json" },
     });
 
-    // The API response sample:
-    // {
-    //   data: {
-    //     id: "...",
-    //     result: "The answer key text with **bold** markdown formatting..."
-    //   },
-    //   ...
-    // }
-    if (
-      response.status === 200 &&
-      response.data &&
-      response.data.data &&
-      response.data.data.result
-    ) {
-      // Return the answer key text
-      return response.data.data.result;
+    console.log(response.data, "API Response");
+
+    if (response.status === 200 && response.data?.result) {
+      return response.data.result;
     } else {
-      throw new Error("Invalid response format");
+      throw new Error("Invalid response format: Missing 'result' field");
     }
   } catch (error: any) {
-    if (error.response) {
-      const errorMessage =
-        error.response.data?.message || error.response.statusText;
-      console.error(
-        `HTTP error! status: ${error.response.status}, message: ${errorMessage}`
-      );
-      throw new Error(
-        `HTTP error! status: ${error.response.status}, message: ${errorMessage}`
-      );
+    let errorResponse: any = {
+      statusCode: 500,
+      message: "An unexpected error occurred",
+    };
+
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        errorResponse = {
+          statusCode: error.response.status,
+          message:
+            error.response.data?.message ||
+            `API request failed with status ${error.response.status}`,
+          details: error.response.data || {},
+        };
+      } else if (error.request) {
+        errorResponse.message = "No response received from the server";
+      } else {
+        errorResponse.message = "Error in setting up the request";
+      }
     } else {
-      console.error("Error fetching answer key:", error.message);
-      throw new Error("Error fetching answer key");
+      errorResponse.message = error.message || "Unexpected error";
     }
+
+    console.error("API Error:", errorResponse);
+    throw errorResponse;
   }
 }

@@ -1,56 +1,54 @@
 // vite.config.ts
+import { defineConfig, loadEnv } from "vite"; // Add loadEnv import
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { readFileSync } from 'fs';
-import path from 'path';
+import { readFileSync } from "fs";
+import path from "path";
 
 // Read package.json
 const packageJson = JSON.parse(
-  readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8')
+  readFileSync(path.resolve(__dirname, "package.json"), "utf-8")
 );
 
+export default defineConfig(({ mode }) => {
+  // Load environment variables based on mode
+  const env = loadEnv(mode, process.cwd(), "");
 
-export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-    viteImagemin({
-      // Options for image optimization (optional)
-      gifsicle: {
-        optimizationLevel: 3,
-      },
-      optipng: {
-        optimizationLevel: 3,
-      },
-      mozjpeg: {
-        quality: 85,
-      },
-    }),
-  ],
-  define: {
-    __APP_VERSION__: JSON.stringify(packageJson.version),
-  },
-  optimizeDeps: {
-    include: [
-      "react-router",
-      "react-router-dom",
-      "tailwindcss-motion"
+  return {
+    plugins: [
+      react(),
+      tsconfigPaths(),
+      viteImagemin({
+        gifsicle: { optimizationLevel: 3 },
+        optipng: { optimizationLevel: 3 },
+        mozjpeg: { quality: 85 },
+      }),
     ],
-  },
-  server: {
-    // host: true,
-    // port: 80,
-    hmr: {
-      protocol: "ws",
+    define: {
+      __APP_VERSION__: JSON.stringify(packageJson.version),
+    },
+    server: {
+      // proxy: {
+      //   // Proxy configuration
+      //   "/api/answer-key": {
+      //     target: env.VITE_ANSWER_API_BASE_URL,
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/api\/answer-key/, ""),
+      //   },
+      // },
+      hmr: {
+        protocol: "ws",
+        port: 1234,
+      },
+      host: "localhost",
       port: 1234,
     },
-    host: "localhost",
-    port: 1234,
-  },
-  build: {
-    sourcemap: false,
-  },
-  mode: "development",
+    build: {
+      sourcemap: false,
+    },
+    optimizeDeps: {
+      include: ["react-router", "react-router-dom", "tailwindcss-motion"],
+    },
+  };
 });

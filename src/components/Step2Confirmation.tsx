@@ -1,6 +1,8 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { FormDataType } from "pages/MockPaperCreatorPage";
 import { useEffect, useState } from "react";
+import loadingAnimation from "../../public/lottie/loading.json";
+
 interface Step3Props {
   formData: FormDataType;
   pdfUrl: string | null;
@@ -21,7 +23,7 @@ const Step2Confirmation: React.FC<Step3Props> = ({
     "Crafting your perfect mock paper...",
     "Almost done...",
     "Just a moment...",
-    "We're getting things ready..."
+    "We're getting things ready...",
   ];
 
   useEffect(() => {
@@ -57,15 +59,17 @@ const Step2Confirmation: React.FC<Step3Props> = ({
 
   return (
     <div className="px-4 md:px-8 pb-10 min-h-auto flex flex-col items-center justify-center">
-      <h2 className={`text-4xl md:text-5xl font-bold text-green-600 py-4 ${pdfUrl ? "mb-8" : "mb-0"}`}>
+      <h2
+        className={`text-3xl sm:text-4xl md:text-5xl font-bold text-green-600/90 py-4 ${pdfUrl ? "mb-8" : "mb-0"}`}
+      >
         {pdfUrl && "Your Mock Paper is Ready!"}
       </h2>
 
       {loading ? (
         <div className="py-12">
           <Player
-            src="/src/assets/lottie/loading.json"
-            className="w-48 h-48 mx-auto"
+            src={loadingAnimation}
+            className="w-72 h-72 mx-auto"
             autoplay
             loop
           />
@@ -77,7 +81,7 @@ const Step2Confirmation: React.FC<Step3Props> = ({
       ) : (
         <div className="w-full flex flex-col gap-8">
           {!pdfUrl && (
-            <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
+            <div className="w-full p-0 md:p-6">
               <h3 className="text-2xl font-semibold text-gray-800 border-b pb-3 mb-6">
                 Your Selection Summary
               </h3>
@@ -92,7 +96,9 @@ const Step2Confirmation: React.FC<Step3Props> = ({
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <p className="font-medium text-gray-700">Subjects:</p>
-                  <p className="text-gray-600 mt-1">{formData.selectedSubjects}</p>
+                  <p className="text-gray-600 mt-1">
+                    {formData.selectedSubjects}
+                  </p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <p className="font-medium text-gray-700">Chapter:</p>
@@ -104,7 +110,7 @@ const Step2Confirmation: React.FC<Step3Props> = ({
                   <button
                     onClick={onGenerate}
                     disabled={loading}
-                    className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-green-700 hover:to-blue-700 transition-all"
+                    className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-lg"
                   >
                     {loading ? "Generating..." : "Generate Paper"}
                   </button>
@@ -113,8 +119,8 @@ const Step2Confirmation: React.FC<Step3Props> = ({
             </div>
           )}
           {pdfUrl && (
-            <div className="w-full p-6 md:p-8 bg-white rounded-xl shadow-xl">
-              <h3 className="text-xl font-semibold text-gray-800 mb-6">
+            <div className="w-full p-0 md:p-8">
+              <h3 className="text-xl font-semibold text-gray-600 mb-6">
                 Preview Your Paper
               </h3>
               <div className="relative h-[60vh] lg:h-[90vh] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
@@ -153,7 +159,7 @@ const Step2Confirmation: React.FC<Step3Props> = ({
           </button>
           <button
             onClick={() => window.location.replace("/mock-paper-creator")}
-            className="w-full md:w-auto px-8 py-3 bg-white text-green-600 border border-green-600 rounded-lg shadow-md hover:bg-green-50 transition-colors"
+            className="w-full md:w-auto px-8 py-3 bg-white text-green-600 border border-green-600 rounded-lg shadow-md hover:bg-green-50"
           >
             Generate Another Paper
           </button>
@@ -164,7 +170,6 @@ const Step2Confirmation: React.FC<Step3Props> = ({
             Next
           </button>
         </div>
-
       )}
     </div>
   );
