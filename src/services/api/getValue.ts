@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export async function getValue(formData: {
+export async function getValue ( formData: {
+  id:string,
   board: string;
   classLevel: string;
   selectedSubjects: string;
@@ -10,11 +11,8 @@ export async function getValue(formData: {
   is_logedIn: string;
 }) {
   try {
-    // Generate a random ID using Math.random and convert it to a base-36 string
-    const randomId = Math.random().toString(36).substr(2, 9);
-
     const payload = {
-      id: randomId,
+      id: formData.id,
       Board: formData.board,
       Class: formData.classLevel,
       Subject: formData.selectedSubjects,

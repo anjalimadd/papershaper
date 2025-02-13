@@ -22,6 +22,7 @@ export interface FormDataType {
   selectedSubjects: string;
   chapter: string;
   paperType: string;
+  id?: string | undefined;
   phoneNumber?: string;
 }
 
@@ -43,6 +44,7 @@ const MultiStepForm: React.FC = () => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [questions, setQuestions] = useState<string>("");
+  const [answerKeyId, setAnswerKeyId] = useState("");
 
   const handleNext = () => {
     setStep(step + 1);
@@ -61,14 +63,24 @@ const MultiStepForm: React.FC = () => {
       selectedSubjects: "",
       chapter: "",
       paperType: "",
+      id: "",
     });
+
     setStep(1);
+    setPdfUrl(null);
+    setLoading(false);
+    setQuestions("");
+    setAnswerKeyId("");
   };
 
   const handleGenerate = async () => {
     try {
       setLoading(true);
+      // Generate a random ID using Math.random and convert it to a base-36 string
+      const randomId = Math.random().toString(36).substr(2, 9);
+      setAnswerKeyId(randomId);
       const payload = {
+        id: randomId,
         board: formData.board,
         classLevel: formData.classLevel,
         selectedSubjects: formData.selectedSubjects,
@@ -84,7 +96,8 @@ const MultiStepForm: React.FC = () => {
       const content = res.result ?? "";
       setQuestions(content);
 
-      let doc: any = new jsPDF();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const doc: any = new jsPDF();
       const pageWidth = doc.internal.pageSize.width;
       const pageHeight = doc.internal.pageSize.height;
       const marginLeft = 20;
@@ -93,47 +106,58 @@ const MultiStepForm: React.FC = () => {
       const maxWidth = pageWidth - 2 * marginLeft;
       let cursorY = marginTop;
 
-      doc.setFontSize(18);
+      doc.setFontSize(20);
       doc.setFont("helvetica", "bold");
-      doc.text("Sample Mock Paper", pageWidth / 2, cursorY, { align: "center" });
+      doc.text("Sample Mock Paper", pageWidth / 2, cursorY, {
+        align: "center",
+      });
       cursorY += lineHeight * 2;
 
       const processTextWithBold = (text: string) => {
         const regex = /\*\*(.*?)\*\*/g;
         let lastIndex = 0;
-        const textWithFormatting = [];
+        const formattedText = [];
         let match;
         while ((match = regex.exec(text)) !== null) {
           if (match.index > lastIndex) {
-            textWithFormatting.push({
+            formattedText.push({
               text: text.substring(lastIndex, match.index),
               isBold: false,
             });
           }
-          textWithFormatting.push({ text: match[1], isBold: true });
+          formattedText.push({ text: match[1], isBold: true });
           lastIndex = regex.lastIndex;
         }
         if (lastIndex < text.length) {
-          textWithFormatting.push({
+          formattedText.push({
             text: text.substring(lastIndex),
             isBold: false,
           });
         }
-        return textWithFormatting;
+        return formattedText;
       };
 
       doc.setFontSize(12);
-      const textLines = doc.splitTextToSize(content, maxWidth);
-      textLines.forEach((line: string) => {
-        const formattedText = processTextWithBold(line);
-        formattedText.forEach((part) => {
-          if (cursorY + lineHeight > pageHeight - 20) {
+      const paragraphs = content.split("\n");
+      paragraphs.forEach((para: string) => {
+        if (para.trim() === "") {
+          cursorY += lineHeight;
+          return;
+        }
+        const wrappedLines = doc.splitTextToSize(para, maxWidth);
+        wrappedLines.forEach((line: string) => {
+          const formattedText = processTextWithBold(line);
+          let lineX = marginLeft;
+          formattedText.forEach((part) => {
+            doc.setFont("helvetica", part.isBold ? "bold" : "normal");
+            doc.text(part.text, lineX, cursorY);
+            lineX += doc.getTextWidth(part.text);
+          });
+          cursorY += lineHeight;
+          if (cursorY > pageHeight - 20) {
             doc.addPage();
             cursorY = marginTop;
           }
-          doc.setFont("helvetica", part.isBold ? "bold" : "normal");
-          doc.text(part.text, marginLeft, cursorY);
-          cursorY += lineHeight;
         });
       });
 
@@ -142,7 +166,13 @@ const MultiStepForm: React.FC = () => {
         doc.setPage(i);
         doc.setFontSize(10);
         doc.setTextColor(150);
-        doc.text("© 2025 Papershapers. All rights reserved.", pageWidth / 2, pageHeight - 10, { align: "center" });
+        doc.text(`Page ${i} of ${totalPages}`, pageWidth - 30, pageHeight - 10);
+        doc.text(
+          "© 2025 Papershapers. All rights reserved.",
+          pageWidth / 2,
+          pageHeight - 10,
+          { align: "center" }
+        );
       }
 
       const pdfBlob = doc.output("blob");
@@ -161,16 +191,17 @@ const MultiStepForm: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 flex flex-col items-center py-10 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
-        <div className="max-w-3xl w-full text-center mb-12">
-          <div className="inline-flex items-center justify-center p-4 bg-green-100 rounded-full mb-6">
-            <SparklesIcon className="w-12 h-12 text-emerald-600" />
+        <div className="max-w-3xl w-full text-center mb-12 px-4 sm:px-6 lg:px-8">
+          <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-green-100/80 rounded-full mb-6 sm:mb-8">
+            <SparklesIcon className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-700">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold text-gray-900 mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-700 leading-tight sm:leading-snug">
             AI-Powered Mock Paper Generator
           </h1>
-          <p className="text-lg text-green-800 font-medium">
+          <p className="text-base sm:text-lg lg:text-xl text-green-800/90 font-medium max-w-prose mx-auto leading-relaxed sm:leading-normal">
             Create customized exam papers tailored to your specific needs.
-            Select your class, subject, and chapter to generate practice materials instantly.
+            Select your class, subject, and chapter to generate practice
+            materials instantly.
           </p>
         </div>
 
@@ -193,7 +224,14 @@ const MultiStepForm: React.FC = () => {
             />
           )}
 
-          {step ===3 && <StepAnswerKey formData={formData} content={questions} onBack={handleBack} />}
+          {step === 3 && (
+            <StepAnswerKey
+              formData={formData}
+              content={questions}
+              onBack={handleBack}
+              id={answerKeyId}
+            />
+          )}
         </div>
       </main>
       <Footer />
