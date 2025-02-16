@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import InputField from "../utils/common/InputField";
 import SelectField from "../utils/common/SelectField";
-import { FormDataType } from "../pages/TryDemoPage";
+import { FormDataType } from "../pages/MockPaperCreatorPage";
 import { toast } from "react-toastify";
 // import axios from "axios";
 
@@ -79,12 +79,11 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
       //     );
       //   }
       onNext();
-
     } catch (error: any) {
       console.error("Error submitting form data:", error);
       toast.error(
         error.response?.data?.message ||
-        "An unexpected error occurred. Please try again later."
+          "An unexpected error occurred. Please try again later."
       );
     } finally {
       setIsLoading(false);
@@ -142,8 +141,9 @@ const Step1GeneralDetails: React.FC<Step1Props> = ({
       <button
         type="button"
         onClick={handleNext}
-        className={`mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-opacity duration-300 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+        className={`mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-opacity duration-300 ${
+          isLoading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         disabled={isLoading}
       >
         {isLoading ? (

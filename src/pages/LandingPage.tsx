@@ -18,27 +18,28 @@ const LandingPage = () => {
           </h1>
 
           {/* Animated Heading */}
-          <h2 className="inline-block overflow-hidden border-r-4 border-green-700 motion-preset-typewriter-[92] motion-duration-[10s] text-xl sm:text-2xl md:text-4xl font-black text-green-700 whitespace-nowrap mx-auto max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl">
-            GenAI-Powered Exam Papers for Classes 9-12 | CBSE & ICSE
+          <h2 className="inline-block overflow-hidden border-r-4 border-green-700 text-xl motion-preset-typewriter-[50] motion-duration-[8s] sm:text-2xl md:text-4xl font-bold text-green-700 whitespace-nowrap mx-auto max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-6xl">
+            GenAI-Powered Exam Papers for Classes 9-12 | CBSE
           </h2>
 
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mt-6 sm:mt-8 md:mt-8 mb-8 md:mb-12">
-            Elevate Your Study Game with Expert Tools: Create AI-Powered Mock Papers with Ease
+            Elevate Your Study Game with Expert Tools: Create AI-Powered Mock
+            Papers with Ease
           </p>
 
           {/* Buttons Container */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <Link
-              to="/try-demo"
-              className="px-6 py-3 sm:px-8 sm:py-4 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-lg text-sm sm:text-base"
+              to="/register"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-green-600 text-white rounded-full hover:bg-green-700 text-sm sm:text-base"
             >
-              Get Started
+              Start Free Trial
             </Link>
             <Link
-              to="/try-demo"
-              className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors duration-300 shadow-lg text-sm sm:text-base"
+              to="/mock-paper-creator"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-200 text-gray-600 font-semibold rounded-full text-sm sm:text-base"
             >
-              Try Demo
+              Exam Generator
             </Link>
           </div>
         </div>
@@ -56,13 +57,23 @@ const LandingPage = () => {
                 title: "AI-Powered Exam Generator",
                 description:
                   "Create customized mock papers and test questions for Classes 9-12 (CBSE). Select your class, subject, and chapter to generate tailored practice materials or assessment questions instantly.",
-                link: "/try-demo",
+                link: "/mock-paper-creator",
                 linkText: "Try Exam Generator",
                 icon: (
-                  <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  <svg
+                    className="w-12 h-12 text-emerald-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                    />
                   </svg>
-                )
+                ),
               },
               {
                 title: "Document-Based Question Generator",
@@ -71,14 +82,25 @@ const LandingPage = () => {
                 link: "/document-helper",
                 linkText: "Try Document Helper",
                 icon: (
-                  <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg
+                    className="w-12 h-12 text-emerald-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
-                )
+                ),
               },
             ].map((feature, index) => (
               <div
                 key={index}
+                id="feature"
                 className="bg-white p-8 rounded-2xl shadow-lg flex flex-col"
               >
                 <div className="flex-grow">
@@ -108,7 +130,7 @@ const LandingPage = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-            Key Benefits of Using Paper Shaper
+            Key Benefits of Using Paper Shapers
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mb-8">
             Our system boosts exam readiness, enhances learning efficiency, and
@@ -148,118 +170,128 @@ const LandingPage = () => {
 
       {/* Pricing Section */}
       <section className="py-16 bg-white">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
-          Tailored Plans for Your Preparation Needs
-        </h2>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          {[
-            {
-              plan: "Basic",
-              price: "$19",
-              features: [
-                "Access to question bank",
-                "Basic analytics",
-                "Custom papers",
-              ],
-            },
-            {
-              plan: "Pro",
-              price: "$39",
-              features: [
-                "Advanced question selection",
-                "Detailed analytics",
-                "Unlimited mock exams",
-              ],
-            },
-            {
-              plan: "Premium",
-              price: "$59",
-              features: [
-                "All features of Pro",
-                "Personalized feedback",
-                "Priority support",
-              ],
-            },
-          ].map((packageItem, index) => (
-            <div
-              key={index}
-              className="w-full md:w-80 bg-gray-100 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
-            >
-              <h3 className="text-2xl font-bold mb-4 text-gray-800">
-                {packageItem.plan}
-              </h3>
-              <p className="text-3xl font-semibold mb-6 text-green-700">
-                {packageItem.price}/month
-              </p>
-              <ul className="text-gray-600 space-y-3 mb-6 text-left">
-                {packageItem.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-green-500 mr-2 flex-shrink-0"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/get-started"
-                className="inline-block px-6 py-3 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-md"
-              >
-                Get Started
-              </Link>
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+            Completely Free for Educational Use
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8">
+            We believe in accessible education for all. Our platform is completely
+            free for students, teachers, and educational institutions.
+          </p>
+
+          <div className="bg-green-50 rounded-2xl p-6 sm:p-8 md:p-12 shadow-lg border border-green-100">
+            <div className="mb-6">
+              <span className="bg-green-700 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium">
+                Free Forever
+              </span>
             </div>
-          ))}
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+              Full Access for Everyone
+            </h3>
+            <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-green-700">
+              $0
+            </p>
+            <ul className="text-gray-600 space-y-3 mb-8 text-sm sm:text-base max-w-sm mx-auto text-left">
+              <li className="flex items-center">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Unlimited AI-generated papers
+              </li>
+              <li className="flex items-center">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                All question types and subjects
+              </li>
+              <li className="flex items-center">
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Priority support for educators
+              </li>
+            </ul>
+            <Link
+              to="/register"
+              className="inline-block px-6 py-3 bg-green-700 text-white rounded-full hover:bg-green-800 transition-colors duration-300 shadow-md text-base sm:text-lg"
+            >
+              Get Started Free
+            </Link>
+          </div>
+
+          <p className="mt-8 text-xs sm:text-sm text-gray-500">
+            For schools and institutions needing customized solutions, contact our
+            education team.
+          </p>
         </div>
       </section>
+
 
       {/* Integration Section */}
       <section className="py-12 md:py-16 bg-gray-50 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-8">
-            Revolutionize Your Learning with Cutting-Edge Tools
+            Transform Your Workflow with Advanced Project Management Solutions
           </h2>
           <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto">
-            Elevate your exam preparation with innovative, AI-powered tools
-            tailored for CBSE and ICSE students. Seamlessly integrate with top
-            educational platforms to create dynamic and personalized mock papers.
+            Streamline your team's productivity with intelligent tools designed
+            for modern project management. Integrate seamlessly with popular
+            workplace platforms to enhance collaboration and deliver projects
+            faster.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               {
-                src: "https://cdn-icons-png.flaticon.com/512/1040/1040902.png",
-                alt: "AI Mock Paper Generator",
-                name: "AI Mock Paper Generator",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534959.png",
+                alt: "Task Automation",
+                name: "Smart Automation",
                 description:
-                  "Effortlessly generate personalized AI-driven mock papers designed for Classes 9-12 students.",
+                  "Automate repetitive tasks and workflows to save time and reduce human error in your processes.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/888/888879.png",
-                alt: "Advanced Question Bank",
-                name: "Advanced Question Bank",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534930.png",
+                alt: "Team Collaboration",
+                name: "Real-Time Collaboration",
                 description:
-                  "Unlock a comprehensive library of quality-assured exam questions, enhancing your revision process.",
+                  "Centralized workspace with simultaneous editing, comments, and version control for teams.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/3404/3404754.png",
-                alt: "Performance Analytics",
-                name: "Performance Analytics",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534969.png",
+                alt: "Analytics Dashboard",
+                name: "Advanced Analytics",
                 description:
-                  "Gain valuable insights into your learning with our interactive performance analytics dashboard.",
+                  "Track project health with real-time KPIs, resource allocation maps, and progress metrics.",
               },
               {
-                src: "https://cdn-icons-png.flaticon.com/512/1173/1173412.png",
-                alt: "Exam Simulator",
-                name: "Exam Simulator",
+                src: "https://cdn-icons-png.flaticon.com/512/1534/1534975.png",
+                alt: "Resource Management",
+                name: "Resource Optimizer",
                 description:
-                  "Practice with simulated exams to master time management and enhance your readiness for the real test.",
+                  "AI-powered resource allocation and workload balancing across multiple projects.",
               },
             ].map((tool, index) => (
               <div
@@ -281,7 +313,7 @@ const LandingPage = () => {
                   to="#"
                   className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-green-700 transition-colors duration-300"
                 >
-                  Learn More
+                  Explore Feature
                 </Link>
               </div>
             ))}

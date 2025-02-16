@@ -1,55 +1,54 @@
 // vite.config.ts
+import { defineConfig } from "vite"; 
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
 import viteImagemin from "vite-plugin-imagemin";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { readFileSync } from "fs";
+import path from "path";
 
-export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-    viteImagemin({
-      // Options for image optimization (optional)
-      gifsicle: {
-        optimizationLevel: 3,
-      },
-      optipng: {
-        optimizationLevel: 3,
-      },
-      mozjpeg: {
-        quality: 85,
-      },
-    }),
-  ],
-  optimizeDeps: {
-    include: [
-      "react-router",
-      "react-router-dom",
-      "tailwindcss-motion"
+// Read package.json
+const packageJson = JSON.parse(
+  readFileSync(path.resolve(__dirname, "package.json"), "utf-8")
+);
+
+export default defineConfig(() => {
+  // Load environment variables based on mode
+  // const env = loadEnv(mode, process.cwd(), "");
+
+  return {
+    plugins: [
+      react(),
+      tsconfigPaths(),
+      viteImagemin({
+        gifsicle: { optimizationLevel: 3 },
+        optipng: { optimizationLevel: 3 },
+        mozjpeg: { quality: 85 },
+      }),
     ],
-  },
-  server: {
-    host: true,
-    port: 80,
-    proxy: {
-      "/api/google-sheets": {
-        target: "https://script.google.com",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api\/google-sheets/, "/macros/s/AKfycbxOPydNsc6UVuFdbhgD7ldZ0D4V2uu0cBvR7UZDFaZnJfPnKiNyy-kMC5a2sfjij8VUzw/exec")
-      },
-      "/api/test1": {
-        target: "https://vogyb0pn35.execute-api.ap-south-1.amazonaws.com",
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => {
-          return path.replace(/^\/api\/test1/, "/test1");
-        },
-        followRedirects: true,
-      },
+    define: {
+      __APP_VERSION__: JSON.stringify(packageJson.version),
     },
-  },
-  build: {
-    sourcemap: false,
-  },
+    server: {
+      // proxy: {
+      //   // Proxy configuration
+      //   "/api/answer-key": {
+      //     target: env.VITE_ANSWER_API_BASE_URL,
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/api\/answer-key/, ""),
+      //   },
+      // },
+      hmr: {
+        protocol: "ws",
+        port: 1234,
+      },
+      host: "localhost",
+      port: 1234,
+    },
+    build: {
+      sourcemap: false,
+    },
+    optimizeDeps: {
+      include: ["react-router", "react-router-dom", "tailwindcss-motion"],
+    },
+  };
 });

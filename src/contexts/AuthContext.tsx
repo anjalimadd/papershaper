@@ -3,10 +3,12 @@
 import {
   applyActionCode,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  UserCredential
+  signInWithPopup,
+  UserCredential,
 } from "firebase/auth";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { auth } from "../../firebase";
@@ -29,9 +31,8 @@ export interface AuthContextProps {
   resetPassword: (email: string) => Promise<boolean>;
   sendVerificationEmail: () => Promise<void>;
   verifyEmail: (code: string) => Promise<boolean>;
+  signInWithGoogle: () => Promise<boolean>;
 }
-
-const DEFAULT_PHOTO_URL = "https://randomuser.me/api/portraits/men/1.jpg";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextProps | null>(null);
@@ -48,32 +49,59 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const updateUserInState = (userData: any) => {
     const updatedUser: User = {
-      name: userData.name || "Unknown",
+      name: userData.displayName || "Unknown",
       email: userData.email || "",
-      photoURL: userData.photoURL || DEFAULT_PHOTO_URL,
+      photoURL: userData.photoURL,
       emailVerified: userData.emailVerified || false,
     };
     setUser(updatedUser);
     sessionStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      updateUserInState(userCredential.user);
+      return true;
+    } catch (error) {
+      console.error("Google login failed:", error);
+      return false;
+    }
+  };
+
   const login = async (email: string, password: string) => {
     try {
-      const userCredential: UserCredential = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      const userData = userCredential.user;
-      
-      if (!userData.emailVerified) {
+      if (!userCredential.user.emailVerified) {
         throw new Error("Please verify your email before logging in");
       }
-
-      updateUserInState(userData);
+      updateUserInState(userCredential.user);
       return true;
     } catch (error: any) {
-      throw new Error(error.message || "Login failed. Please try again.");
+      let errorMessage = "Login failed. Please try again.";
+      switch (error.code) {
+        case "auth/invalid-credential":
+        case "auth/user-not-found":
+        case "auth/wrong-password":
+          errorMessage = "Invalid email or password";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many attempts. Try again later";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "Account disabled. Contact support";
+          break;
+        default:
+          if (error.message.includes("verify your email")) {
+            errorMessage = error.message;
+          }
+      }
+      throw new Error(errorMessage);
     }
   };
 
@@ -82,13 +110,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
       const userData = userCredential.user;
-      
+
       await sendEmailVerification(userData);
       updateUserInState(userData);
-      
-      return { 
-        success: true, 
-        message: "Verification email sent. Please check your inbox." 
+
+      return {
+        success: true,
+        message: "Verification email sent. Please check your inbox.",
       };
     } catch (error) {
       console.error("Error signing up:", error);
@@ -138,7 +166,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         verifyEmail,
         sendVerificationEmail,
         logout,
-        resetPassword
+        resetPassword,
+        signInWithGoogle
       }}
     >
       {children}

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import SelectField from "../utils/common/SelectField";
-import { FormDataType } from "../pages/TryDemoPage";
+import { FormDataType } from "../pages/MockPaperCreatorPage";
 import classData from "../data/classData.json";
 interface Step2Props {
   formData: FormDataType;
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
-  onPrevious: () => void;
+  // onPrevious: () => void;
   onNext: () => void;
 }
 
-const Step2Details: React.FC<Step2Props> = ({
+const Step1Details: React.FC<Step2Props> = ({
   formData,
   setFormData,
-  onPrevious,
+  // onPrevious,
   onNext,
 }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -100,7 +100,7 @@ const Step2Details: React.FC<Step2Props> = ({
       // Using a type assertion here to specify the expected structure of chapters
       const chapters =
         (classData[classLevel]?.chapters as Record<string, string[]>)[
-        firstSelectedSubject
+          firstSelectedSubject
         ] || [];
       setAvailableChapters(chapters);
     }
@@ -113,6 +113,7 @@ const Step2Details: React.FC<Step2Props> = ({
           label="Select Board"
           name="board"
           options={["CBSE"]}
+          disabled
           value={formData.board}
           onChange={handleChange}
         />
@@ -168,14 +169,14 @@ const Step2Details: React.FC<Step2Props> = ({
           <p className="text-red-500 text-sm mt-2">{errors.paperType}</p>
         )}
       </div>
-      <div className="flex justify-between mt-8">
-        <button
+      <div className="flex justify-end mt-8">
+        {/* <button
           type="button"
           onClick={onPrevious}
           className="py-2 px-6 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
         >
           Previous
-        </button>
+        </button> */}
         <button
           type="submit"
           className="py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700"
@@ -187,4 +188,4 @@ const Step2Details: React.FC<Step2Props> = ({
   );
 };
 
-export default Step2Details;
+export default Step1Details;

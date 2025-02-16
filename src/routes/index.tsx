@@ -1,7 +1,7 @@
 import DashboardPage from "../pages/DashboardPage";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
-import TryDemoPage from "../pages/TryDemoPage";
+import TryDemoPage from "../pages/MockPaperCreatorPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import {
   Navigate,
@@ -18,6 +18,7 @@ import ForgotPasswordPage from "pages/ForgotPasswordPage";
 import { useEffect } from "react";
 import PricingPage from "pages/PricingPage";
 import DocumentHelperPage from "pages/DocumentHelperPage";
+import { Helmet } from "react-helmet-async";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = sessionStorage.getItem("user");
@@ -35,11 +36,30 @@ const ScrollToTop = () => {
   return null;
 };
 
+const LoggedOutRoute = ({ children }: { children: JSX.Element }) => {
+  const user = sessionStorage.getItem("user");
+  return user ? <Navigate to="/" /> : children;
+};
 
 const AppRoutes: React.FC = () => (
   <Router>
+    <Helmet>
+      <meta name="google-adsense-account" content="ca-pub-8294578673663801" />
+      <title>Papershapers - AI Paper Generator</title>
+      <meta
+        name="description"
+        content="Generate CBSE 9th-12th mock papers instantly with AI! Papershapers helps teachers & students create customized practice papers with smart question selection."
+      />
+      <meta
+        name="keywords"
+        content="CBSE mock papers, AI question generator, Class 9-12 question papers, CBSE practice papers, AI education tools, Paper generator India"
+      />
+      <link rel="canonical" href="https://papershapers.in/" />
+      <meta name="robots" content="index, follow" />
+    </Helmet>
     <ScrollToTop />
     <Routes>
+      {/* Protected routes */}
       <Route
         path="/dashboard"
         element={
@@ -48,17 +68,8 @@ const AppRoutes: React.FC = () => (
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/register" element={<SignupPage />} />
-      <Route path="/pricing" element={<PricingPage />} />
-      <Route path="/services" element={<ServicesPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route
-        path="/try-demo"
+        path="/mock-paper-creator"
         element={
           <ProtectedRoute>
             <TryDemoPage />
@@ -73,6 +84,39 @@ const AppRoutes: React.FC = () => (
           </ProtectedRoute>
         }
       />
+
+      {/* Auth routes accessible only to logged out users */}
+      <Route
+        path="/login"
+        element={
+          <LoggedOutRoute>
+            <LoginPage />
+          </LoggedOutRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <LoggedOutRoute>
+            <SignupPage />
+          </LoggedOutRoute>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <LoggedOutRoute>
+            <ForgotPasswordPage />
+          </LoggedOutRoute>
+        }
+      />
+
+      {/* Public routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/services" element={<ServicesPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   </Router>
